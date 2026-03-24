@@ -44,12 +44,12 @@ public:
         for (auto& s : students)
             lines.push_back(to_string(s.id)+","+s.username+","+s.password+","+
                             s.name+","+s.rollNumber+","+s.className+","+to_string(s.parentId));
-        writeCSV("students.csv", lines);
+        writeCSV("data/students.csv", lines);
     }
 
     static vector<Student> loadStudents() {
         vector<Student> students;
-        for (auto& row : readCSV("students.csv")) {
+        for (auto& row : readCSV("data/students.csv")) {
             if (row.size() < 7) continue;
             students.emplace_back(stoi(row[0]), row[1], row[2], row[3], row[4], row[5], stoi(row[6]));
         }
@@ -62,12 +62,12 @@ public:
         for (auto& t : teachers)
             lines.push_back(to_string(t.id)+","+t.username+","+t.password+","+
                             t.name+","+t.subject+","+t.department);
-        writeCSV("teachers.csv", lines);
+        writeCSV("data/teachers.csv", lines);
     }
 
     static vector<Teacher> loadTeachers() {
         vector<Teacher> teachers;
-        for (auto& row : readCSV("teachers.csv")) {
+        for (auto& row : readCSV("data/teachers.csv")) {
             if (row.size() < 6) continue;
             teachers.emplace_back(stoi(row[0]), row[1], row[2], row[3], row[4], row[5]);
         }
@@ -79,12 +79,12 @@ public:
         vector<string> lines;
         for (auto& a : admins)
             lines.push_back(to_string(a.id)+","+a.username+","+a.password+","+a.name);
-        writeCSV("admins.csv", lines);
+        writeCSV("data/admins.csv", lines);
     }
 
     static vector<Admin> loadAdmins() {
         vector<Admin> admins;
-        for (auto& row : readCSV("admins.csv")) {
+        for (auto& row : readCSV("data/admins.csv")) {
             if (row.size() < 4) continue;
             admins.emplace_back(stoi(row[0]), row[1], row[2], row[3]);
         }
@@ -97,12 +97,12 @@ public:
         for (auto& p : parents)
             lines.push_back(to_string(p.id)+","+p.username+","+p.password+","+
                             p.name+","+to_string(p.studentId));
-        writeCSV("parents.csv", lines);
+        writeCSV("data/parents.csv", lines);
     }
 
     static vector<Parent> loadParents() {
         vector<Parent> parents;
-        for (auto& row : readCSV("parents.csv")) {
+        for (auto& row : readCSV("data/parents.csv")) {
             if (row.size() < 5) continue;
             parents.emplace_back(stoi(row[0]), row[1], row[2], row[3], stoi(row[4]));
         }
@@ -116,11 +116,11 @@ public:
             lines.push_back(to_string(r.invoiceId)+","+to_string(r.studentId)+","+
                             r.studentName+","+r.dueDate+","+r.paidDate+","+
                             to_string(r.amount)+","+to_string(r.paid)+","+to_string(r.settled));
-        writeCSV("fees.csv", lines);
+        writeCSV("data/fees.csv", lines);
     }
 
     static void loadFees(FeeManager& fm) {
-        for (auto& row : readCSV("fees.csv")) {
+        for (auto& row : readCSV("data/fees.csv")) {
             if (row.size() < 8) continue;
             FeeRecord r;
             r.invoiceId = stoi(row[0]); r.studentId = stoi(row[1]);
@@ -136,11 +136,11 @@ public:
         for (auto& e : entries)
             lines.push_back(to_string(e.studentId)+","+e.studentName+","+
                             e.className+","+e.date+","+to_string(e.present));
-        writeCSV("attendance.csv", lines);
+        writeCSV("data/attendance.csv", lines);
     }
 
     static void loadAttendance(AttendanceManager& am) {
-        for (auto& row : readCSV("attendance.csv")) {
+        for (auto& row : readCSV("data/attendance.csv")) {
             if (row.size() < 5) continue;
             am.getEntries().push_back({stoi(row[0]), row[1], row[2], row[3], (bool)stoi(row[4])});
         }
@@ -152,11 +152,11 @@ public:
         for (auto& e : entries)
             lines.push_back(to_string(e.studentId)+","+e.studentName+","+
                             e.subject+","+e.term+","+to_string(e.marks)+","+to_string(e.total));
-        writeCSV("grades.csv", lines);
+        writeCSV("data/grades.csv", lines);
     }
 
     static void loadGrades(GradeManager& gm) {
-        for (auto& row : readCSV("grades.csv")) {
+        for (auto& row : readCSV("data/grades.csv")) {
             if (row.size() < 6) continue;
             gm.getEntries().push_back({stoi(row[0]), row[1], row[2], row[3], stod(row[4]), stod(row[5])});
         }
@@ -167,11 +167,11 @@ public:
         vector<string> lines;
         for (auto& s : slots)
             lines.push_back(s.className+","+s.day+","+s.startTime+","+s.endTime+","+s.subject+","+s.teacherName);
-        writeCSV("timetable.csv", lines);
+        writeCSV("data/timetable.csv", lines);
     }
 
     static void loadTimetable(Timetable& tt) {
-        for (auto& row : readCSV("timetable.csv")) {
+        for (auto& row : readCSV("data/timetable.csv")) {
             if (row.size() < 6) continue;
             tt.getSlots().push_back({row[0], row[1], row[2], row[3], row[4], row[5]});
         }
@@ -183,11 +183,11 @@ public:
         for (auto& a : anns)
             lines.push_back(to_string(a.id)+","+a.title+","+a.content+","+a.date+","+
                             a.author+","+to_string((int)a.targetRole)+","+to_string(a.allRoles));
-        writeCSV("announcements.csv", lines);
+        writeCSV("data/announcements.csv", lines);
     }
 
     static void loadAnnouncements(AnnouncementManager& am) {
-        for (auto& row : readCSV("announcements.csv")) {
+        for (auto& row : readCSV("data/announcements.csv")) {
             if (row.size() < 7) continue;
             am.getAll().push_back({stoi(row[0]), row[1], row[2], row[3], row[4],
                                    (Role)stoi(row[5]), (bool)stoi(row[6])});
@@ -200,11 +200,11 @@ public:
         for (auto& a : assignments)
             lines.push_back(to_string(a.id)+","+to_string(a.teacherId)+","+
                             a.title+","+a.subject+","+a.dueDate+","+a.fileRef+","+a.className);
-        writeCSV("assignments.csv", lines);
+        writeCSV("data/assignments.csv", lines);
     }
 
     static void loadAssignments(LMSManager& lms) {
-        for (auto& row : readCSV("assignments.csv")) {
+        for (auto& row : readCSV("data/assignments.csv")) {
             if (row.size() < 7) continue;
             lms.getAssignments().push_back({stoi(row[0]), stoi(row[1]), row[2], row[3], row[4], row[5], row[6]});
         }
@@ -216,11 +216,11 @@ public:
         for (auto& m : materials)
             lines.push_back(to_string(m.id)+","+to_string(m.teacherId)+","+
                             m.title+","+m.subject+","+m.contentPath+","+m.className);
-        writeCSV("materials.csv", lines);
+        writeCSV("data/materials.csv", lines);
     }
 
     static void loadMaterials(LMSManager& lms) {
-        for (auto& row : readCSV("materials.csv")) {
+        for (auto& row : readCSV("data/materials.csv")) {
             if (row.size() < 6) continue;
             lms.getMaterials().push_back({stoi(row[0]), stoi(row[1]), row[2], row[3], row[4], row[5]});
         }
@@ -232,11 +232,11 @@ public:
         for (auto& b : books)
             lines.push_back(to_string(b.id)+","+b.title+","+b.author+","+
                             to_string(b.available)+","+to_string(b.issuedTo)+","+b.issueDate);
-        writeCSV("books.csv", lines);
+        writeCSV("data/books.csv", lines);
     }
 
     static void loadBooks(Library& lib) {
-        for (auto& row : readCSV("books.csv")) {
+        for (auto& row : readCSV("data/books.csv")) {
             if (row.size() < 6) continue;
             lib.getBooks().push_back({stoi(row[0]), row[1], row[2],
                                       (bool)stoi(row[3]), stoi(row[4]), row[5]});

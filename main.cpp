@@ -2,17 +2,17 @@
 #include <vector>
 #include <string>
 #include <limits>
-#include "Admin.h"
-#include "Student.h"
-#include "Teacher.h"
-#include "Fee.h"
-#include "Attendance.h"
-#include "Grade.h"
-#include "Timetable.h"
-#include "Announcement.h"
-#include "Assignment.h"
-#include "Book.h"
-#include "FileManager.h"
+#include "include/Admin.h"
+#include "include/Student.h"
+#include "include/Teacher.h"
+#include "include/Fee.h"
+#include "include/Attendance.h"
+#include "include/Grade.h"
+#include "include/Timetable.h"
+#include "include/Announcement.h"
+#include "include/Assignment.h"
+#include "include/Book.h"
+#include "include/FileManager.h"
 using namespace std;
 
 // ── Global state ──────────────────────────────────────────────────────────────
