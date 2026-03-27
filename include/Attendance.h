@@ -45,4 +45,5 @@ public:
     }
 
     vector<AttendanceEntry>& getEntries() { return entries; }
+    const vector<AttendanceEntry>& getEntries() const { return entries; }
 };

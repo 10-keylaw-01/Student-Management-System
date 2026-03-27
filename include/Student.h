@@ -22,9 +22,12 @@ public:
 
     void viewDashboard() const override {
         cout << "\n=== STUDENT DASHBOARD: " << name << " ===\n"
-             << "1. View Attendance\n2. View Grades\n"
-             << "3. View Assignments\n4. View Materials\n"
-             << "5. View Timetable\n6. Logout\n";
+             << " 1. View Attendance\n 2. View Grades\n"
+             << " 3. View Assignments\n 4. View Materials\n"
+             << " 5. View Timetable\n 6. View Exam Results\n"
+             << " 7. View My Courses\n 8. View Fee Status\n"
+             << " 9. View Announcements\n10. Academic Calendar\n"
+             << "11. Notifications\n12. Logout\n";
     }
 
     void updateAttendance(const string& date, bool present) {

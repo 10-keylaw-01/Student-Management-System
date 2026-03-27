@@ -17,7 +17,9 @@ public:
         cout << "\n=== TEACHER DASHBOARD: " << name << " ===\n"
              << "1. Mark Attendance\n2. Add Grades\n"
              << "3. Upload Assignment\n4. Upload Material\n"
-             << "5. View Timetable\n6. Send Announcement\n7. Logout\n";
+             << "5. View Timetable\n6. Send Announcement\n"
+             << "7. Exam Management\n8. Analytics\n"
+             << "9. Notifications\n10. Logout\n";
     }
 
     void assignClass(const string& cls) { assignedClasses.push_back(cls); }

@@ -16,6 +16,7 @@ class Library {
     vector<Book> books;
     int nextId = 1;
 public:
+    void setNextId(int id) { nextId = id; }
     void addBook(const string& title, const string& author) {
         books.push_back({nextId++, title, author, true, -1, ""});
         cout << "[Book added: \"" << title << "\" by " << author << " (ID: " << (nextId-1) << ")]\n";

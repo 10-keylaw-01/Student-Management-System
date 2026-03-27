@@ -19,6 +19,7 @@ class LMSManager {
     vector<Material> materials;
     int aId = 1, mId = 1;
 public:
+    void setNextIds(int a, int m) { aId = a; mId = m; }
     void uploadAssignment(int teacherId, const string& title, const string& subject,
                           const string& dueDate, const string& fileRef, const string& cls) {
         assignments.push_back({aId++, teacherId, title, subject, dueDate, fileRef, cls});

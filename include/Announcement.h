@@ -16,6 +16,7 @@ class AnnouncementManager {
     vector<Announcement> announcements;
     int nextId = 1;
 public:
+    void setNextId(int id) { nextId = id; }
     void post(const string& title, const string& content, const string& date,
               const string& author, Role target, bool allRoles = false) {
         announcements.push_back({nextId++, title, content, date, author, target, allRoles});

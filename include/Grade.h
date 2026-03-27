@@ -39,4 +39,5 @@ public:
     }
 
     vector<GradeEntry>& getEntries() { return entries; }
+    const vector<GradeEntry>& getEntries() const { return entries; }
 };
