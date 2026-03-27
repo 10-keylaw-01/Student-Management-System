@@ -1,10 +1,20 @@
-1,Term 2 Begins,2025-04-07,2025-04-07,Academic,Second term commences for all classes
-2,Mid-Term Exams,2025-04-28,2025-05-02,Exam,Mid-term examinations for all classes
-3,Mid-Term Break,2025-05-05,2025-05-09,Holiday,Mid-term break - no classes
-4,Sports Day,2025-05-10,2025-05-10,Sports,Annual inter-class sports competition
-5,Parent-Teacher Meeting,2025-05-16,2025-05-16,Meeting,Parents meet class teachers to discuss progress
-6,End of Term Exams,2025-06-09,2025-06-13,Exam,End of term examinations for all classes
-7,Prize Giving Day,2025-06-20,2025-06-20,Academic,Annual prize giving and awards ceremony
-8,Term 2 Ends,2025-06-27,2025-06-27,Academic,Last day of second term
-9,Long Vacation,2025-06-28,2025-08-31,Holiday,Long vacation between Term 2 and Term 3
-10,Term 3 Begins,2025-09-01,2025-09-01,Academic,Third term commences for all classes
+1,Term 1 Begins,2025-01-06,2025-01-06,Academic,First term commences for all classes
+2,Mid-Term Exams T1,2025-02-17,2025-02-21,Exam,Mid-term examinations Term 1
+3,Mid-Term Break T1,2025-02-24,2025-02-28,Holiday,Mid-term break
+4,End of Term 1 Exams,2025-03-24,2025-03-28,Exam,End of term 1 examinations
+5,Term 1 Ends,2025-04-04,2025-04-04,Academic,Last day of first term
+6,Term 2 Begins,2025-04-07,2025-04-07,Academic,Second term commences for all classes
+7,Mid-Term Exams T2,2025-04-28,2025-05-02,Exam,Mid-term examinations Term 2
+8,Mid-Term Break T2,2025-05-05,2025-05-09,Holiday,Mid-term break
+9,Sports Day,2025-05-10,2025-05-10,Sports,Annual inter-class sports competition
+10,Parent-Teacher Meeting,2025-05-16,2025-05-16,Meeting,Parents meet class teachers
+11,End of Term 2 Exams,2025-06-09,2025-06-13,Exam,End of term 2 examinations
+12,Prize Giving Day,2025-06-20,2025-06-20,Academic,Annual prize giving ceremony
+13,Term 2 Ends,2025-06-27,2025-06-27,Academic,Last day of second term
+14,Long Vacation,2025-06-28,2025-08-31,Holiday,Long vacation between Term 2 and Term 3
+15,Term 3 Begins,2025-09-01,2025-09-01,Academic,Third term commences for all classes
+16,Mid-Term Exams T3,2025-10-13,2025-10-17,Exam,Mid-term examinations Term 3
+17,Mid-Term Break T3,2025-10-20,2025-10-24,Holiday,Mid-term break
+18,End of Term 3 Exams,2025-11-24,2025-11-28,Exam,End of term 3 examinations
+19,Prize Giving & Graduation,2025-12-05,2025-12-05,Academic,Prize giving and Form 6 graduation
+20,Term 3 Ends,2025-12-12,2025-12-12,Academic,Last day of third term

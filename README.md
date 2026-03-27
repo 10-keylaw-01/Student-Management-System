@@ -1,16 +1,60 @@
 # School Management System (SMS)
 
-A console-based C++ application that manages students, teachers, parents, fees, attendance,
-grades, timetables, announcements, assignments, exams, courses, notifications, and an academic
-calendar. All data is persisted to CSV files so it survives between runs.
+A comprehensive student management system with both console-based C++ backend and modern PyQt5 GUI frontend.
+Manages students, teachers, parents, fees, attendance, grades, timetables, announcements, assignments, 
+exams, courses, notifications, and an academic calendar. All data is persisted to CSV files so it survives between runs.
+
+---
+
+## 🎨 Quick Start
+
+### Option 1: PyQt5 GUI Frontend (Recommended)
+
+#### Prerequisites
+- Python 3.8+
+- PyQt5
+
+#### Setup
+```bash
+# Install dependencies
+pip install -r frontend/requirements.txt
+
+# Run the application
+python frontend/main.py
+```
+
+The GUI will automatically detect and launch the C++ backend. Features include:
+- ✅ Modern, professional interface with role-based dashboards
+- ✅ Auto-detecting login with account lockout display
+- ✅ Data visualization with tables and statistics
+- ✅ Real-time backend communication via subprocess
+- ✅ Responsive threading for non-blocking operations
+
+### Option 2: Console Application
+
+#### Build & Run
+```bash
+g++ -std=c++17 -o sms main.cpp
+./sms
+```
 
 ---
 
 ## How to Build & Run
 
+### Backend (C++)
+
 ```bash
 g++ -std=c++17 -o sms main.cpp
 ./sms
+```
+
+### Frontend (PyQt5)
+
+```bash
+cd frontend
+pip install -r requirements.txt
+python main.py
 ```
 
 ---
@@ -448,3 +492,40 @@ All fixes have been verified to compile cleanly and preserve existing functional
 | Notifications                  | ✓     | ✓       | ✓       | ✓      |
 | Library management             | ✓     |         |         |        |
 | Timetable management           | ✓     |         | ✓       |        |
+
+---
+
+## Frontend (PyQt5) Structure
+
+```
+frontend/
+├── main.py                      # Application entry point
+├── backend_communicator.py      # Subprocess handler for C++ backend
+├── requirements.txt             # Python dependencies (PyQt5)
+├── styles.qss                   # Modern stylesheet
+├── ui/                          # UI modules
+│   ├── __init__.py
+│   ├── login_window.py          # Login interface with lockout tracking
+│   ├── admin_dashboard.py       # Admin role dashboard
+│   ├── teacher_dashboard.py     # Teacher role dashboard
+│   ├── student_dashboard.py     # Student role dashboard
+│   └── parent_dashboard.py      # Parent role dashboard
+└── utils/                       # Utility modules
+    ├── __init__.py
+    ├── parser.py                # C++ output parsing utilities
+    └── widgets.py               # Custom PyQt5 widgets
+```
+
+### Frontend Features
+
+- **Modern GUI**: Clean, professional interface with role-based dashboards
+- **Backend Communication**: Non-blocking subprocess communication via threading
+- **Data Tables**: QTableWidget for displaying CSV data (students, fees, attendance, etc.)
+- **Forms & Dialogs**: QDialog for adding/editing records
+- **Login Security**: Failed attempt tracking with 15-minute account lockout
+- **Password Toggle**: Show/hide password option in login
+- **Responsive UI**: QThread prevents GUI freezing during backend operations
+- **Output Parsing**: Auto-detects C++ console output patterns and converts to widgets
+- **Role-Based Access**: Different dashboards for Admin, Teacher, Student, and Parent roles
+- **Statistics Widgets**: Summary cards for quick metrics (attendance, grades, fees, etc.)
+

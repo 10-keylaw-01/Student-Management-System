@@ -1,30 +1,90 @@
-1,2,Algebra Notes Chapter 1,Mathematics,materials/math_ch1.pdf,10A
-2,2,Algebra Notes Chapter 2,Mathematics,materials/math_ch2.pdf,10A
-3,2,Quadratic Formula Guide,Mathematics,materials/math_quad.pdf,10B
-4,2,Polynomial Notes,Mathematics,materials/math_poly.pdf,10C
-5,3,Grammar Guide,English,materials/eng_grammar.pdf,10A
-6,3,Comprehension Passages,English,materials/eng_comp.pdf,10B
-7,3,Writing Skills Handbook,English,materials/eng_writing.pdf,10C
-8,4,Physics Formula Sheet,Physics,materials/phy_formulas.pdf,10A
-9,4,Wave Motion Notes,Physics,materials/phy_waves.pdf,10B
-10,4,Optics Summary,Physics,materials/phy_optics.pdf,10C
-11,5,Biology Diagrams Pack,Biology,materials/bio_diagrams.pdf,10A
-12,5,Photosynthesis Notes,Biology,materials/bio_photo.pdf,10B
-13,5,Ecology Study Guide,Biology,materials/bio_eco.pdf,10C
-14,6,Ancient History Notes,History,materials/hist_ancient.pdf,10A
-15,6,Colonial History Notes,History,materials/hist_colonial.pdf,10B
-16,6,Independence Era Notes,History,materials/hist_indep.pdf,10C
-17,2,Calculus Basics,Mathematics,materials/math_calc.pdf,11A
-18,2,Integration Techniques,Mathematics,materials/math_integ.pdf,11B
-19,2,Differential Equations Notes,Mathematics,materials/math_diff.pdf,11C
-20,6,World War II Timeline,History,materials/hist_ww2.pdf,11A
-21,6,Cold War Summary,History,materials/hist_cold.pdf,11B
-22,6,Post-Colonial Africa Notes,History,materials/hist_post.pdf,11C
-23,4,Quantum Physics Notes,Physics,materials/phy_quantum.pdf,11A
-24,4,Electromagnetic Theory,Physics,materials/phy_em.pdf,11B
-25,4,Nuclear Physics Guide,Physics,materials/phy_nuclear.pdf,11C
-26,5,DNA and Genetics Notes,Biology,materials/bio_dna.pdf,11A
-27,5,Evolution Notes,Biology,materials/bio_evol.pdf,11B
-28,5,Human Physiology Guide,Biology,materials/bio_physio.pdf,11C
-29,3,Academic Writing Guide,English,materials/eng_academic.pdf,11A
-30,3,Literary Devices Handbook,English,materials/eng_literary.pdf,11B
+1,1,Mathematics Notes - 1A,Mathematics,mat_notes_1a.pdf,1A
+2,2,English Notes - 1A,English,eng_notes_1a.pdf,1A
+3,9,Science Notes - 1A,Science,sci_notes_1a.pdf,1A
+4,10,Social Studies Notes - 1A,Social Studies,soc_notes_1a.pdf,1A
+5,7,ICT Notes - 1A,ICT,ict_notes_1a.pdf,1A
+6,1,Mathematics Notes - 1B,Mathematics,mat_notes_1b.pdf,1B
+7,2,English Notes - 1B,English,eng_notes_1b.pdf,1B
+8,9,Science Notes - 1B,Science,sci_notes_1b.pdf,1B
+9,10,Social Studies Notes - 1B,Social Studies,soc_notes_1b.pdf,1B
+10,7,ICT Notes - 1B,ICT,ict_notes_1b.pdf,1B
+11,1,Mathematics Notes - 1C,Mathematics,mat_notes_1c.pdf,1C
+12,2,English Notes - 1C,English,eng_notes_1c.pdf,1C
+13,9,Science Notes - 1C,Science,sci_notes_1c.pdf,1C
+14,10,Social Studies Notes - 1C,Social Studies,soc_notes_1c.pdf,1C
+15,7,ICT Notes - 1C,ICT,ict_notes_1c.pdf,1C
+16,1,Mathematics Notes - 2A,Mathematics,mat_notes_2a.pdf,2A
+17,2,English Notes - 2A,English,eng_notes_2a.pdf,2A
+18,9,Science Notes - 2A,Science,sci_notes_2a.pdf,2A
+19,10,Social Studies Notes - 2A,Social Studies,soc_notes_2a.pdf,2A
+20,8,French Notes - 2A,French,fre_notes_2a.pdf,2A
+21,1,Mathematics Notes - 2B,Mathematics,mat_notes_2b.pdf,2B
+22,2,English Notes - 2B,English,eng_notes_2b.pdf,2B
+23,9,Science Notes - 2B,Science,sci_notes_2b.pdf,2B
+24,10,Social Studies Notes - 2B,Social Studies,soc_notes_2b.pdf,2B
+25,8,French Notes - 2B,French,fre_notes_2b.pdf,2B
+26,1,Mathematics Notes - 2C,Mathematics,mat_notes_2c.pdf,2C
+27,2,English Notes - 2C,English,eng_notes_2c.pdf,2C
+28,9,Science Notes - 2C,Science,sci_notes_2c.pdf,2C
+29,10,Social Studies Notes - 2C,Social Studies,soc_notes_2c.pdf,2C
+30,8,French Notes - 2C,French,fre_notes_2c.pdf,2C
+31,1,Mathematics Notes - 3A,Mathematics,mat_notes_3a.pdf,3A
+32,2,English Notes - 3A,English,eng_notes_3a.pdf,3A
+33,9,Science Notes - 3A,Science,sci_notes_3a.pdf,3A
+34,5,History Notes - 3A,History,his_notes_3a.pdf,3A
+35,7,ICT Notes - 3A,ICT,ict_notes_3a.pdf,3A
+36,1,Mathematics Notes - 3B,Mathematics,mat_notes_3b.pdf,3B
+37,2,English Notes - 3B,English,eng_notes_3b.pdf,3B
+38,9,Science Notes - 3B,Science,sci_notes_3b.pdf,3B
+39,5,History Notes - 3B,History,his_notes_3b.pdf,3B
+40,7,ICT Notes - 3B,ICT,ict_notes_3b.pdf,3B
+41,1,Mathematics Notes - 3C,Mathematics,mat_notes_3c.pdf,3C
+42,2,English Notes - 3C,English,eng_notes_3c.pdf,3C
+43,9,Science Notes - 3C,Science,sci_notes_3c.pdf,3C
+44,5,History Notes - 3C,History,his_notes_3c.pdf,3C
+45,7,ICT Notes - 3C,ICT,ict_notes_3c.pdf,3C
+46,1,Mathematics Notes - 4A,Mathematics,mat_notes_4a.pdf,4A
+47,2,English Notes - 4A,English,eng_notes_4a.pdf,4A
+48,3,Physics Notes - 4A,Physics,phy_notes_4a.pdf,4A
+49,4,Biology Notes - 4A,Biology,bio_notes_4a.pdf,4A
+50,5,History Notes - 4A,History,his_notes_4a.pdf,4A
+51,1,Mathematics Notes - 4B,Mathematics,mat_notes_4b.pdf,4B
+52,2,English Notes - 4B,English,eng_notes_4b.pdf,4B
+53,3,Physics Notes - 4B,Physics,phy_notes_4b.pdf,4B
+54,4,Biology Notes - 4B,Biology,bio_notes_4b.pdf,4B
+55,5,History Notes - 4B,History,his_notes_4b.pdf,4B
+56,1,Mathematics Notes - 4C,Mathematics,mat_notes_4c.pdf,4C
+57,2,English Notes - 4C,English,eng_notes_4c.pdf,4C
+58,3,Physics Notes - 4C,Physics,phy_notes_4c.pdf,4C
+59,4,Biology Notes - 4C,Biology,bio_notes_4c.pdf,4C
+60,5,History Notes - 4C,History,his_notes_4c.pdf,4C
+61,1,Mathematics Notes - 5A,Mathematics,mat_notes_5a.pdf,5A
+62,2,English Notes - 5A,English,eng_notes_5a.pdf,5A
+63,3,Physics Notes - 5A,Physics,phy_notes_5a.pdf,5A
+64,4,Biology Notes - 5A,Biology,bio_notes_5a.pdf,5A
+65,6,Chemistry Notes - 5A,Chemistry,che_notes_5a.pdf,5A
+66,1,Mathematics Notes - 5B,Mathematics,mat_notes_5b.pdf,5B
+67,2,English Notes - 5B,English,eng_notes_5b.pdf,5B
+68,3,Physics Notes - 5B,Physics,phy_notes_5b.pdf,5B
+69,4,Biology Notes - 5B,Biology,bio_notes_5b.pdf,5B
+70,6,Chemistry Notes - 5B,Chemistry,che_notes_5b.pdf,5B
+71,1,Mathematics Notes - 5C,Mathematics,mat_notes_5c.pdf,5C
+72,2,English Notes - 5C,English,eng_notes_5c.pdf,5C
+73,3,Physics Notes - 5C,Physics,phy_notes_5c.pdf,5C
+74,4,Biology Notes - 5C,Biology,bio_notes_5c.pdf,5C
+75,6,Chemistry Notes - 5C,Chemistry,che_notes_5c.pdf,5C
+76,1,Mathematics Notes - 6A,Mathematics,mat_notes_6a.pdf,6A
+77,2,English Notes - 6A,English,eng_notes_6a.pdf,6A
+78,3,Physics Notes - 6A,Physics,phy_notes_6a.pdf,6A
+79,4,Biology Notes - 6A,Biology,bio_notes_6a.pdf,6A
+80,6,Chemistry Notes - 6A,Chemistry,che_notes_6a.pdf,6A
+81,1,Mathematics Notes - 6B,Mathematics,mat_notes_6b.pdf,6B
+82,2,English Notes - 6B,English,eng_notes_6b.pdf,6B
+83,3,Physics Notes - 6B,Physics,phy_notes_6b.pdf,6B
+84,4,Biology Notes - 6B,Biology,bio_notes_6b.pdf,6B
+85,6,Chemistry Notes - 6B,Chemistry,che_notes_6b.pdf,6B
+86,1,Mathematics Notes - 6C,Mathematics,mat_notes_6c.pdf,6C
+87,2,English Notes - 6C,English,eng_notes_6c.pdf,6C
+88,3,Physics Notes - 6C,Physics,phy_notes_6c.pdf,6C
+89,4,Biology Notes - 6C,Biology,bio_notes_6c.pdf,6C
+90,6,Chemistry Notes - 6C,Chemistry,che_notes_6c.pdf,6C

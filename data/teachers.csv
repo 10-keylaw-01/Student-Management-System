@@ -1,5 +1,10 @@
-1,t.ali,312540513269bc19,Mr. Ali Hassan,Mathematics,Science,10A
-2,t.sara,31253d513269b700,Ms. Sara Khan,English,Languages,10B
-3,t.james,31253e513269b8b3,Mr. James Osei,Physics,Science,10C
-4,t.fatima,312543513269c132,Ms. Fatima Noor,Biology,Science,11A
-5,t.david,312544513269c2e5,Mr. David Mensah,History,Humanities,11B
+1,t.ali,312540513269bc19,Mr. Ali Hassan,Mathematics,Science,1A|1B|1C|2A|2B|2C|3A|3B|3C|4A|4B|4C|5A|5B|5C|6A|6B|6C
+2,t.sara,31253d513269b700,Ms. Sara Khan,English,Languages,1A|1B|1C|2A|2B|2C|3A|3B|3C|4A|4B|4C|5A|5B|5C|6A|6B|6C
+3,t.james,31253e513269b8b3,Mr. James Osei,Physics,Science,4A|4B|4C|5A|5B|5C|6A|6B|6C
+4,t.fatima,312543513269c132,Ms. Fatima Noor,Biology,Science,4A|4B|4C|5A|5B|5C|6A|6B|6C
+5,t.david,312544513269c2e5,Mr. David Mensah,History,Humanities,3A|3B|3C|4A|4B|4C
+6,t.kweku,312541513269bdcc,Mr. Kweku Asante,Chemistry,Science,5A|5B|5C|6A|6B|6C
+7,t.ama,312542513269bf7f,Ms. Ama Boateng,ICT,Technology,1A|1B|1C|3A|3B|3C
+8,t.kofi,312547513269c7fe,Mr. Kofi Darko,French,Languages,2A|2B|2C
+9,t.grace,312548513269c9b1,Ms. Grace Adjei,Science,Science,1A|1B|1C|2A|2B|2C|3A|3B|3C
+10,t.samuel,3128c551326cd3ef,Mr. Samuel Quaye,Social Studies,Humanities,1A|1B|1C|2A|2B|2C

@@ -206,7 +206,24 @@ void adminMenu(int adminIdx) {
                     parentId = getValidInt("Parent ID: ");
                     
                     students.emplace_back(nextId(), username, password, name, rollNum, className, parentId);
-                    std::cout << "[✓] Student added with ID: " << students.back().id << "\n";
+                    int newStudentId = students.back().id;
+                    std::cout << "[✓] Student added with ID: " << newStudentId << "\n";
+
+                    // Send welcome notification with fee structure and key info
+                    double termlyFee = 0.0;
+                    for (const auto& fs : feeManager.getStructures())
+                        if (fs.className == className) { termlyFee = fs.termlyFee; break; }
+
+                    std::string welcomeMsg =
+                        "Welcome to " + className + "! "
+                        "Your Roll No: " + rollNum + ". "
+                        "Termly Fee: GHS " + std::to_string((int)termlyFee) + ".00 (due end of first month). "
+                        "Login to view your timetable, assignments, and exam schedule.";
+                    notifManager.send(newStudentId, welcomeMsg, todayStr(), "Welcome");
+
+                    // Also generate a fee invoice automatically
+                    feeManager.generateFromStructure(newStudentId, name, className, todayStr());
+
                     saveAll();
                 } else if (sc == 2) {
                     std::cout << "\n=== All Students ===\n";
