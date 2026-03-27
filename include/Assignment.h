@@ -2,60 +2,68 @@
 #include <string>
 #include <vector>
 #include <iostream>
-using namespace std;
 
+/// Assignment structure
 struct Assignment {
     int id, teacherId;
-    string title, subject, dueDate, fileRef, className;
+    std::string title, subject, dueDate, fileRef, className;
 };
 
+/// Learning material structure
 struct Material {
     int id, teacherId;
-    string title, subject, contentPath, className;
+    std::string title, subject, contentPath, className;
 };
 
+/// Manages assignments and learning materials
 class LMSManager {
-    vector<Assignment> assignments;
-    vector<Material> materials;
+    std::vector<Assignment> assignments;
+    std::vector<Material> materials;
     int aId = 1, mId = 1;
 public:
-    void uploadAssignment(int teacherId, const string& title, const string& subject,
-                          const string& dueDate, const string& fileRef, const string& cls) {
+    void setNextIds(int a, int m) { aId = a; mId = m; }
+    
+    /// Upload assignment for a specific class
+    void uploadAssignment(int teacherId, const std::string& title, const std::string& subject,
+                          const std::string& dueDate, const std::string& fileRef, const std::string& cls) {
         assignments.push_back({aId++, teacherId, title, subject, dueDate, fileRef, cls});
-        cout << "[Assignment uploaded: \"" << title << "\" for class " << cls
+        std::cout << "[Assignment uploaded: \"" << title << "\" for class " << cls
              << " | Due: " << dueDate << "]\n";
     }
 
-    void uploadMaterial(int teacherId, const string& title, const string& subject,
-                        const string& path, const string& cls) {
+    /// Upload learning material for a specific class
+    void uploadMaterial(int teacherId, const std::string& title, const std::string& subject,
+                        const std::string& path, const std::string& cls) {
         materials.push_back({mId++, teacherId, title, subject, path, cls});
-        cout << "[Material uploaded: \"" << title << "\" for class " << cls << "]\n";
+        std::cout << "[Material uploaded: \"" << title << "\" for class " << cls << "]\n";
     }
 
-    void viewAssignments(const string& cls) const {
+    /// View assignments for a specific class
+    void viewAssignments(const std::string& cls) const {
         bool found = false;
-        for (auto& a : assignments) {
+        for (const auto& a : assignments) {
             if (a.className == cls) {
-                cout << "Assignment #" << a.id << ": " << a.title << " | " << a.subject
+                std::cout << "Assignment #" << a.id << ": " << a.title << " | " << a.subject
                      << " | Due: " << a.dueDate << " | File: " << a.fileRef << "\n";
                 found = true;
             }
         }
-        if (!found) cout << "No assignments found.\n";
+        if (!found) std::cout << "No assignments found.\n";
     }
 
-    void viewMaterials(const string& cls) const {
+    /// View materials for a specific class
+    void viewMaterials(const std::string& cls) const {
         bool found = false;
-        for (auto& m : materials) {
+        for (const auto& m : materials) {
             if (m.className == cls) {
-                cout << "Material #" << m.id << ": " << m.title << " | " << m.subject
+                std::cout << "Material #" << m.id << ": " << m.title << " | " << m.subject
                      << " | Path: " << m.contentPath << "\n";
                 found = true;
             }
         }
-        if (!found) cout << "No materials found.\n";
+        if (!found) std::cout << "No materials found.\n";
     }
 
-    vector<Assignment>& getAssignments() { return assignments; }
-    vector<Material>& getMaterials() { return materials; }
+    std::vector<Assignment>& getAssignments() { return assignments; }
+    std::vector<Material>& getMaterials() { return materials; }
 };
