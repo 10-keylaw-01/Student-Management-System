@@ -2,42 +2,66 @@
 #include <string>
 #include <vector>
 #include <iostream>
-using namespace std;
+#include <iomanip>
 
+/// Grade entry structure for student marks
 struct GradeEntry {
     int studentId;
-    string studentName, subject, term;
+    std::string studentName, subject, term;
     double marks, total;
 };
 
+/// Manages student grades
 class GradeManager {
-    vector<GradeEntry> entries;
+    std::vector<GradeEntry> entries;
 public:
-    void addGrade(int studentId, const string& name, const string& subject,
-                  const string& term, double marks, double total) {
+    /// Add or update grade for a student (prevents duplicates)
+    void addGrade(int studentId, const std::string& name, const std::string& subject,
+                  const std::string& term, double marks, double total) {
+        // Check if grade for this student+subject+term exists
+        for (auto& e : entries) {
+            if (e.studentId == studentId && e.subject == subject && e.term == term) {
+                e.marks = marks;
+                e.total = total;
+                std::cout << "[Grade updated: " << name << " | " << subject << " | "
+                     << marks << "/" << total << "]\n";
+                return;
+            }
+        }
+        // Add new grade if doesn't exist
         entries.push_back({studentId, name, subject, term, marks, total});
-        cout << "[Grade added: " << name << " | " << subject << " | " << marks << "/" << total << "]\n";
+        std::cout << "[Grade added: " << name << " | " << subject << " | "
+             << marks << "/" << total << "]\n";
     }
 
+    /// View grade report for a student (guards against division by zero)
     void viewReport(int studentId) const {
         double totalMarks = 0, totalMax = 0;
         bool found = false;
-        for (auto& e : entries) {
+        for (const auto& e : entries) {
             if (e.studentId == studentId) {
-                double pct = (e.marks / e.total) * 100;
-                cout << e.subject << " [" << e.term << "]: " << e.marks << "/" << e.total
-                     << " (" << pct << "%)\n";
-                totalMarks += e.marks; totalMax += e.total;
+                // Guard against division by zero
+                if (e.total > 0) {
+                    double pct = (e.marks / e.total) * 100;
+                    std::cout << e.subject << " [" << e.term << "]: " << e.marks << "/" << e.total
+                         << " (" << std::fixed << std::setprecision(1) << pct << "%)\n";
+                } else {
+                    std::cout << e.subject << " [" << e.term << "]: " << e.marks << "/" << e.total
+                         << " (No total marks)\n";
+                }
+                totalMarks += e.marks; 
+                totalMax += e.total;
                 found = true;
             }
         }
         if (found && totalMax > 0) {
             double overall = (totalMarks / totalMax) * 100;
             double gpa = (overall / 100) * 4.0;
-            cout << "Overall: " << overall << "% | GPA: " << gpa << "\n";
-        } else if (!found) cout << "No grades found.\n";
+            std::cout << "Overall: " << std::fixed << std::setprecision(1) << overall 
+                 << "% | GPA: " << std::setprecision(2) << gpa << "\n";
+        } else if (!found) std::cout << "No grades found.\n";
     }
 
-    vector<GradeEntry>& getEntries() { return entries; }
-    const vector<GradeEntry>& getEntries() const { return entries; }
+    std::vector<GradeEntry>& getEntries() { return entries; }
+    const std::vector<GradeEntry>& getEntries() const { return entries; }
 };

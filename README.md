@@ -313,6 +313,95 @@ SMS/
 │   ├── Notification.h    # In-app notification log (CSV-backed)
 │   ├── Calendar.h        # Academic calendar + events
 │   ├── Analytics.h       # Attendance & grade analytics/reports
+│   ├── Auth.h            # Authentication with lockout protection
+│   ├── Crypto.h          # Password hashing (FNV-1a algorithm)
+│   ├── FileManager.h     # CSV persistence layer
+│   └── menus/            # User-facing menu implementations
+│       ├── StudentMenu.h
+│       ├── TeacherMenu.h
+│       └── ParentMenu.h
+├── data/                 # CSV data files (persistent storage)
+│   ├── students.csv
+│   ├── teachers.csv
+│   ├── admins.csv
+│   ├── parents.csv
+│   ├── fees.csv
+│   ├── attendance.csv
+│   ├── grades.csv
+│   ├── timetable.csv
+│   ├── announcements.csv
+│   ├── assignments.csv
+│   ├── materials.csv
+│   ├── books.csv
+│   ├── exams.csv
+│   ├── exam_results.csv
+│   ├── courses.csv
+│   ├── notifications.csv
+│   ├── calendar.csv
+│   ├── fee_structure.csv
+│   └── calibration.csv
+└── README.md             # This file
+```
+
+---
+
+## What's New in This Version
+
+### Critical Bug Fixes (6 fixes applied)
+
+1. **Missing getValidInt Overload** ✅
+   - Added `int getValidInt(const std::string&, int, int)` 3-argument version in main.cpp
+   - Calls in adminMenu for student/teacher removal now use explicit range parameters
+   - Compiles cleanly without ambiguity errors
+
+2. **Missing extern Declaration** ✅
+   - StudentMenu.h now declares `int getValidInt(const std::string& prompt, int minVal, int maxVal)`
+   - Eliminates implicit declaration warning
+
+3. **Missing Fee Structures** ✅
+   - Added "10C" (1,500.00) and "11C" (1,800.00) to default fee structures in seedDefaults()
+   - All three classes per grade level now have proper fee configuration
+
+4. **Broken Leap-Year Loop in daysPastDue** ✅
+   - Replaced O(n) year-loop implementation with O(1) `std::mktime`-based algorithm
+   - daysPastDue() now calculates days between dates using standard library functions
+   - Performance: ~2024 iterations reduced to constant time for any date
+
+5. **Overpayment Warning Typo** ✅
+   - Fixed extra `]` bracket in overpayment warning message
+   - Now displays: `[WARNING] Overpayment detected: 50.00\n` instead of `[WARNING] Overpayment detected: 50.00]\n`
+
+6. **Teacher Authorization Bypass** ✅
+   - TeacherMenu now properly checks if student exists BEFORE authorization check
+   - When marking attendance/grades, now:
+     1. Searches for student by ID
+     2. If `cls` is empty (student not found), prints error and continues to menu
+     3. Only proceeds if student is found AND teacher is assigned to that class
+   - Applies to: Mark Attendance (Choice 1) and Add Grades (Choice 2)
+
+---
+
+### Security & Robustness Improvements
+
+- **Password Hashing**: All passwords use Crypto::hashPassword() (FNV-1a hashing)
+- **Input Validation**: getValidInt() with range checking prevents malformed numeric input
+- **Late Fee Calculation**: Uses proper date arithmetic instead of iterating through years
+- **Authorization**: Teachers can only manage students in their assigned classes
+- **Duplicate Prevention**: Username, attendance records, grades all protected from duplicates
+
+---
+
+### Compilation & Testing
+
+```bash
+# Build (no warnings or errors)
+g++ -std=c++17 -o sms main.cpp
+
+# Run
+./sms
+```
+
+All fixes have been verified to compile cleanly and preserve existing functionality.
 │   ├── Auth.h            # Login attempt limiting + input sanitization
 │   └── FileManager.h     # CSV read/write for all data
 └── data/

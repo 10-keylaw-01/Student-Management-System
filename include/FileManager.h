@@ -18,27 +18,31 @@
 #include "Course.h"
 #include "Notification.h"
 #include "Calendar.h"
-using namespace std;
 
+/// File manager for CSV persistence
 class FileManager {
-    // Wrap a field in quotes if it contains a comma or quote; escape inner quotes
-    static string csvField(const string& s) {
-        if (s.find(',') == string::npos && s.find('"') == string::npos) return s;
-        string out = "\"";
+    /// Wrap a field in quotes if it contains a comma or quote; escape inner quotes
+    static std::string csvField(const std::string& s) {
+        if (s.find(',') == std::string::npos && s.find('"') == std::string::npos) return s;
+        std::string out = "\"";
         for (char c : s) { if (c == '"') out += '"'; out += c; }
         out += '"';
         return out;
     }
 
-    static void writeCSV(const string& path, const vector<string>& lines) {
-        ofstream f(path);
-        for (auto& l : lines) f << l << "\n";
+    static void writeCSV(const std::string& path, const std::vector<std::string>& lines) {
+        std::ofstream f(path);
+        if (!f.is_open()) {
+            std::cerr << "[!] Error: could not open " << path << " for writing.\n";
+            return;
+        }
+        for (const auto& l : lines) f << l << "\n";
     }
 
-    // Parse a single CSV line respecting double-quoted fields
-    static vector<string> parseCSVLine(const string& line) {
-        vector<string> row;
-        string cell;
+    /// Parse a single CSV line respecting double-quoted fields
+    static std::vector<std::string> parseCSVLine(const std::string& line) {
+        std::vector<std::string> row;
+        std::string cell;
         bool inQuotes = false;
         for (size_t i = 0; i < line.size(); ++i) {
             char c = line[i];
@@ -57,11 +61,11 @@ class FileManager {
         return row;
     }
 
-    static vector<vector<string>> readCSV(const string& path) {
-        vector<vector<string>> result;
-        ifstream f(path);
-        string line;
-        while (getline(f, line)) {
+    static std::vector<std::vector<std::string>> readCSV(const std::string& path) {
+        std::vector<std::vector<std::string>> result;
+        std::ifstream f(path);
+        std::string line;
+        while (std::getline(f, line)) {
             if (line.empty()) continue;
             result.push_back(parseCSVLine(line));
         }
@@ -70,15 +74,15 @@ class FileManager {
 
 public:
     // ── Students ──────────────────────────────────────────────────────────────
-    static void saveStudents(const vector<Student>& v) {
-        vector<string> lines;
-        for (auto& s : v)
-            lines.push_back(to_string(s.id)+","+csvField(s.username)+","+csvField(s.password)+","+
-                            csvField(s.name)+","+csvField(s.rollNumber)+","+csvField(s.className)+","+to_string(s.parentId));
+    static void saveStudents(const std::vector<Student>& v) {
+        std::vector<std::string> lines;
+        for (const auto& s : v)
+            lines.push_back(std::to_string(s.id)+","+csvField(s.username)+","+csvField(s.password)+","+
+                            csvField(s.name)+","+csvField(s.rollNumber)+","+csvField(s.className)+","+std::to_string(s.parentId));
         writeCSV("data/students.csv", lines);
     }
-    static vector<Student> loadStudents() {
-        vector<Student> v;
+    static std::vector<Student> loadStudents() {
+        std::vector<Student> v;
         for (auto& r : readCSV("data/students.csv")) {
             if (r.size() < 7) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],r[4],r[5],stoi(r[6]));
@@ -87,31 +91,49 @@ public:
     }
 
     // ── Teachers ──────────────────────────────────────────────────────────────
-    static void saveTeachers(const vector<Teacher>& v) {
-        vector<string> lines;
-        for (auto& t : v)
-            lines.push_back(to_string(t.id)+","+csvField(t.username)+","+csvField(t.password)+","+
-                            csvField(t.name)+","+csvField(t.subject)+","+csvField(t.department));
+    static void saveTeachers(const std::vector<Teacher>& v) {
+        std::vector<std::string> lines;
+        for (const auto& t : v) {
+            // Serialize assignedClasses as pipe-separated values in column 7
+            std::string classes;
+            for (size_t i = 0; i < t.assignedClasses.size(); ++i) {
+                if (i > 0) classes += "|";
+                classes += t.assignedClasses[i];
+            }
+            lines.push_back(std::to_string(t.id)+","+csvField(t.username)+","+csvField(t.password)+","+
+                            csvField(t.name)+","+csvField(t.subject)+","+csvField(t.department)+","+csvField(classes));
+        }
         writeCSV("data/teachers.csv", lines);
     }
-    static vector<Teacher> loadTeachers() {
-        vector<Teacher> v;
+    static std::vector<Teacher> loadTeachers() {
+        std::vector<Teacher> v;
         for (auto& r : readCSV("data/teachers.csv")) {
             if (r.size() < 6) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],r[4],r[5]);
+            // Restore assignedClasses if column 7 exists
+            if (r.size() >= 7 && !r[6].empty()) {
+                std::string classes = r[6];
+                size_t pos = 0;
+                while ((pos = classes.find('|')) != std::string::npos) {
+                    std::string cls = classes.substr(0, pos);
+                    if (!cls.empty()) v.back().assignedClasses.push_back(cls);
+                    classes.erase(0, pos + 1);
+                }
+                if (!classes.empty()) v.back().assignedClasses.push_back(classes);
+            }
         }
         return v;
     }
 
     // ── Admins ────────────────────────────────────────────────────────────────
-    static void saveAdmins(const vector<Admin>& v) {
-        vector<string> lines;
-        for (auto& a : v)
-            lines.push_back(to_string(a.id)+","+csvField(a.username)+","+csvField(a.password)+","+csvField(a.name));
+    static void saveAdmins(const std::vector<Admin>& v) {
+        std::vector<std::string> lines;
+        for (const auto& a : v)
+            lines.push_back(std::to_string(a.id)+","+csvField(a.username)+","+csvField(a.password)+","+csvField(a.name));
         writeCSV("data/admins.csv", lines);
     }
-    static vector<Admin> loadAdmins() {
-        vector<Admin> v;
+    static std::vector<Admin> loadAdmins() {
+        std::vector<Admin> v;
         for (auto& r : readCSV("data/admins.csv")) {
             if (r.size() < 4) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3]);
@@ -120,15 +142,15 @@ public:
     }
 
     // ── Parents ───────────────────────────────────────────────────────────────
-    static void saveParents(const vector<Parent>& v) {
-        vector<string> lines;
-        for (auto& p : v)
-            lines.push_back(to_string(p.id)+","+csvField(p.username)+","+csvField(p.password)+","+
-                            csvField(p.name)+","+to_string(p.studentId));
+    static void saveParents(const std::vector<Parent>& v) {
+        std::vector<std::string> lines;
+        for (const auto& p : v)
+            lines.push_back(std::to_string(p.id)+","+csvField(p.username)+","+csvField(p.password)+","+
+                            csvField(p.name)+","+std::to_string(p.studentId));
         writeCSV("data/parents.csv", lines);
     }
-    static vector<Parent> loadParents() {
-        vector<Parent> v;
+    static std::vector<Parent> loadParents() {
+        std::vector<Parent> v;
         for (auto& r : readCSV("data/parents.csv")) {
             if (r.size() < 5) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],stoi(r[4]));
@@ -137,12 +159,12 @@ public:
     }
 
     // ── Fees ──────────────────────────────────────────────────────────────────
-    static void saveFees(const vector<FeeRecord>& v) {
-        vector<string> lines;
-        for (auto& r : v)
-            lines.push_back(to_string(r.invoiceId)+","+to_string(r.studentId)+","+
+    static void saveFees(const std::vector<FeeRecord>& v) {
+        std::vector<std::string> lines;
+        for (const auto& r : v)
+            lines.push_back(std::to_string(r.invoiceId)+","+std::to_string(r.studentId)+","+
                             csvField(r.studentName)+","+csvField(r.className)+","+r.dueDate+","+r.paidDate+","+
-                            to_string(r.amount)+","+to_string(r.paid)+","+to_string(r.settled));
+                            std::to_string(r.amount)+","+std::to_string(r.paid)+","+std::to_string(r.settled));
         writeCSV("data/fees.csv", lines);
     }
     static void loadFees(FeeManager& fm) {
@@ -162,10 +184,10 @@ public:
     }
 
     // ── Fee Structure ─────────────────────────────────────────────────────────
-    static void saveFeeStructure(const vector<FeeStructure>& v) {
-        vector<string> lines;
-        for (auto& s : v)
-            lines.push_back(csvField(s.className)+","+to_string(s.termlyFee));
+    static void saveFeeStructure(const std::vector<FeeStructure>& v) {
+        std::vector<std::string> lines;
+        for (const auto& s : v)
+            lines.push_back(csvField(s.className)+","+std::to_string(s.termlyFee));
         writeCSV("data/fee_structure.csv", lines);
     }
     static void loadFeeStructure(FeeManager& fm) {
@@ -176,10 +198,10 @@ public:
     }
 
     // ── Attendance ────────────────────────────────────────────────────────────
-    static void saveAttendance(const vector<AttendanceEntry>& v) {
-        vector<string> lines;
-        for (auto& e : v)
-            lines.push_back(to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.className)+","+e.date+","+to_string(e.present));
+    static void saveAttendance(const std::vector<AttendanceEntry>& v) {
+        std::vector<std::string> lines;
+        for (const auto& e : v)
+            lines.push_back(std::to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.className)+","+e.date+","+std::to_string(e.present));
         writeCSV("data/attendance.csv", lines);
     }
     static void loadAttendance(AttendanceManager& am) {
@@ -190,10 +212,10 @@ public:
     }
 
     // ── Grades ────────────────────────────────────────────────────────────────
-    static void saveGrades(const vector<GradeEntry>& v) {
-        vector<string> lines;
-        for (auto& e : v)
-            lines.push_back(to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.subject)+","+csvField(e.term)+","+to_string(e.marks)+","+to_string(e.total));
+    static void saveGrades(const std::vector<GradeEntry>& v) {
+        std::vector<std::string> lines;
+        for (const auto& e : v)
+            lines.push_back(std::to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.subject)+","+csvField(e.term)+","+std::to_string(e.marks)+","+std::to_string(e.total));
         writeCSV("data/grades.csv", lines);
     }
     static void loadGrades(GradeManager& gm) {
@@ -204,9 +226,9 @@ public:
     }
 
     // ── Timetable ─────────────────────────────────────────────────────────────
-    static void saveTimetable(const vector<TimeSlot>& v) {
-        vector<string> lines;
-        for (auto& s : v)
+    static void saveTimetable(const std::vector<TimeSlot>& v) {
+        std::vector<std::string> lines;
+        for (const auto& s : v)
             lines.push_back(csvField(s.className)+","+csvField(s.day)+","+csvField(s.startTime)+","+csvField(s.endTime)+","+csvField(s.subject)+","+csvField(s.teacherName));
         writeCSV("data/timetable.csv", lines);
     }
@@ -218,68 +240,93 @@ public:
     }
 
     // ── Announcements ─────────────────────────────────────────────────────────
-    static void saveAnnouncements(const vector<Announcement>& v) {
-        vector<string> lines;
-        for (auto& a : v)
-            lines.push_back(to_string(a.id)+","+csvField(a.title)+","+csvField(a.content)+","+a.date+","+
-                            csvField(a.author)+","+to_string((int)a.targetRole)+","+to_string(a.allRoles));
+    static void saveAnnouncements(const std::vector<Announcement>& v) {
+        std::vector<std::string> lines;
+        for (const auto& a : v)
+            lines.push_back(std::to_string(a.id)+","+csvField(a.title)+","+csvField(a.content)+","+a.date+","+
+                            csvField(a.author)+","+std::to_string((int)a.targetRole)+","+std::to_string(a.allRoles));
         writeCSV("data/announcements.csv", lines);
     }
     static void loadAnnouncements(AnnouncementManager& am) {
+        int maxId = 0;
         for (auto& r : readCSV("data/announcements.csv")) {
             if (r.size() < 7) continue;
-            am.getAll().push_back({stoi(r[0]),r[1],r[2],r[3],r[4],
-                                   (Role)stoi(r[5]),(bool)stoi(r[6])});
+            am.getAll().push_back({stoi(r[0]),r[1],r[2],r[3],r[4],(Role)stoi(r[5]),(bool)stoi(r[6])});
+            if (stoi(r[0]) > maxId) maxId = stoi(r[0]);
         }
+        am.setNextId(maxId + 1);
     }
 
     // ── Assignments ───────────────────────────────────────────────────────────
-    static void saveAssignments(const vector<Assignment>& v) {
-        vector<string> lines;
-        for (auto& a : v)
-            lines.push_back(to_string(a.id)+","+to_string(a.teacherId)+","+csvField(a.title)+","+csvField(a.subject)+","+a.dueDate+","+csvField(a.fileRef)+","+csvField(a.className));
+    static void saveAssignments(const std::vector<Assignment>& v) {
+        std::vector<std::string> lines;
+        for (const auto& a : v)
+            lines.push_back(std::to_string(a.id)+","+std::to_string(a.teacherId)+","+csvField(a.title)+","+
+                           csvField(a.subject)+","+a.dueDate+","+csvField(a.fileRef)+","+csvField(a.className));
         writeCSV("data/assignments.csv", lines);
     }
     static void loadAssignments(LMSManager& lms) {
+        int maxId = 0;
         for (auto& r : readCSV("data/assignments.csv")) {
             if (r.size() < 7) continue;
             lms.getAssignments().push_back({stoi(r[0]),stoi(r[1]),r[2],r[3],r[4],r[5],r[6]});
+            if (stoi(r[0]) > maxId) maxId = stoi(r[0]);
         }
+        // Update nextId for assignments
+        int mMaxId = 0;
+        for (const auto& m : lms.getMaterials()) if (m.id > mMaxId) mMaxId = m.id;
+        lms.setNextIds(maxId + 1, mMaxId + 1);
     }
 
     // ── Materials ─────────────────────────────────────────────────────────────
-    static void saveMaterials(const vector<Material>& v) {
-        vector<string> lines;
-        for (auto& m : v)
-            lines.push_back(to_string(m.id)+","+to_string(m.teacherId)+","+csvField(m.title)+","+csvField(m.subject)+","+csvField(m.contentPath)+","+csvField(m.className));
+    static void saveMaterials(const std::vector<Material>& v) {
+        std::vector<std::string> lines;
+        for (const auto& m : v)
+            lines.push_back(std::to_string(m.id)+","+std::to_string(m.teacherId)+","+csvField(m.title)+","+
+                           csvField(m.subject)+","+csvField(m.contentPath)+","+csvField(m.className));
         writeCSV("data/materials.csv", lines);
     }
     static void loadMaterials(LMSManager& lms) {
+        int maxId = 0;
         for (auto& r : readCSV("data/materials.csv")) {
             if (r.size() < 6) continue;
             lms.getMaterials().push_back({stoi(r[0]),stoi(r[1]),r[2],r[3],r[4],r[5]});
+            if (stoi(r[0]) > maxId) maxId = stoi(r[0]);
         }
+        // Update nextId for materials
+        int aMaxId = 0;
+        for (const auto& a : lms.getAssignments()) if (a.id > aMaxId) aMaxId = a.id;
+        lms.setNextIds(aMaxId + 1, maxId + 1);
     }
 
     // ── Books ─────────────────────────────────────────────────────────────────
-    static void saveBooks(const vector<Book>& v) {
-        vector<string> lines;
-        for (auto& b : v)
-            lines.push_back(to_string(b.id)+","+csvField(b.title)+","+csvField(b.author)+","+to_string(b.available)+","+to_string(b.issuedTo)+","+b.issueDate);
+    static void saveBooks(const std::vector<Book>& v) {
+        std::vector<std::string> lines;
+        for (const auto& b : v)
+            lines.push_back(std::to_string(b.id)+","+csvField(b.title)+","+csvField(b.author)+","+
+                           std::to_string(b.available)+","+std::to_string(b.issuedTo)+","+csvField(b.issueDate)+","+
+                           csvField(b.dueDate)+","+csvField(b.returnDate));
         writeCSV("data/books.csv", lines);
     }
     static void loadBooks(Library& lib) {
+        int maxId = 0;
         for (auto& r : readCSV("data/books.csv")) {
             if (r.size() < 6) continue;
-            lib.getBooks().push_back({stoi(r[0]),r[1],r[2],(bool)stoi(r[3]),stoi(r[4]),r[5]});
+            Book b{stoi(r[0]),r[1],r[2],(bool)stoi(r[3]),stoi(r[4]),r[5],"",""};
+            // Load dueDate and returnDate if they exist
+            if (r.size() >= 7) b.dueDate = r[6];
+            if (r.size() >= 8) b.returnDate = r[7];
+            lib.getBooks().push_back(b);
+            if (b.id > maxId) maxId = b.id;
         }
+        lib.setNextId(maxId + 1);
     }
 
     // ── Exams ─────────────────────────────────────────────────────────────────
-    static void saveExams(const vector<Exam>& v) {
-        vector<string> lines;
-        for (auto& e : v)
-            lines.push_back(to_string(e.id)+","+csvField(e.title)+","+csvField(e.type)+","+csvField(e.className)+","+csvField(e.subject)+","+e.date+","+to_string(e.totalMarks));
+    static void saveExams(const std::vector<Exam>& v) {
+        std::vector<std::string> lines;
+        for (const auto& e : v)
+            lines.push_back(std::to_string(e.id)+","+csvField(e.title)+","+csvField(e.type)+","+csvField(e.className)+","+csvField(e.subject)+","+e.date+","+std::to_string(e.totalMarks));
         writeCSV("data/exams.csv", lines);
     }
     static void loadExams(ExamManager& em) {
@@ -293,11 +340,11 @@ public:
         em.setNextIds(maxId + 1, 1);
     }
 
-    static void saveExamResults(const vector<ExamResult>& v) {
-        vector<string> lines;
-        for (auto& r : v)
-            lines.push_back(to_string(r.id)+","+to_string(r.examId)+","+to_string(r.studentId)+","+csvField(r.studentName)+","+csvField(r.examTitle)+","+csvField(r.subject)+","+csvField(r.className)+","+
-                            to_string(r.marksObtained)+","+to_string(r.totalMarks));
+    static void saveExamResults(const std::vector<ExamResult>& v) {
+        std::vector<std::string> lines;
+        for (const auto& r : v)
+            lines.push_back(std::to_string(r.id)+","+std::to_string(r.examId)+","+std::to_string(r.studentId)+","+csvField(r.studentName)+","+csvField(r.examTitle)+","+csvField(r.subject)+","+csvField(r.className)+","+
+                            std::to_string(r.marksObtained)+","+std::to_string(r.totalMarks));
         writeCSV("data/exam_results.csv", lines);
     }
     static void loadExamResults(ExamManager& em) {
@@ -316,10 +363,10 @@ public:
     }
 
     // ── Courses ───────────────────────────────────────────────────────────────
-    static void saveCourses(const vector<Course>& v) {
-        vector<string> lines;
-        for (auto& c : v)
-            lines.push_back(to_string(c.id)+","+csvField(c.code)+","+csvField(c.name)+","+csvField(c.subject)+","+csvField(c.className)+","+csvField(c.teacherName)+","+to_string(c.credits));
+    static void saveCourses(const std::vector<Course>& v) {
+        std::vector<std::string> lines;
+        for (const auto& c : v)
+            lines.push_back(std::to_string(c.id)+","+csvField(c.code)+","+csvField(c.name)+","+csvField(c.subject)+","+csvField(c.className)+","+csvField(c.teacherName)+","+std::to_string(c.credits));
         writeCSV("data/courses.csv", lines);
     }
     static void loadCourses(CourseManager& cm) {
@@ -334,11 +381,11 @@ public:
     }
 
     // ── Notifications ─────────────────────────────────────────────────────────
-    static void saveNotifications(const vector<Notification>& v) {
-        vector<string> lines;
-        for (auto& n : v)
-            lines.push_back(to_string(n.id)+","+to_string(n.userId)+","+
-                            csvField(n.message)+","+n.date+","+csvField(n.category)+","+to_string(n.read));
+    static void saveNotifications(const std::vector<Notification>& v) {
+        std::vector<std::string> lines;
+        for (const auto& n : v)
+            lines.push_back(std::to_string(n.id)+","+std::to_string(n.userId)+","+
+                            csvField(n.message)+","+n.date+","+csvField(n.category)+","+std::to_string(n.read));
         writeCSV("data/notifications.csv", lines);
     }
     static void loadNotifications(NotificationManager& nm) {
@@ -353,10 +400,10 @@ public:
     }
 
     // ── Calendar ──────────────────────────────────────────────────────────────
-    static void saveCalendar(const vector<CalendarEvent>& v) {
-        vector<string> lines;
-        for (auto& e : v)
-            lines.push_back(to_string(e.id)+","+csvField(e.title)+","+e.date+","+e.endDate+","+csvField(e.type)+","+csvField(e.description));
+    static void saveCalendar(const std::vector<CalendarEvent>& v) {
+        std::vector<std::string> lines;
+        for (const auto& e : v)
+            lines.push_back(std::to_string(e.id)+","+csvField(e.title)+","+e.date+","+e.endDate+","+csvField(e.type)+","+csvField(e.description));
         writeCSV("data/calendar.csv", lines);
     }
     static void loadCalendar(AcademicCalendar& cal) {

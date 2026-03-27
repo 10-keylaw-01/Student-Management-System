@@ -2,55 +2,79 @@
 #include <string>
 #include <vector>
 #include <iostream>
-using namespace std;
 
+/// Book structure with issue date and return date tracking
 struct Book {
     int id;
-    string title, author;
+    std::string title, author;
     bool available;
     int issuedTo;  // studentId, -1 if available
-    string issueDate;
+    std::string issueDate, dueDate, returnDate;
 };
 
+/// Manages library books
 class Library {
-    vector<Book> books;
+    std::vector<Book> books;
     int nextId = 1;
 public:
     void setNextId(int id) { nextId = id; }
-    void addBook(const string& title, const string& author) {
-        books.push_back({nextId++, title, author, true, -1, ""});
-        cout << "[Book added: \"" << title << "\" by " << author << " (ID: " << (nextId-1) << ")]\n";
+    
+    /// Add a new book to the library
+    void addBook(const std::string& title, const std::string& author) {
+        books.push_back({nextId++, title, author, true, -1, "", "", ""});
+        std::cout << "[Book added: \"" << title << "\" by " << author 
+             << " (ID: " << (nextId-1) << ")]\n";
     }
 
-    void issueBook(int bookId, int studentId, const string& date) {
+    /// Issue a book to a student with due date tracking
+    void issueBook(int bookId, int studentId, const std::string& issueDate, 
+                   const std::string& dueDate) {
         for (auto& b : books) {
             if (b.id == bookId) {
-                if (!b.available) { cout << "Book not available.\n"; return; }
-                b.available = false; b.issuedTo = studentId; b.issueDate = date;
-                cout << "[Book #" << bookId << " issued to student " << studentId << "]\n";
+                if (!b.available) { 
+                    std::cout << "Book not available.\n"; 
+                    return; 
+                }
+                b.available = false; 
+                b.issuedTo = studentId; 
+                b.issueDate = issueDate;
+                b.dueDate = dueDate;
+                b.returnDate = "";  // Clear return date on issue
+                std::cout << "[Book #" << bookId << " issued to student " << studentId 
+                     << " | Due: " << dueDate << "]\n";
                 return;
             }
         }
-        cout << "Book not found.\n";
+        std::cout << "Book not found.\n";
     }
 
-    void returnBook(int bookId) {
+    /// Return a book and record return date
+    void returnBook(int bookId, const std::string& returnDate = "") {
         for (auto& b : books) {
             if (b.id == bookId) {
-                b.available = true; b.issuedTo = -1; b.issueDate = "";
-                cout << "[Book #" << bookId << " returned.]\n";
+                b.available = true; 
+                b.issuedTo = -1; 
+                b.returnDate = returnDate;
+                std::cout << "[Book #" << bookId << " returned" 
+                     << (returnDate.empty() ? "" : " on " + returnDate) << ".]\n";
                 return;
             }
         }
-        cout << "Book not found.\n";
+        std::cout << "Book not found.\n";
     }
 
+    /// List all books in library with status
     void listBooks() const {
-        if (books.empty()) { cout << "No books in library.\n"; return; }
-        for (auto& b : books)
-            cout << "#" << b.id << " | " << b.title << " by " << b.author
-                 << " | " << (b.available ? "Available" : "Issued") << "\n";
+        if (books.empty()) { std::cout << "No books in library.\n"; return; }
+        for (const auto& b : books) {
+            std::cout << "#" << b.id << " | " << b.title << " by " << b.author
+                 << " | " << (b.available ? "Available" : "Issued");
+            if (!b.available) {
+                std::cout << " to ID:" << b.issuedTo << " | Due:" << b.dueDate;
+            }
+            std::cout << "\n";
+        }
     }
 
-    vector<Book>& getBooks() { return books; }
+    std::vector<Book>& getBooks() { return books; }
 };

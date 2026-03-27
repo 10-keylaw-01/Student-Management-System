@@ -8,7 +8,6 @@
 #include "../Exam.h"
 #include "../Notification.h"
 #include "../Calendar.h"
-using namespace std;
 
 extern AttendanceManager   attendanceManager;
 extern GradeManager        gradeManager;
@@ -18,13 +17,16 @@ extern ExamManager         examManager;
 extern NotificationManager notifManager;
 extern AcademicCalendar    calendar;
 
-string todayStr();
+std::string todayStr();
+void saveAll();
+int getValidInt(const std::string& prompt, int minVal, int maxVal);
+double getValidDouble(const std::string& prompt, double minVal);
 
 void parentMenu(Parent& parent) {
     int choice;
     do {
         parent.viewDashboard();
-        cout << "Select: "; cin >> choice;
+        choice = getValidInt("Select: ", 1, 8);
 
         if (choice == 1) {
             attendanceManager.viewByStudent(parent.studentId);
@@ -40,6 +42,9 @@ void parentMenu(Parent& parent) {
             calendar.listUpcoming(todayStr());
         } else if (choice == 7) {
             notifManager.viewAll(parent.id);
+        } else if (choice == 8) {
+            std::cout << "[✓] Logging out...\n";
+            break;
         }
-    } while (choice != 8);
+    } while (true);
 }

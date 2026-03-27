@@ -3,39 +3,56 @@
 #include <vector>
 #include <iostream>
 #include "User.h"
-using namespace std;
 
+/// Announcement structure
 struct Announcement {
     int id;
-    string title, content, date, author;
+    std::string title, content, date, author;
     Role targetRole;
     bool allRoles;
 };
 
+/// Manages announcements for all users
 class AnnouncementManager {
-    vector<Announcement> announcements;
+    std::vector<Announcement> announcements;
     int nextId = 1;
 public:
     void setNextId(int id) { nextId = id; }
-    void post(const string& title, const string& content, const string& date,
-              const string& author, Role target, bool allRoles = false) {
+    
+    /// Post an announcement to specific role or all users
+    void post(const std::string& title, const std::string& content, const std::string& date,
+              const std::string& author, Role target, bool allRoles = false) {
         announcements.push_back({nextId++, title, content, date, author, target, allRoles});
-        cout << "[Announcement posted: \"" << title << "\" by " << author << "]\n";
+        std::cout << "[Announcement posted: \"" << title << "\" by " << author << "]\n";
         // Simulate bulk notification
-        cout << "[Notification sent to " << (allRoles ? "All Users" : "target role") << "]\n";
+        std::cout << "[Notification sent to " << (allRoles ? "All Users" : "target role") << "]\n";
     }
 
+    /// View announcements for a specific role
     void view(Role role) const {
         bool found = false;
-        for (auto& a : announcements) {
+        for (const auto& a : announcements) {
             if (a.allRoles || a.targetRole == role) {
-                cout << "[" << a.date << "] " << a.title << " (by " << a.author << ")\n"
+                std::cout << "[" << a.date << "] " << a.title << " (by " << a.author << ")\n"
                      << "  " << a.content << "\n";
                 found = true;
             }
         }
-        if (!found) cout << "No announcements.\n";
+        if (!found) std::cout << "No announcements.\n";
     }
 
-    vector<Announcement>& getAll() { return announcements; }
+    /// View all announcements regardless of target role
+    void viewAll() const {
+        if (announcements.empty()) {
+            std::cout << "No announcements.\n";
+            return;
+        }
+        std::cout << "\n=== All Announcements ===\n";
+        for (const auto& a : announcements) {
+            std::cout << "[" << a.date << "] " << a.title << " (by " << a.author << ")\n"
+                 << "  " << a.content << "\n";
+        }
+    }
+
+    std::vector<Announcement>& getAll() { return announcements; }
 };

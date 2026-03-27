@@ -5,148 +5,173 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-using namespace std;
+#include <cmath>
 
+/// Fee record structure
 struct FeeRecord {
     int invoiceId, studentId;
-    string studentName, className, dueDate, paidDate;
+    std::string studentName, className, dueDate, paidDate;
     double amount, paid;
     bool settled;
 };
 
+/// Fee structure for classes
 struct FeeStructure {
-    string className;
+    std::string className;
     double termlyFee;
 };
 
+/// Manages student fees and invoices
 class FeeManager {
-    vector<FeeRecord> records;
-    vector<FeeStructure> structures;
+    std::vector<FeeRecord> records;
+    std::vector<FeeStructure> structures;
     int nextInvId = 1;
 
-    // Returns days between two YYYY-MM-DD dates (positive if due < today)
-    static int daysPastDue(const string& dueDate, const string& today) {
-        auto parse = [](const string& d) {
-            int y = stoi(d.substr(0,4)), m = stoi(d.substr(5,2)), day = stoi(d.substr(8,2));
-            // Accurate day count accounting for leap years
-            int days = y * 365 + day;
-            int mdays[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
-            // Add leap days for all years before current year
-            for (int i = 1; i < y; i++) {
-                if ((i%4==0 && i%100!=0) || i%400==0) days++;
-            }
-            // Add days for months in current year
-            for (int i = 1; i < m; i++) {
-                days += mdays[i];
-                // Add leap day if February and leap year
-                if (i == 2 && ((y%4==0 && y%100!=0) || y%400==0)) days++;
-            }
-            return days;
+    // Calculate days past due (positive if overdue)
+    static int daysPastDue(const std::string& dueDate, const std::string& today) {
+        auto toTm = [](const std::string& d) -> std::time_t {
+            std::tm t{};
+            t.tm_year = std::stoi(d.substr(0,4)) - 1900;
+            t.tm_mon  = std::stoi(d.substr(5,2)) - 1;
+            t.tm_mday = std::stoi(d.substr(8,2));
+            t.tm_isdst = -1;
+            return std::mktime(&t);
         };
-        return parse(today) - parse(dueDate);
+        double diff = std::difftime(toTm(today), toTm(dueDate));
+        return static_cast<int>(diff / 86400.0);
     }
 
 public:
     static const double LATE_FEE_PER_DAY;
 
-    // ── Fee Structure ──────────────────────────────────────────────────────────
-    void setFeeStructure(const string& cls, double fee) {
-        for (auto& s : structures) { if (s.className == cls) { s.termlyFee = fee; return; } }
+    /// Set or update fee structure for a class
+    void setFeeStructure(const std::string& cls, double fee) {
+        for (auto& s : structures) { 
+            if (s.className == cls) { 
+                s.termlyFee = fee; 
+                return; 
+            } 
+        }
         structures.push_back({cls, fee});
     }
 
-    double getFeeForClass(const string& cls) const {
+    /// Get fee amount for a specific class
+    double getFeeForClass(const std::string& cls) const {
         for (auto& s : structures) if (s.className == cls) return s.termlyFee;
         return 0.0;
     }
 
+    /// List all fee structures
     void listFeeStructure() const {
-        if (structures.empty()) { cout << "No fee structure defined.\n"; return; }
-        cout << "\n--- Fee Structure ---\n";
-        for (auto& s : structures)
-            cout << "Class " << s.className << ": " << fixed << setprecision(2) << s.termlyFee << "\n";
+        if (structures.empty()) { std::cout << "No fee structure defined.\n"; return; }
+        std::cout << "\n--- Fee Structure ---\n";
+        for (const auto& s : structures)
+            std::cout << "Class " << s.className << ": " << std::fixed << std::setprecision(2) 
+                 << s.termlyFee << "\n";
     }
 
-    vector<FeeStructure>& getStructures() { return structures; }
+    std::vector<FeeStructure>& getStructures() { return structures; }
 
-    // ── Invoices ───────────────────────────────────────────────────────────────
-    void generateInvoice(int studentId, const string& name, const string& cls,
-                         double amount, const string& dueDate) {
+    /// Generate invoice for a student
+    void generateInvoice(int studentId, const std::string& name, const std::string& cls,
+                         double amount, const std::string& dueDate) {
         records.push_back({nextInvId++, studentId, name, cls, dueDate, "", amount, 0, false});
-        cout << "[Invoice #" << (nextInvId-1) << " generated for " << name
-             << " (Class " << cls << ") - Amount: " << fixed << setprecision(2) << amount << "]\n";
+        std::cout << "[Invoice #" << (nextInvId-1) << " generated for " << name
+             << " (Class " << cls << ") - Amount: " << std::fixed << std::setprecision(2) 
+             << amount << "]\n";
     }
 
-    // Auto-generate invoice from fee structure
-    void generateFromStructure(int studentId, const string& name,
-                                const string& cls, const string& dueDate) {
+    /// Auto-generate invoice from fee structure
+    void generateFromStructure(int studentId, const std::string& name,
+                                const std::string& cls, const std::string& dueDate) {
         double fee = getFeeForClass(cls);
-        if (fee <= 0) { cout << "No fee structure set for class " << cls << ".\n"; return; }
+        if (fee <= 0) { 
+            std::cout << "No fee structure set for class " << cls << ".\n"; 
+            return; 
+        }
         generateInvoice(studentId, name, cls, fee, dueDate);
     }
 
-    void recordPayment(int invoiceId, double amount, const string& date) {
+    /// Record payment for an invoice (with overpayment warning)
+    void recordPayment(int invoiceId, double amount, const std::string& date) {
         for (auto& r : records) {
             if (r.invoiceId == invoiceId) {
                 r.paid += amount;
                 r.paidDate = date;
+                
+                // Check for overpayment
+                if (r.paid > r.amount) {
+                    double overpaid = r.paid - r.amount;
+                    std::cout << "[WARNING] Overpayment detected: " << std::fixed 
+                         << std::setprecision(2) << overpaid << "\n";
+                    r.paid = r.amount;  // Cap at actual amount due
+                }
+                
                 if (r.paid >= r.amount) r.settled = true;
-                cout << "[Payment of " << fixed << setprecision(2) << amount
+                std::cout << "[Payment of " << std::fixed << std::setprecision(2) << amount
                      << " recorded for Invoice #" << invoiceId << "]\n";
                 printReceipt(r);
                 return;
             }
         }
-        cout << "Invoice not found.\n";
+        std::cout << "Invoice not found.\n";
     }
 
-    void checkOutstanding(int studentId, const string& today = "") const {
+    /// Check outstanding fees for a student
+    void checkOutstanding(int studentId, const std::string& today = "") const {
         bool found = false;
-        for (auto& r : records) {
+        for (const auto& r : records) {
             if (r.studentId == studentId) {
                 found = true;
                 double late = 0;
                 if (!r.settled && !today.empty() && !r.dueDate.empty())
-                    late = max(0, daysPastDue(r.dueDate, today)) * LATE_FEE_PER_DAY;
-                cout << "Invoice #" << r.invoiceId
-                     << " | Amount: " << fixed << setprecision(2) << r.amount
+                    late = std::max(0.0, (double)daysPastDue(r.dueDate, today)) * LATE_FEE_PER_DAY;
+                std::cout << "Invoice #" << r.invoiceId
+                     << " | Amount: " << std::fixed << std::setprecision(2) << r.amount
                      << " | Paid: " << r.paid
                      << " | Due: " << r.dueDate;
-                if (late > 0) cout << " | Late Fee: " << late;
-                cout << " | Status: " << (r.settled ? "Settled" : "Outstanding") << "\n";
+                if (late > 0) std::cout << " | Late Fee: " << late;
+                std::cout << " | Status: " << (r.settled ? "Settled" : "Outstanding") << "\n";
             }
         }
-        if (!found) cout << "No fee records found.\n";
+        if (!found) std::cout << "No fee records found.\n";
     }
 
+    /// List all fee records
     void listAll() const {
-        if (records.empty()) { cout << "No fee records.\n"; return; }
-        cout << "\n--- All Fee Records ---\n";
-        for (auto& r : records)
-            cout << "Invoice #" << r.invoiceId << " | " << r.studentName
+        if (records.empty()) { std::cout << "No fee records.\n"; return; }
+        std::cout << "\n--- All Fee Records ---\n";
+        for (const auto& r : records)
+            std::cout << "Invoice #" << r.invoiceId << " | " << r.studentName
                  << " | Class: " << r.className
-                 << " | " << fixed << setprecision(2) << r.amount
+                 << " | " << std::fixed << std::setprecision(2) << r.amount
                  << " | " << (r.settled ? "Settled" : "Outstanding") << "\n";
     }
 
+    /// Print receipt for a fee record
     void printReceipt(const FeeRecord& r) const {
-        cout << "\n========== RECEIPT ==========\n"
+        std::cout << "\n========== RECEIPT ==========\n"
              << "Receipt for Invoice #" << r.invoiceId << "\n"
              << "Student : " << r.studentName << "\n"
              << "Class   : " << r.className << "\n"
-             << "Amount  : " << fixed << setprecision(2) << r.amount << "\n"
+             << "Amount  : " << std::fixed << std::setprecision(2) << r.amount << "\n"
              << "Paid    : " << r.paid << "\n"
              << "Date    : " << r.paidDate << "\n"
              << "Status  : " << (r.settled ? "SETTLED" : "PARTIAL") << "\n"
              << "=============================\n";
     }
 
+    /// Print receipt by invoice ID
     void printReceiptById(int invoiceId) const {
-        for (auto& r : records) if (r.invoiceId == invoiceId) { printReceipt(r); return; }
-        cout << "Invoice not found.\n";
+        for (const auto& r : records) 
+            if (r.invoiceId == invoiceId) { 
+                printReceipt(r); 
+                return; 
+            }
+        std::cout << "Invoice not found.\n";
     }
 
-    vector<FeeRecord>& getRecords() { return records; }
+    std::vector<FeeRecord>& getRecords() { return records; }
     void setNextId(int id) { nextInvId = id; }
 };
 

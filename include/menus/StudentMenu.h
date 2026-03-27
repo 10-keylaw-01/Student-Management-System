@@ -11,7 +11,6 @@
 #include "../Announcement.h"
 #include "../Notification.h"
 #include "../Calendar.h"
-using namespace std;
 
 extern AttendanceManager   attendanceManager;
 extern GradeManager        gradeManager;
@@ -24,13 +23,16 @@ extern AnnouncementManager announcementManager;
 extern NotificationManager notifManager;
 extern AcademicCalendar    calendar;
 
-string todayStr();
+std::string todayStr();
+void saveAll();
+int getValidInt(const std::string& prompt, int minVal, int maxVal);
+double getValidDouble(const std::string& prompt, double minVal);
 
 void studentMenu(Student& student) {
     int choice;
     do {
         student.viewDashboard();
-        cout << "Select: "; cin >> choice;
+        choice = getValidInt("Select: ", 1, 12);
 
         if (choice == 1) {
             attendanceManager.viewByStudent(student.id);
@@ -54,6 +56,9 @@ void studentMenu(Student& student) {
             calendar.listUpcoming(todayStr());
         } else if (choice == 11) {
             notifManager.viewAll(student.id);
+        } else if (choice == 12) {
+            std::cout << "[✓] Logging out...\n";
+            break;
         }
-    } while (choice != 12);
+    } while (true);
 }
