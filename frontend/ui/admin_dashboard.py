@@ -2,19 +2,18 @@
 
 import csv
 from pathlib import Path
-from collections import defaultdict
 
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel,
     QFormLayout, QLineEdit, QMessageBox, QTextEdit, QTableWidgetItem,
     QScrollArea, QFrame, QGridLayout, QComboBox, QSizePolicy
 )
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt
 
 from backend_communicator import BackendCommunicator
 from utils.widgets import DataTable, FormDialog, StatCard
 from ui.dashboard_shell import DashboardShell
+from data_paths import data_path
 from ui.charts import (
     make_attendance_pie,
     make_fee_bar,
@@ -44,14 +43,14 @@ class AdminDashboard(DashboardShell):
     def __init__(self, backend: BackendCommunicator, username: str):
         super().__init__(username, 'admin')
         self.backend  = backend
-        self.data_dir = Path(__file__).parent.parent.parent / 'data'
+        self.data_dir = None  # unused — paths resolved via data_path()
         self._csv: dict = {}   # CSV row cache — populated lazily
         self._build_pages()
 
     def _csv_rows(self, filename: str) -> list:
         """Return cached rows for a CSV file, reading once per session."""
         if filename not in self._csv:
-            self._csv[filename] = _read_csv(self.data_dir / filename)
+            self._csv[filename] = _read_csv(data_path(filename))
         return self._csv[filename]
 
     def _build_pages(self):
@@ -144,10 +143,10 @@ class AdminDashboard(DashboardShell):
             if item.widget():
                 item.widget().deleteLater()
         charts = [
-            make_attendance_pie(self.data_dir),
-            make_fee_bar(self.data_dir),
-            make_enrollment_trend(self.data_dir),
-            make_class_performance_bar(self.data_dir),
+            make_attendance_pie(),
+            make_fee_bar(),
+            make_enrollment_trend(),
+            make_class_performance_bar(),
         ]
         for canvas, (row, col) in zip(charts, [(0,0),(0,1),(1,0),(1,1)]):
             self._chart_grid.addWidget(self._chart_card(canvas), row, col)

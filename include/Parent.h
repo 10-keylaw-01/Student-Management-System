@@ -5,7 +5,7 @@
 
 class Parent : public User {
 public:
-    int studentId;  // For compatibility with FileManager
+    int studentId = 0;  // For compatibility with FileManager
     std::vector<int> childrenIds;  // For multiple children support
 
     Parent() = default;

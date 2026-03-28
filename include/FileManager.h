@@ -79,11 +79,11 @@ public:
         for (const auto& s : v)
             lines.push_back(std::to_string(s.id)+","+csvField(s.username)+","+csvField(s.password)+","+
                             csvField(s.name)+","+csvField(s.rollNumber)+","+csvField(s.className)+","+std::to_string(s.parentId));
-        writeCSV("data/students.csv", lines);
+        writeCSV("data/private/students.csv", lines);
     }
     static std::vector<Student> loadStudents() {
         std::vector<Student> v;
-        for (auto& r : readCSV("data/students.csv")) {
+        for (auto& r : readCSV("data/private/students.csv")) {
             if (r.size() < 7) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],r[4],r[5],stoi(r[6]));
         }
@@ -103,11 +103,11 @@ public:
             lines.push_back(std::to_string(t.id)+","+csvField(t.username)+","+csvField(t.password)+","+
                             csvField(t.name)+","+csvField(t.subject)+","+csvField(t.department)+","+csvField(classes));
         }
-        writeCSV("data/teachers.csv", lines);
+        writeCSV("data/private/teachers.csv", lines);
     }
     static std::vector<Teacher> loadTeachers() {
         std::vector<Teacher> v;
-        for (auto& r : readCSV("data/teachers.csv")) {
+        for (auto& r : readCSV("data/private/teachers.csv")) {
             if (r.size() < 6) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],r[4],r[5]);
             // Restore assignedClasses if column 7 exists
@@ -130,11 +130,11 @@ public:
         std::vector<std::string> lines;
         for (const auto& a : v)
             lines.push_back(std::to_string(a.id)+","+csvField(a.username)+","+csvField(a.password)+","+csvField(a.name));
-        writeCSV("data/admins.csv", lines);
+        writeCSV("data/private/admins.csv", lines);
     }
     static std::vector<Admin> loadAdmins() {
         std::vector<Admin> v;
-        for (auto& r : readCSV("data/admins.csv")) {
+        for (auto& r : readCSV("data/private/admins.csv")) {
             if (r.size() < 4) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3]);
         }
@@ -147,11 +147,11 @@ public:
         for (const auto& p : v)
             lines.push_back(std::to_string(p.id)+","+csvField(p.username)+","+csvField(p.password)+","+
                             csvField(p.name)+","+std::to_string(p.studentId));
-        writeCSV("data/parents.csv", lines);
+        writeCSV("data/private/parents.csv", lines);
     }
     static std::vector<Parent> loadParents() {
         std::vector<Parent> v;
-        for (auto& r : readCSV("data/parents.csv")) {
+        for (auto& r : readCSV("data/private/parents.csv")) {
             if (r.size() < 5) continue;
             v.emplace_back(stoi(r[0]),r[1],r[2],r[3],stoi(r[4]));
         }
@@ -165,11 +165,11 @@ public:
             lines.push_back(std::to_string(r.invoiceId)+","+std::to_string(r.studentId)+","+
                             csvField(r.studentName)+","+csvField(r.className)+","+r.dueDate+","+r.paidDate+","+
                             std::to_string(r.amount)+","+std::to_string(r.paid)+","+std::to_string(r.settled));
-        writeCSV("data/fees.csv", lines);
+        writeCSV("data/private/fees.csv", lines);
     }
     static void loadFees(FeeManager& fm) {
         int maxId = 0;
-        for (auto& r : readCSV("data/fees.csv")) {
+        for (const auto& r : readCSV("data/private/fees.csv")) {
             if (r.size() < 9) continue;
             FeeRecord rec;
             rec.invoiceId=stoi(r[0]); rec.studentId=stoi(r[1]);
@@ -191,7 +191,7 @@ public:
         writeCSV("data/fee_structure.csv", lines);
     }
     static void loadFeeStructure(FeeManager& fm) {
-        for (auto& r : readCSV("data/fee_structure.csv")) {
+        for (const auto& r : readCSV("data/fee_structure.csv")) {
             if (r.size() < 2) continue;
             fm.setFeeStructure(r[0], stod(r[1]));
         }
@@ -202,10 +202,10 @@ public:
         std::vector<std::string> lines;
         for (const auto& e : v)
             lines.push_back(std::to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.className)+","+e.date+","+std::to_string(e.present));
-        writeCSV("data/attendance.csv", lines);
+        writeCSV("data/private/attendance.csv", lines);
     }
     static void loadAttendance(AttendanceManager& am) {
-        for (auto& r : readCSV("data/attendance.csv")) {
+        for (auto& r : readCSV("data/private/attendance.csv")) {
             if (r.size() < 5) continue;
             am.getEntries().push_back({stoi(r[0]),r[1],r[2],r[3],(bool)stoi(r[4])});
         }
@@ -216,10 +216,10 @@ public:
         std::vector<std::string> lines;
         for (const auto& e : v)
             lines.push_back(std::to_string(e.studentId)+","+csvField(e.studentName)+","+csvField(e.subject)+","+csvField(e.term)+","+std::to_string(e.marks)+","+std::to_string(e.total));
-        writeCSV("data/grades.csv", lines);
+        writeCSV("data/private/grades.csv", lines);
     }
     static void loadGrades(GradeManager& gm) {
-        for (auto& r : readCSV("data/grades.csv")) {
+        for (auto& r : readCSV("data/private/grades.csv")) {
             if (r.size() < 6) continue;
             gm.getEntries().push_back({stoi(r[0]),r[1],r[2],r[3],stod(r[4]),stod(r[5])});
         }
@@ -345,11 +345,11 @@ public:
         for (const auto& r : v)
             lines.push_back(std::to_string(r.id)+","+std::to_string(r.examId)+","+std::to_string(r.studentId)+","+csvField(r.studentName)+","+csvField(r.examTitle)+","+csvField(r.subject)+","+csvField(r.className)+","+
                             std::to_string(r.marksObtained)+","+std::to_string(r.totalMarks));
-        writeCSV("data/exam_results.csv", lines);
+        writeCSV("data/private/exam_results.csv", lines);
     }
     static void loadExamResults(ExamManager& em) {
         int maxId = 0;
-        for (auto& r : readCSV("data/exam_results.csv")) {
+        for (auto& r : readCSV("data/private/exam_results.csv")) {
             if (r.size() < 9) continue;
             ExamResult res{stoi(r[0]),stoi(r[1]),stoi(r[2]),r[3],r[4],r[5],r[6],stod(r[7]),stod(r[8])};
             em.getResults().push_back(res);
@@ -386,11 +386,11 @@ public:
         for (const auto& n : v)
             lines.push_back(std::to_string(n.id)+","+std::to_string(n.userId)+","+
                             csvField(n.message)+","+n.date+","+csvField(n.category)+","+std::to_string(n.read));
-        writeCSV("data/notifications.csv", lines);
+        writeCSV("data/private/notifications.csv", lines);
     }
     static void loadNotifications(NotificationManager& nm) {
         int maxId = 0;
-        for (auto& r : readCSV("data/notifications.csv")) {
+        for (auto& r : readCSV("data/private/notifications.csv")) {
             if (r.size() < 6) continue;
             Notification n{stoi(r[0]),stoi(r[1]),r[2],r[3],r[4],(bool)stoi(r[5])};
             nm.getAll().push_back(n);

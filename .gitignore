@@ -4,6 +4,11 @@
 *.o
 sms
 sms_*
+
+# ── Windows build/launcher scripts ───────────────────────────────────────
+build.bat
+*.bat
+*.ico
 main.exe
 
 # ── Windows shortcut files ─────────────────────────────────────────────────────
@@ -19,6 +24,7 @@ debug_login.cpp
 hash_tool.cpp
 input.txt
 test_*.txt
+*_run.txt
 
 # ── Runtime state files ───────────────────────────────────────────────────────
 .lockout
@@ -52,24 +58,15 @@ desktop.ini
 frontend/resources/icons/default_icon.png
 frontend/resources/icons/default_logo.png
 
-# ── Data files (contain user data / passwords) ────────────────────────────────
-data/admins.csv
-data/students.csv
-data/teachers.csv
-data/parents.csv
-data/fees.csv
-data/attendance.csv
-data/grades.csv
-data/notifications.csv
-data/exam_results.csv
+# ── Windows-only launcher/setup scripts ───────────────────────────────────────
+frontend/*.bat
+frontend/generate_icon.py
+frontend/create_shortcuts.py
+frontend/setup_desktop_app.py
+frontend/setup_simple.py
+frontend/resource_manager.py
+frontend/QUICKSTART.md
+frontend/README.md
 
-# Keep seed/structure data that is not user-specific
-!data/fee_structure.csv
-!data/timetable.csv
-!data/courses.csv
-!data/announcements.csv
-!data/assignments.csv
-!data/materials.csv
-!data/books.csv
-!data/exams.csv
-!data/calendar.csv
+# ── Duplicate dependency folder ───────────────────────────────────────────────
+gui/

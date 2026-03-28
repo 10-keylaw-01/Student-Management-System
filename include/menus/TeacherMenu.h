@@ -24,11 +24,12 @@ extern NotificationManager notifManager;
 
 std::string todayStr();
 std::string getLine(const std::string& prompt);
+std::string getValidDate(const std::string& prompt);
 void   saveAll();
 int getValidInt(const std::string& prompt, int minVal = INT_MIN, int maxVal = INT_MAX);
 double getValidDouble(const std::string& prompt, double minVal = 0.0);
 
-void teacherMenu(Teacher& teacher) {
+void teacherMenu(const Teacher& teacher) {
     int choice;
     do {
         teacher.viewDashboard();
@@ -38,7 +39,7 @@ void teacherMenu(Teacher& teacher) {
             int sid; bool present;
             sid = getValidInt("Student ID: ", 1, INT_MAX);
             std::string sname = "Unknown", cls = "";
-            for (auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
+            for (const auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
             
             // Check student found AND authorization
             if (cls.empty()) {
@@ -50,7 +51,7 @@ void teacherMenu(Teacher& teacher) {
                 continue;
             }
             
-            std::string date = getLine("Date (YYYY-MM-DD): ");
+            std::string date = getValidDate("Date (YYYY-MM-DD): ");
             present = getValidInt("Present? (1=Yes, 0=No): ", 0, 1);
             attendanceManager.mark(sid, sname, cls, date, (bool)present);
             if (!present)
@@ -61,7 +62,7 @@ void teacherMenu(Teacher& teacher) {
             int sid; std::string subj, term; double marks, total;
             sid = getValidInt("Student ID: ", 1, INT_MAX);
             std::string sname = "Unknown", cls = "";
-            for (auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
+            for (const auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
             
             // Check student found AND authorization
             if (cls.empty()) {
@@ -116,7 +117,7 @@ void teacherMenu(Teacher& teacher) {
         } else if (choice == 6) { // Announcement
             std::string title   = getLine("Title: ");
             std::string content = getLine("Content: ");
-            std::string date    = getLine("Date (YYYY-MM-DD): ");
+            std::string date    = getValidDate("Date (YYYY-MM-DD): ");
             announcementManager.post(title, content, date, teacher.name, Role::Student, true);
             notifManager.broadcast("New announcement: " + title, date, "Announcement");
             std::cout << "[✓] Announcement posted.\n";
@@ -129,7 +130,7 @@ void teacherMenu(Teacher& teacher) {
                 std::string type  = getLine("Type: ");
                 std::string cls   = getLine("Class: ");
                 std::string subj  = getLine("Subject: ");
-                std::string date  = getLine("Date (YYYY-MM-DD): ");
+                std::string date  = getValidDate("Date (YYYY-MM-DD): ");
                 double total = getValidDouble("Total Marks: ", 1.0);
                 examManager.scheduleExam(title, type, cls, subj, date, total);
                 std::cout << "[✓] Exam scheduled.\n";
@@ -138,7 +139,7 @@ void teacherMenu(Teacher& teacher) {
                 int eid = getValidInt("Exam ID: ", 1, INT_MAX);
                 int sid = getValidInt("Student ID: ", 1, INT_MAX);
                 std::string sname = "Unknown";
-                for (auto& s : students) if (s.id == sid) sname = s.name;
+                for (const auto& s : students) if (s.id == sid) sname = s.name;
                 double marks = getValidDouble("Marks: ");
                 examManager.enterResult(eid, sid, sname, marks);
                 std::cout << "[✓] Result entered.\n";
@@ -155,7 +156,7 @@ void teacherMenu(Teacher& teacher) {
             int c = getValidInt("", 1, 3);
             std::string cls = getLine("Class: ");
             std::vector<std::pair<int,std::string>> sl;
-            for (auto& s : students) sl.push_back({s.id, s.className});
+            for (const auto& s : students) sl.push_back({s.id, s.className});
             if (c == 1)      Analytics::attendanceReportByClass(attendanceManager, cls);
             else if (c == 2) Analytics::gradeReportByClass(gradeManager, sl, cls);
             else             Analytics::subjectAverageByClass(gradeManager, cls, sl);

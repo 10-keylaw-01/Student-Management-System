@@ -22,9 +22,6 @@ extern AcademicCalendar    calendar;
 std::string todayStr();
 std::string getLine(const std::string& prompt);
 void saveAll();
-int getValidInt(const std::string& prompt, int minVal, int maxVal);
-double getValidDouble(const std::string& prompt, double minVal);
-
 void parentMenu(Parent& parent) {
     int choice;
     do {

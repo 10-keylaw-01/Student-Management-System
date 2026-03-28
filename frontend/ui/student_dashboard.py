@@ -2,16 +2,15 @@
 
 import csv
 from pathlib import Path
-from functools import lru_cache
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
     QProgressBar, QTableWidget, QTableWidgetItem, QSizePolicy
 )
-from PyQt5.QtCore import pyqtSignal
 
 from backend_communicator import BackendCommunicator
 from utils.widgets import DataTable, StatCard
 from ui.dashboard_shell import DashboardShell
+from data_paths import data_path
 
 
 def _read_csv(path: Path) -> list:
@@ -29,7 +28,7 @@ class StudentDashboard(DashboardShell):
     def __init__(self, backend: BackendCommunicator, username: str):
         super().__init__(username, 'student')
         self.backend       = backend
-        self.data_dir      = Path(__file__).parent.parent.parent / 'data'
+        self.data_dir      = None  # unused — paths resolved via data_path()
         self.student_id    = None
         self.student_name  = username
         self.student_class = ''
@@ -43,7 +42,7 @@ class StudentDashboard(DashboardShell):
     def _csv_rows(self, filename: str) -> list:
         """Return cached rows for a CSV file."""
         if filename not in self._csv:
-            self._csv[filename] = _read_csv(self.data_dir / filename)
+            self._csv[filename] = _read_csv(data_path(filename))
         return self._csv[filename]
 
     # ── Student lookup ────────────────────────────────────────────

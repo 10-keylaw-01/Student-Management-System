@@ -5,7 +5,9 @@
 #include <limits>
 #include <climits>
 #include <ctime>
+#ifdef _WIN32
 #include <windows.h>
+#endif
 #include "include/Admin.h"
 #include "include/Student.h"
 #include "include/Teacher.h"
@@ -58,7 +60,7 @@ int nextId() {
 
 std::string todayStr() {
     std::time_t t = std::time(nullptr);
-    std::tm* tm_ = std::localtime(&t);
+    const std::tm* tm_ = std::localtime(&t);
     char buf[11];
     std::strftime(buf, sizeof(buf), "%Y-%m-%d", tm_);
     return std::string(buf);
@@ -105,10 +107,10 @@ void loadAll() {
     FileManager::loadNotifications(notifManager);
     FileManager::loadCalendar(calendar);
     // Restore globalMaxId so nextId() never collides with loaded records
-    for (auto& s : students)  if (s.id > globalMaxId) globalMaxId = s.id;
-    for (auto& t : teachers)  if (t.id > globalMaxId) globalMaxId = t.id;
-    for (auto& a : admins)    if (a.id > globalMaxId) globalMaxId = a.id;
-    for (auto& p : parents)   if (p.id > globalMaxId) globalMaxId = p.id;
+    for (const auto& s : students)  if (s.id > globalMaxId) globalMaxId = s.id;
+    for (const auto& t : teachers)  if (t.id > globalMaxId) globalMaxId = t.id;
+    for (const auto& a : admins)    if (a.id > globalMaxId) globalMaxId = a.id;
+    for (const auto& p : parents)   if (p.id > globalMaxId) globalMaxId = p.id;
 }
 
 void clearInput() { 
@@ -151,6 +153,15 @@ double getValidDouble(const std::string& prompt, double minVal) {
         std::cout << "[!] Invalid input. Please enter a number >= " << minVal << ".\n";
         std::cin.clear();
         clearInput();
+    }
+}
+
+/// Get a valid YYYY-MM-DD date from user
+std::string getValidDate(const std::string& prompt) {
+    while (true) {
+        std::string d = getLine(prompt);
+        if (Auth::isValidDate(d)) return d;
+        std::cout << "[!] Invalid date. Use format YYYY-MM-DD (e.g. 2025-06-01).\n";
     }
 }
 
@@ -251,8 +262,8 @@ void adminMenu(int adminIdx) {
             // Manage Teachers
             int tc;
             do {
-                std::cout << "\n1. Add Teacher\n2. View Teachers\n3. Remove Teacher\n4. Back\nSelect: ";
-                tc = getValidInt("", 1, 4);
+                std::cout << "\n1. Add Teacher\n2. View Teachers\n3. Remove Teacher\n4. Assign Class\n5. Back\nSelect: ";
+                tc = getValidInt("", 1, 5);
                 if (tc == 1) {
                     std::string username, password, name, subject, department, classes;
                     if (checkDuplicateUsername(username = Auth::sanitize(getLine("Username: ")))) {
@@ -295,18 +306,25 @@ void adminMenu(int adminIdx) {
                     } else {
                         std::cout << "[!] Teacher not found.\n";
                     }
+                } else if (tc == 4) {
+                    int tid = getValidInt("Teacher ID: ", 1, INT_MAX);
+                    int idx = findTeacherById(tid);
+                    if (idx >= 0) {
+                        std::string cls = getLine("Class to assign: ");
+                        teachers[idx].assignClass(cls);
+                        std::cout << "[✓] Class assigned.\n";
+                        saveAll();
+                    } else std::cout << "[!] Teacher not found.\n";
                 }
-            } while (tc != 4);
+            } while (tc != 5);
         } else if (choice == 3) {
             // Fee Management
             int fc;
             do {
-                std::cout << "\n=== Fee Management ===\n1. View Fee Structures\n2. Set Fee for Class\n3. Generate Invoice\n4. Record Payment\n5. Back\nSelect: ";
-                fc = getValidInt("", 1, 5);
+                std::cout << "\n=== Fee Management ===\n1. View Fee Structures\n2. Set Fee for Class\n3. Generate Invoice\n4. Record Payment\n5. View All Invoices\n6. Print Receipt\n7. Back\nSelect: ";
+                fc = getValidInt("", 1, 7);
                 if (fc == 1) {
-                    std::cout << "\n=== Fee Structures ===\n";
-                    for (const auto& fs : feeManager.getStructures())
-                        std::cout << "Class: " << fs.className << ", Termly Fee: " << fs.termlyFee << "\n";
+                    feeManager.listFeeStructure();
                 } else if (fc == 2) {
                     std::string cls = getLine("Class: ");
                     double amount = getValidDouble("Fee Amount: ");
@@ -317,19 +335,24 @@ void adminMenu(int adminIdx) {
                     int sid = getValidInt("Student ID: ", 1, INT_MAX);
                     int idx = findStudentById(sid);
                     if (idx >= 0) {
-                        std::string dueDate = getLine("Due Date (YYYY-MM-DD): ");
+                        std::string dueDate = getValidDate("Due Date (YYYY-MM-DD): ");
                         feeManager.generateFromStructure(sid, students[idx].name, students[idx].className, dueDate);
                         std::cout << "[✓] Invoice generated.\n";
                         saveAll();
                     } else std::cout << "[!] Student not found.\n";
                 } else if (fc == 4) {
                     int invoiceId = getValidInt("Invoice ID: ", 1, INT_MAX);
-                    double amount = getValidDouble("Amount: ", 0.0);
+                    double amount = getValidDouble("Amount: ", 0.01);
                     feeManager.recordPayment(invoiceId, amount, todayStr());
                     std::cout << "[✓] Payment recorded.\n";
                     saveAll();
+                } else if (fc == 5) {
+                    feeManager.listAll();
+                } else if (fc == 6) {
+                    int invoiceId = getValidInt("Invoice ID: ", 1, INT_MAX);
+                    feeManager.printReceiptById(invoiceId);
                 }
-            } while (fc != 5);
+            } while (fc != 7);
         } else if (choice == 4) {
             // Library Management
             int lc;
@@ -343,14 +366,12 @@ void adminMenu(int adminIdx) {
                     std::cout << "[✓] Book added.\n";
                     saveAll();
                 } else if (lc == 2) {
-                    std::cout << "\n=== Library Books ===\n";
-                    for (const auto& b : library.getBooks())
-                        std::cout << "ID: " << b.id << ", Title: " << b.title << ", Author: " << b.author << ", Available: " << (b.available ? "Yes" : "No") << "\n";
+                    library.listBooks();
                 } else if (lc == 3) {
                     int bid = getValidInt("Book ID: ", 1, INT_MAX);
                     int sid = getValidInt("Student ID: ", 1, INT_MAX);
                     if (findStudentById(sid) >= 0) {
-                        std::string dueDate = getLine("Due Date (YYYY-MM-DD): ");
+                        std::string dueDate = getValidDate("Due Date (YYYY-MM-DD): ");
                         library.issueBook(bid, sid, todayStr(), dueDate);
                         std::cout << "[✓] Book issued to student.\n";
                         saveAll();
@@ -395,46 +416,47 @@ void adminMenu(int adminIdx) {
             // View Reports
             int rpt;
             do {
-                std::cout << "\n=== Reports ===\n1. Attendance Report\n2. Grade Report\n3. Fee Report\n4. Back\nSelect: ";
-                rpt = getValidInt("", 1, 4);
+                std::cout << "\n=== Reports ===\n1. Attendance by Class\n2. Attendance All Classes\n3. Grade Report by Class\n4. Fee Report\n5. Back\nSelect: ";
+                rpt = getValidInt("", 1, 5);
+                std::vector<std::pair<int,std::string>> sl;
+                for (const auto& s : students) sl.push_back({s.id, s.className});
                 if (rpt == 1) {
-                    std::cout << "\n=== Attendance Report ===\n";
-                    for (const auto& a : attendanceManager.getEntries())
-                        std::cout << "Student: " << a.studentId << ", Date: " << a.date << ", Present: " << (a.present ? "Yes" : "No") << "\n";
+                    std::string cls = getLine("Class: ");
+                    Analytics::attendanceReportByClass(attendanceManager, cls);
                 } else if (rpt == 2) {
-                    std::cout << "\n=== Grade Report ===\n";
-                    for (const auto& g : gradeManager.getEntries())
-                        std::cout << "Student: " << g.studentId << ", Subject: " << g.subject << ", Marks: " << g.marks << "/" << g.total << "\n";
+                    Analytics::attendanceSummaryAllClasses(attendanceManager);
                 } else if (rpt == 3) {
-                    std::cout << "\n=== Fee Report ===\n";
-                    for (const auto& f : feeManager.getRecords())
-                        std::cout << "Student: " << f.studentId << ", Amount: " << f.amount << ", Paid: " << f.paid << ", Date: " << f.dueDate << "\n";
+                    std::string cls = getLine("Class: ");
+                    Analytics::gradeReportByClass(gradeManager, sl, cls);
+                } else if (rpt == 4) {
+                    feeManager.listAll();
                 }
-            } while (rpt != 4);
+            } while (rpt != 5);
         } else if (choice == 8) {
             // Exam Management
             int ec;
             do {
-                std::cout << "\n=== Exam Management ===\n1. Schedule Exam\n2. View Exams\n3. Enter Results\n4. Back\nSelect: ";
-                ec = getValidInt("", 1, 4);
+                std::cout << "\n=== Exam Management ===\n1. Schedule Exam\n2. View All Exams\n3. View Exams by Class\n4. Enter Results\n5. Back\nSelect: ";
+                ec = getValidInt("", 1, 5);
                 if (ec == 1) {
                     std::string title = getLine("Exam Title: ");
                     std::string type = getLine("Type (Midterm/Final/Quiz): ");
                     std::string cls = getLine("Class: ");
                     std::string subject = getLine("Subject: ");
-                    std::string date = getLine("Date (YYYY-MM-DD): ");
+                    std::string date = getValidDate("Date (YYYY-MM-DD): ");
                     double totalMarks = getValidDouble("Total Marks: ", 1.0);
                     examManager.scheduleExam(title, type, cls, subject, date, totalMarks);
                     std::cout << "[✓] Exam scheduled.\n";
                     saveAll();
                 } else if (ec == 2) {
-                    std::cout << "\n=== Exams ===\n";
-                    for (const auto& e : examManager.getExams())
-                        std::cout << "ID: " << e.id << ", Title: " << e.title << ", Date: " << e.date << ", Total Marks: " << e.totalMarks << "\n";
+                    examManager.listExams();
                 } else if (ec == 3) {
+                    std::string cls = getLine("Class: ");
+                    examManager.listExamsByClass(cls);
+                } else if (ec == 4) {
                     int eid = getValidInt("Exam ID: ", 1, INT_MAX);
                     int sid = getValidInt("Student ID: ", 1, INT_MAX);
-                    double marks = getValidDouble("Marks Obtained: ");
+                    double marks = getValidDouble("Marks Obtained: ", 0.0);
                     int idx = findStudentById(sid);
                     if (idx >= 0) {
                         examManager.enterResult(eid, sid, students[idx].name, marks);
@@ -442,76 +464,88 @@ void adminMenu(int adminIdx) {
                         saveAll();
                     } else std::cout << "[!] Student not found.\n";
                 }
-            } while (ec != 4);
+            } while (ec != 5);
         } else if (choice == 9) {
             // Course Management
             int cc;
             do {
-                std::cout << "\n=== Course Management ===\n1. Add Course\n2. View Courses\n3. List by Class\n4. Back\nSelect: ";
-                cc = getValidInt("", 1, 4);
+                std::cout << "\n=== Course Management ===\n1. Add Course\n2. View All Courses\n3. List by Class\n4. Modify Course\n5. Delete Course\n6. Back\nSelect: ";
+                cc = getValidInt("", 1, 6);
                 if (cc == 1) {
                     std::string code = getLine("Course Code: ");
                     std::string name = getLine("Course Name: ");
                     std::string subject = getLine("Subject: ");
                     std::string cls = getLine("Class: ");
                     std::string teacher = getLine("Teacher Name: ");
-                    int credits = getValidInt("Credits: ", 1, 10);
+                    int credits = getValidInt("Credits: ", 1, 20);
                     courseManager.addCourse(code, name, subject, cls, teacher, credits);
                     std::cout << "[✓] Course added.\n";
                     saveAll();
                 } else if (cc == 2) {
-                    std::cout << "\n=== Courses ===\n";
-                    for (const auto& c : courseManager.getCourses())
-                        std::cout << "ID: " << c.id << ", Code: " << c.code << ", Name: " << c.name << ", Subject: " << c.subject << ", Credits: " << c.credits << "\n";
+                    courseManager.listAll();
                 } else if (cc == 3) {
                     std::string cls = getLine("Class: ");
                     courseManager.listByClass(cls);
+                } else if (cc == 4) {
+                    int cid = getValidInt("Course ID: ", 1, INT_MAX);
+                    std::string name = getLine("New Name (blank to keep): ");
+                    std::string teacher = getLine("New Teacher (blank to keep): ");
+                    int credits = getValidInt("New Credits (0 to keep): ", 0, 20);
+                    courseManager.modifyCourse(cid, name, teacher, credits);
+                    saveAll();
+                } else if (cc == 5) {
+                    int cid = getValidInt("Course ID: ", 1, INT_MAX);
+                    courseManager.deleteCourse(cid);
+                    saveAll();
                 }
-            } while (cc != 4);
+            } while (cc != 6);
         } else if (choice == 10) {
             // Analytics
             int ac;
             do {
-                std::cout << "\n=== Analytics ===\n1. Attendance by Class\n2. Grade Distribution\n3. Back\nSelect: ";
-                ac = getValidInt("", 1, 3);
+                std::cout << "\n=== Analytics ===\n1. Attendance by Class\n2. Attendance All Classes\n3. Grade Report by Class\n4. Subject Averages\n5. Back\nSelect: ";
+                ac = getValidInt("", 1, 5);
+                std::vector<std::pair<int,std::string>> sl;
+                for (const auto& s : students) sl.push_back({s.id, s.className});
                 if (ac == 1) {
                     std::string cls = getLine("Class: ");
-                    int total = 0, present = 0;
-                    for (const auto& a : attendanceManager.getEntries()) {
-                        for (const auto& s : students) {
-                            if (s.id == a.studentId && s.className == cls) {
-                                total++; if (a.present) present++;
-                            }
-                        }
-                    }
-                    if (total > 0) std::cout << "Attendance: " << (100.0 * present / total) << "%\n";
-                    else std::cout << "No attendance records found.\n";
+                    Analytics::attendanceReportByClass(attendanceManager, cls);
                 } else if (ac == 2) {
-                    std::cout << "\n=== Grade Distribution ===\n";
-                    std::cout << "Grade analytics displayed.\n";
+                    Analytics::attendanceSummaryAllClasses(attendanceManager);
+                } else if (ac == 3) {
+                    std::string cls = getLine("Class: ");
+                    Analytics::gradeReportByClass(gradeManager, sl, cls);
+                } else if (ac == 4) {
+                    std::string cls = getLine("Class: ");
+                    Analytics::subjectAverageByClass(gradeManager, cls, sl);
                 }
-            } while (ac != 3);
+            } while (ac != 5);
         } else if (choice == 11) {
             // Academic Calendar
             int cal;
             do {
-                std::cout << "\n=== Academic Calendar ===\n1. Add Event\n2. View Events\n3. Back\nSelect: ";
-                cal = getValidInt("", 1, 3);
+                std::cout << "\n=== Academic Calendar ===\n1. Add Event\n2. View All Events\n3. View by Type\n4. Remove Event\n5. Back\nSelect: ";
+                cal = getValidInt("", 1, 5);
                 if (cal == 1) {
                     std::string title = getLine("Event Title: ");
-                    std::string date = getLine("Start Date (YYYY-MM-DD): ");
-                    std::string endDate = getLine("End Date (YYYY-MM-DD): ");
+                    std::string date = getValidDate("Start Date (YYYY-MM-DD): ");
+                    std::string endDate = getValidDate("End Date (YYYY-MM-DD): ");
                     std::string type = getLine("Type (Holiday/Exam/Meeting/Sports/Academic/Other): ");
                     std::string desc = getLine("Description: ");
                     calendar.addEvent(title, date, endDate, type, desc);
                     std::cout << "[✓] Event added.\n";
                     saveAll();
                 } else if (cal == 2) {
-                    std::cout << "\n=== Calendar Events ===\n";
-                    for (const auto& e : calendar.getEvents())
-                        std::cout << "Date: " << e.date << " to " << e.endDate << ", Event: " << e.title << ", Type: " << e.type << "\n";
+                    calendar.listAll();
+                } else if (cal == 3) {
+                    std::string type = getLine("Type (Holiday/Exam/Meeting/Sports/Academic/Other): ");
+                    calendar.listByType(type);
+                } else if (cal == 4) {
+                    int eid = getValidInt("Event ID: ", 1, INT_MAX);
+                    calendar.removeEvent(eid);
+                    saveAll();
                 }
-            } while (cal != 3);
+            } while (cal != 5);
         } else if (choice == 12) {
             // Notifications
             int nc;
@@ -582,7 +616,7 @@ bool login() {
     for (size_t i = 0; i < admins.size(); ++i) {
         if (admins[i].username == uname && Crypto::verifyPassword(pass, admins[i].password)) {
             auth.recordSuccess(uname);
-            Auth::showWelcomeBanner(admins[i].name, "Admin");
+            Auth::showWelcomeBanner(admins[i].name, admins[i].roleStr());
             int uc = notifManager.unreadCount(admins[i].id);
             if (uc > 0) std::cout << "  You have " << uc << " unread notification(s).\n";
             adminMenu((int)i);
@@ -594,7 +628,7 @@ bool login() {
     for (size_t i = 0; i < teachers.size(); ++i) {
         if (teachers[i].username == uname && Crypto::verifyPassword(pass, teachers[i].password)) {
             auth.recordSuccess(uname);
-            Auth::showWelcomeBanner(teachers[i].name, "Teacher");
+            Auth::showWelcomeBanner(teachers[i].name, teachers[i].roleStr());
             int uc = notifManager.unreadCount(teachers[i].id);
             if (uc > 0) std::cout << "  You have " << uc << " unread notification(s).\n";
             teacherMenu(teachers[i]);
@@ -606,7 +640,7 @@ bool login() {
     for (size_t i = 0; i < students.size(); ++i) {
         if (students[i].username == uname && Crypto::verifyPassword(pass, students[i].password)) {
             auth.recordSuccess(uname);
-            Auth::showWelcomeBanner(students[i].name, "Student");
+            Auth::showWelcomeBanner(students[i].name, students[i].roleStr());
             std::cout << "  Notifications:\n";
             notifManager.showAndMarkRead(students[i].id);
             studentMenu(students[i]);
@@ -618,7 +652,7 @@ bool login() {
     for (size_t i = 0; i < parents.size(); ++i) {
         if (parents[i].username == uname && Crypto::verifyPassword(pass, parents[i].password)) {
             auth.recordSuccess(uname);
-            Auth::showWelcomeBanner(parents[i].name, "Parent");
+            Auth::showWelcomeBanner(parents[i].name, parents[i].roleStr());
             std::cout << "  Notifications:\n";
             notifManager.showAndMarkRead(parents[i].id);
             parentMenu(parents[i]);
@@ -652,8 +686,10 @@ void seedDefaults() {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 int main() {
+#ifdef _WIN32
     SetConsoleOutputCP(65001);
     SetConsoleCP(65001);
+#endif
     loadAll();
     seedDefaults();
 

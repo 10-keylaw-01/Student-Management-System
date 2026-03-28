@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
     QMessageBox, QHBoxLayout, QVBoxLayout, QLabel,
     QPushButton, QFrame, QSizeGrip, QGraphicsDropShadowEffect
 )
-from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QIcon, QFont
 
 from backend_communicator import BackendCommunicator
@@ -197,10 +197,10 @@ class MainWindow(QMainWindow):
 
     def _initialize_backend(self):
         exe_paths = [
-            Path(__file__).parent.parent / 'main.exe',
+            Path(__file__).parent.parent / 'sms',
+            Path(__file__).parent.parent / 'main',
             Path(__file__).parent.parent / 'sms.exe',
-            Path('main.exe'),
-            Path('./sms'),
+            Path(__file__).parent.parent / 'main.exe',
         ]
         exe_path = next((str(p) for p in exe_paths if p.exists()), None)
 

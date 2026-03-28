@@ -57,7 +57,7 @@ public:
 
     /// Get fee amount for a specific class
     double getFeeForClass(const std::string& cls) const {
-        for (auto& s : structures) if (s.className == cls) return s.termlyFee;
+        for (const auto& s : structures) if (s.className == cls) return s.termlyFee;
         return 0.0;
     }
 

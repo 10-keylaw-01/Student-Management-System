@@ -6,11 +6,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QPushButton, QLineEdit, QCheckBox, QMessageBox,
-    QProgressBar, QFrame, QSizePolicy
+    QPushButton, QLineEdit, QCheckBox, QProgressBar, QFrame
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QFont
 from backend_communicator import BackendCommunicator
 
 
@@ -55,7 +53,7 @@ class LoginWindow(QWidget):
     def __init__(self, backend: BackendCommunicator):
         super().__init__()
         self.backend      = backend
-        self.data_dir     = Path(__file__).parent.parent.parent / 'data'
+        self.data_dir     = Path(__file__).parent.parent.parent / 'data' / 'private'
         self.lockout_file = Path(__file__).parent.parent.parent / '.lockout'
         self._setup_ui()
 

@@ -65,7 +65,6 @@ public:
         std::cout << "\n";
         std::cout << "╔══════════════════════════════════════════╗\n";
         std::cout << "║                                          ║\n";
-        // truncate to fit box (inner width 42, prefix "   Hey, " = 8 chars, suffix " ║" = 2)
         std::string displayName = name.size() > 34 ? name.substr(0, 31) + "..." : name;
         std::string displayRole = role.size() > 17 ? role.substr(0, 14) + "..." : role;
         std::cout << "║   Hey, " << displayName;
@@ -78,5 +77,16 @@ public:
         std::cout << "║\n";
         std::cout << "║                                          ║\n";
         std::cout << "╚══════════════════════════════════════════╝\n";
+    }
+
+    /// Validate date string format YYYY-MM-DD
+    static bool isValidDate(const std::string& d) {
+        if (d.size() != 10) return false;
+        if (d[4] != '-' || d[7] != '-') return false;
+        for (int i : {0,1,2,3,5,6,8,9})
+            if (!std::isdigit((unsigned char)d[i])) return false;
+        int m = std::stoi(d.substr(5,2));
+        int day = std::stoi(d.substr(8,2));
+        return m >= 1 && m <= 12 && day >= 1 && day <= 31;
     }
 };

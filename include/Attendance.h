@@ -53,7 +53,7 @@ public:
     /// View attendance by class (optional date filter)
     void viewByClass(const std::string& cls, const std::string& date = "") const {
         bool found = false;
-        for (auto& e : entries) {
+        for (const auto& e : entries) {
             if (e.className == cls && (date.empty() || e.date == date)) {
                 std::cout << e.studentName << " - " << (e.present ? "Present" : "Absent") << "\n";
                 found = true;
