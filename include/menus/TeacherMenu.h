@@ -36,7 +36,7 @@ void teacherMenu(Teacher& teacher) {
 
         if (choice == 1) { // Mark Attendance
             int sid; bool present;
-            sid = getValidInt("Student ID: ");
+            sid = getValidInt("Student ID: ", 1, INT_MAX);
             std::string sname = "Unknown", cls = "";
             for (auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
             
@@ -59,7 +59,7 @@ void teacherMenu(Teacher& teacher) {
 
         } else if (choice == 2) { // Add Grades
             int sid; std::string subj, term; double marks, total;
-            sid = getValidInt("Student ID: ");
+            sid = getValidInt("Student ID: ", 1, INT_MAX);
             std::string sname = "Unknown", cls = "";
             for (auto& s : students) if (s.id == sid) { sname = s.name; cls = s.className; }
             
@@ -135,8 +135,8 @@ void teacherMenu(Teacher& teacher) {
                 std::cout << "[✓] Exam scheduled.\n";
             } else if (c == 2) {
                 examManager.listExams();
-                int eid = getValidInt("Exam ID: ");
-                int sid = getValidInt("Student ID: ");
+                int eid = getValidInt("Exam ID: ", 1, INT_MAX);
+                int sid = getValidInt("Student ID: ", 1, INT_MAX);
                 std::string sname = "Unknown";
                 for (auto& s : students) if (s.id == sid) sname = s.name;
                 double marks = getValidDouble("Marks: ");

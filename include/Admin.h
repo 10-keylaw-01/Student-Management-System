@@ -27,26 +27,3 @@ public:
              << "14. Logout\n";
     }
 };
-
-/// Parent user class - tracks parent of a student
-class Parent : public User {
-public:
-    int studentId;
-
-    Parent() = default;
-    Parent(int id, const std::string& username, const std::string& password, 
-           const std::string& name, int studentId)
-        : User(id, username, password, name, Role::Parent), studentId(studentId) {}
-
-    void viewDashboard() const override {
-        std::cout << "\n=== PARENT DASHBOARD: " << name << " ===\n"
-             << "1. View Child Attendance\n"
-             << "2. View Child Grades\n"
-             << "3. View Fee Status\n"
-             << "4. View Announcements\n"
-             << "5. View Child Exam Results\n"
-             << "6. Academic Calendar\n"
-             << "7. Notifications\n"
-             << "8. Logout\n";
-    }
-};
