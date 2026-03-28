@@ -9,6 +9,7 @@
 #include "include/Admin.h"
 #include "include/Student.h"
 #include "include/Teacher.h"
+#include "include/Parent.h"
 #include "include/Fee.h"
 #include "include/Attendance.h"
 #include "include/Grade.h"
@@ -27,6 +28,7 @@
 #include "include/menus/TeacherMenu.h"
 #include "include/menus/StudentMenu.h"
 #include "include/menus/ParentMenu.h"
+#include "include/User.h"
 
 
 // ── Global state ──────────────────────────────────────────────────────────────
@@ -203,7 +205,7 @@ void adminMenu(int adminIdx) {
                     name = getLine("Name: ");
                     rollNum = getLine("Roll Number: ");
                     className = getLine("Class: ");
-                    parentId = getValidInt("Parent ID: ");
+                    parentId = getValidInt("Parent ID: ", 1, INT_MAX);
                     
                     students.emplace_back(nextId(), username, password, name, rollNum, className, parentId);
                     int newStudentId = students.back().id;
@@ -234,7 +236,7 @@ void adminMenu(int adminIdx) {
                                       << ", Username: " << s.username << ", Class: " << s.className << "\n";
                     }
                 } else if (sc == 3) {
-                    int sid = getValidInt(std::string("Enter student ID to remove: "));
+                    int sid = getValidInt("Enter student ID to remove: ", 1, INT_MAX);
                     int idx = findStudentById(sid);
                     if (idx >= 0) {
                         students.erase(students.begin() + idx);
@@ -284,7 +286,7 @@ void adminMenu(int adminIdx) {
                                       << ", Subject: " << t.subject << ", Username: " << t.username << "\n";
                     }
                 } else if (tc == 3) {
-                    int tid = getValidInt(std::string("Enter teacher ID to remove: "));
+                    int tid = getValidInt("Enter teacher ID to remove: ", 1, INT_MAX);
                     int idx = findTeacherById(tid);
                     if (idx >= 0) {
                         teachers.erase(teachers.begin() + idx);
@@ -312,7 +314,7 @@ void adminMenu(int adminIdx) {
                     std::cout << "[✓] Fee structure updated.\n";
                     saveAll();
                 } else if (fc == 3) {
-                    int sid = getValidInt("Student ID: ");
+                    int sid = getValidInt("Student ID: ", 1, INT_MAX);
                     int idx = findStudentById(sid);
                     if (idx >= 0) {
                         std::string dueDate = getLine("Due Date (YYYY-MM-DD): ");
@@ -321,8 +323,8 @@ void adminMenu(int adminIdx) {
                         saveAll();
                     } else std::cout << "[!] Student not found.\n";
                 } else if (fc == 4) {
-                    int invoiceId = getValidInt("Invoice ID: ");
-                    double amount = getValidDouble("Amount: ");
+                    int invoiceId = getValidInt("Invoice ID: ", 1, INT_MAX);
+                    double amount = getValidDouble("Amount: ", 0.0);
                     feeManager.recordPayment(invoiceId, amount, todayStr());
                     std::cout << "[✓] Payment recorded.\n";
                     saveAll();
@@ -345,8 +347,8 @@ void adminMenu(int adminIdx) {
                     for (const auto& b : library.getBooks())
                         std::cout << "ID: " << b.id << ", Title: " << b.title << ", Author: " << b.author << ", Available: " << (b.available ? "Yes" : "No") << "\n";
                 } else if (lc == 3) {
-                    int bid = getValidInt("Book ID: ");
-                    int sid = getValidInt("Student ID: ");
+                    int bid = getValidInt("Book ID: ", 1, INT_MAX);
+                    int sid = getValidInt("Student ID: ", 1, INT_MAX);
                     if (findStudentById(sid) >= 0) {
                         std::string dueDate = getLine("Due Date (YYYY-MM-DD): ");
                         library.issueBook(bid, sid, todayStr(), dueDate);
@@ -354,7 +356,7 @@ void adminMenu(int adminIdx) {
                         saveAll();
                     } else std::cout << "[!] Student not found.\n";
                 } else if (lc == 4) {
-                    int bid = getValidInt("Book ID: ");
+                    int bid = getValidInt("Book ID: ", 1, INT_MAX);
                     library.returnBook(bid, todayStr());
                     std::cout << "[✓] Book returned.\n";
                     saveAll();
@@ -430,8 +432,8 @@ void adminMenu(int adminIdx) {
                     for (const auto& e : examManager.getExams())
                         std::cout << "ID: " << e.id << ", Title: " << e.title << ", Date: " << e.date << ", Total Marks: " << e.totalMarks << "\n";
                 } else if (ec == 3) {
-                    int eid = getValidInt("Exam ID: ");
-                    int sid = getValidInt("Student ID: ");
+                    int eid = getValidInt("Exam ID: ", 1, INT_MAX);
+                    int sid = getValidInt("Student ID: ", 1, INT_MAX);
                     double marks = getValidDouble("Marks Obtained: ");
                     int idx = findStudentById(sid);
                     if (idx >= 0) {
@@ -453,7 +455,7 @@ void adminMenu(int adminIdx) {
                     std::string subject = getLine("Subject: ");
                     std::string cls = getLine("Class: ");
                     std::string teacher = getLine("Teacher Name: ");
-                    int credits = getValidInt("Credits: ");
+                    int credits = getValidInt("Credits: ", 1, 10);
                     courseManager.addCourse(code, name, subject, cls, teacher, credits);
                     std::cout << "[✓] Course added.\n";
                     saveAll();
@@ -517,7 +519,7 @@ void adminMenu(int adminIdx) {
                 std::cout << "\n=== Notifications ===\n1. Send Notification\n2. Broadcast\n3. View All Notifications\n4. Back\nSelect: ";
                 nc = getValidInt("", 1, 4);
                 if (nc == 1) {
-                    int uid = getValidInt("User ID: ", 1);
+                    int uid = getValidInt("User ID: ", 1, INT_MAX);
                     std::string msg = getLine("Message: ");
                     notifManager.send(uid, msg, todayStr(), "Admin");
                     std::cout << "[✓] Notification sent.\n";

@@ -4,6 +4,15 @@
 *.o
 sms
 sms_*
+main.exe
+
+# ── Windows shortcut files ─────────────────────────────────────────────────────
+*.lnk
+
+# ── MinGW / GCC runtime DLLs (not needed in source control) ───────────────────
+libstdc++*.dll
+libgcc*.dll
+libwinpthread*.dll
 
 # ── Debug / test / scratch files ──────────────────────────────────────────────
 debug_login.cpp
@@ -34,6 +43,14 @@ env/
 # ── OS files ──────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ── Matplotlib cache ──────────────────────────────────────────────────────────
+.matplotlib/
+
+# ── Generated assets (recreated by generate_icon.py) ──────────────────────────
+frontend/resources/icons/default_icon.png
+frontend/resources/icons/default_logo.png
 
 # ── Data files (contain user data / passwords) ────────────────────────────────
 data/admins.csv
