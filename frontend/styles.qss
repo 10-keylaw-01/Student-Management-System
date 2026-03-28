@@ -1,0 +1,787 @@
+/* ============================================================
+   SMS — PyDracula Dark Theme  (PyQt5, clean specificity)
+   ============================================================ */
+
+/* ── Global reset ── */
+* {
+    outline: 0;
+}
+
+QWidget {
+    background-color: rgb(40, 44, 52);
+    color: rgb(220, 220, 220);
+    font-family: "Segoe UI";
+    font-size: 10pt;
+    selection-background-color: rgb(189, 147, 249);
+    selection-color: #ffffff;
+}
+
+/* ── Tooltip ── */
+QToolTip {
+    color: #ffffff;
+    background-color: rgb(33, 37, 43);
+    border: 1px solid rgb(189, 147, 249);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   MAIN WINDOW SHELL
+   ============================================================ */
+
+QMainWindow {
+    background-color: rgb(40, 44, 52);
+}
+
+/* Outer transparent wrapper — needed for drop shadow */
+#outerWidget {
+    background-color: transparent;
+}
+
+/* The actual app frame */
+#bgApp {
+    background-color: rgb(40, 44, 52);
+    border: 1px solid rgb(55, 60, 70);
+    border-radius: 8px;
+}
+
+/* ── Custom title bar ── */
+#contentTopBg {
+    background-color: rgb(28, 31, 38);
+    border-bottom: 1px solid rgb(44, 49, 58);
+}
+
+#titleRightInfo {
+    color: rgb(200, 200, 200);
+    font-size: 10pt;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+/* Window control buttons (min / max / close) */
+#rightButtons QPushButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgb(160, 160, 160);
+    font-size: 11pt;
+    min-width: 28px;
+    max-width: 28px;
+    min-height: 28px;
+    max-height: 28px;
+}
+#rightButtons QPushButton:hover {
+    background-color: rgb(55, 60, 70);
+    color: rgb(220, 220, 220);
+}
+#rightButtons QPushButton:pressed {
+    background-color: rgb(30, 33, 40);
+}
+
+/* ── Bottom status bar ── */
+#bottomBar {
+    background-color: rgb(28, 31, 38);
+    border-top: 1px solid rgb(44, 49, 58);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+#bottomBar QLabel {
+    color: rgb(100, 110, 130);
+    font-size: 9pt;
+    padding: 0 8px;
+}
+
+/* ============================================================
+   DASHBOARD SHELL — SIDEBAR
+   ============================================================ */
+
+#leftMenuBg {
+    background-color: rgb(28, 31, 38);
+    border-right: 1px solid rgb(44, 49, 58);
+}
+
+/* Toggle / hamburger button */
+#toggleButton {
+    background-color: rgb(33, 37, 45);
+    color: rgb(140, 150, 170);
+    border: none;
+    border-bottom: 1px solid rgb(44, 49, 58);
+    text-align: left;
+    padding-left: 18px;
+    font-size: 11pt;
+    font-weight: 600;
+    min-height: 48px;
+    max-height: 48px;
+}
+#toggleButton:hover {
+    background-color: rgb(40, 44, 52);
+    color: rgb(200, 200, 200);
+}
+#toggleButton:pressed {
+    background-color: rgb(189, 147, 249);
+    color: #ffffff;
+}
+
+/* User info label shown when sidebar is expanded */
+#userInfoLabel {
+    color: rgb(189, 147, 249);
+    font-size: 9pt;
+    padding: 10px 16px 6px 16px;
+    border-bottom: 1px solid rgb(44, 49, 58);
+    background-color: transparent;
+}
+
+/* Nav buttons */
+#navBtn {
+    background-color: transparent;
+    color: rgb(170, 175, 190);
+    border: none;
+    border-left: 3px solid transparent;
+    text-align: left;
+    padding-left: 16px;
+    font-size: 10pt;
+    min-height: 46px;
+    max-height: 46px;
+}
+#navBtn:hover {
+    background-color: rgb(40, 44, 52);
+    color: rgb(220, 220, 220);
+    border-left: 3px solid rgb(100, 110, 130);
+}
+#navBtn:checked {
+    background-color: rgb(40, 44, 52);
+    color: rgb(189, 147, 249);
+    border-left: 3px solid rgb(189, 147, 249);
+    font-weight: 600;
+}
+
+/* Logout button at bottom of sidebar */
+#logoutNavBtn {
+    background-color: transparent;
+    color: rgb(255, 100, 120);
+    border: none;
+    border-top: 1px solid rgb(44, 49, 58);
+    border-left: 3px solid transparent;
+    text-align: left;
+    padding-left: 16px;
+    font-size: 10pt;
+    min-height: 46px;
+    max-height: 46px;
+}
+#logoutNavBtn:hover {
+    background-color: rgba(255, 80, 100, 0.12);
+    border-left: 3px solid rgb(255, 100, 120);
+}
+
+/* ── Page title bar (inside content area) ── */
+#pageTitleBar {
+    background-color: rgb(33, 37, 43);
+    border-bottom: 1px solid rgb(44, 49, 58);
+}
+#pageTitleLabel {
+    color: rgb(210, 210, 220);
+    font-size: 11pt;
+    font-weight: 600;
+    padding-left: 6px;
+}
+
+/* ── Stacked content area ── */
+#stackedWidget {
+    background-color: rgb(40, 44, 52);
+}
+
+/* ============================================================
+   LOGIN WINDOW
+   ============================================================ */
+
+#loginPage {
+    background-color: rgb(40, 44, 52);
+}
+
+#loginCard {
+    background-color: rgb(33, 37, 43);
+    border-radius: 12px;
+    border: 1px solid rgb(55, 60, 70);
+}
+
+#loginLeftPanel {
+    background-color: rgb(100, 65, 200);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#loginRightPanel {
+    background-color: rgb(33, 37, 43);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+#loginAppTitle {
+    color: #ffffff;
+    font-size: 38pt;
+    font-weight: 700;
+}
+
+#loginAppSub {
+    color: rgba(255, 255, 255, 210);
+    font-size: 11pt;
+}
+
+#loginTagline {
+    color: rgba(255, 255, 255, 160);
+    font-size: 9pt;
+}
+
+#loginWelcome {
+    color: rgb(189, 147, 249);
+    font-size: 17pt;
+    font-weight: 700;
+}
+
+#loginSubtitle {
+    color: rgb(120, 130, 150);
+    font-size: 9pt;
+}
+
+#loginFieldLabel {
+    color: rgb(170, 175, 195);
+    font-size: 9pt;
+    font-weight: 600;
+}
+
+#loginStatus {
+    color: rgb(255, 100, 120);
+    font-size: 9pt;
+}
+
+QPushButton#loginBtn {
+    background-color: rgb(100, 65, 200);
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 11pt;
+    font-weight: 700;
+    min-height: 42px;
+    padding: 0 20px;
+}
+QPushButton#loginBtn:hover {
+    background-color: rgb(120, 85, 220);
+}
+QPushButton#loginBtn:pressed {
+    background-color: rgb(80, 50, 170);
+}
+QPushButton#loginBtn:disabled {
+    background-color: rgb(60, 65, 80);
+    color: rgb(100, 105, 120);
+}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+
+#statCard {
+    background-color: rgb(33, 37, 43);
+    border: 1px solid rgb(50, 55, 65);
+    border-radius: 10px;
+}
+
+#statCardTitle {
+    color: rgb(120, 130, 150);
+    font-size: 9pt;
+    font-weight: 400;
+    background-color: transparent;
+}
+
+#statCardValue {
+    color: rgb(189, 147, 249);
+    font-size: 20pt;
+    font-weight: 700;
+    background-color: transparent;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+
+QTableWidget {
+    background-color: rgb(33, 37, 43);
+    color: rgb(210, 210, 220);
+    gridline-color: rgb(50, 55, 65);
+    border: 1px solid rgb(50, 55, 65);
+    border-radius: 6px;
+    font-size: 10pt;
+    selection-background-color: rgb(80, 55, 140);
+    selection-color: #ffffff;
+    alternate-background-color: rgb(36, 40, 48);
+}
+
+QTableWidget::item {
+    padding: 6px 10px;
+    border: none;
+    color: rgb(210, 210, 220);
+}
+
+QTableWidget::item:selected {
+    background-color: rgb(80, 55, 140);
+    color: #ffffff;
+}
+
+QTableWidget::item:hover {
+    background-color: rgb(45, 50, 60);
+}
+
+QHeaderView {
+    background-color: rgb(28, 31, 38);
+}
+
+QHeaderView::section {
+    background-color: rgb(28, 31, 38);
+    color: rgb(160, 165, 185);
+    font-size: 9pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border: none;
+    border-bottom: 2px solid rgb(189, 147, 249);
+    border-right: 1px solid rgb(44, 49, 58);
+}
+
+QHeaderView::section:last {
+    border-right: none;
+}
+
+QTableWidget QTableCornerButton::section {
+    background-color: rgb(28, 31, 38);
+    border: none;
+}
+
+/* Row height via vertical header (hidden but sets height) */
+QTableWidget::item { min-height: 32px; }
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+QLineEdit {
+    background-color: rgb(28, 31, 38);
+    color: rgb(215, 215, 225);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 10pt;
+    min-height: 36px;
+    selection-background-color: rgb(189, 147, 249);
+    selection-color: #ffffff;
+}
+QLineEdit:hover {
+    border: 1px solid rgb(90, 95, 115);
+}
+QLineEdit:focus {
+    border: 1px solid rgb(189, 147, 249);
+    background-color: rgb(30, 34, 42);
+}
+QLineEdit::placeholder {
+    color: rgb(90, 95, 115);
+}
+
+QTextEdit, QPlainTextEdit {
+    background-color: rgb(28, 31, 38);
+    color: rgb(215, 215, 225);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 10pt;
+    selection-background-color: rgb(189, 147, 249);
+    selection-color: #ffffff;
+}
+QTextEdit:focus, QPlainTextEdit:focus {
+    border: 1px solid rgb(189, 147, 249);
+}
+
+QSpinBox, QDoubleSpinBox {
+    background-color: rgb(28, 31, 38);
+    color: rgb(215, 215, 225);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 10pt;
+    min-height: 34px;
+}
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid rgb(189, 147, 249);
+}
+QSpinBox::up-button, QSpinBox::down-button,
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
+    background-color: rgb(44, 49, 58);
+    border: none;
+    width: 18px;
+}
+QSpinBox::up-button:hover, QSpinBox::down-button:hover,
+QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {
+    background-color: rgb(60, 65, 80);
+}
+
+QDateEdit {
+    background-color: rgb(28, 31, 38);
+    color: rgb(215, 215, 225);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 10pt;
+    min-height: 34px;
+}
+QDateEdit:focus {
+    border: 1px solid rgb(189, 147, 249);
+}
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 24px;
+    border-left: 1px solid rgb(55, 60, 72);
+    background-color: rgb(40, 44, 52);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+QPushButton {
+    background-color: rgb(52, 58, 72);
+    color: rgb(210, 210, 220);
+    border: 1px solid rgb(65, 72, 88);
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 10pt;
+    min-height: 32px;
+}
+QPushButton:hover {
+    background-color: rgb(62, 68, 85);
+    border: 1px solid rgb(100, 108, 130);
+    color: #ffffff;
+}
+QPushButton:pressed {
+    background-color: rgb(38, 42, 55);
+    border: 1px solid rgb(80, 88, 108);
+}
+QPushButton:disabled {
+    background-color: rgb(38, 42, 52);
+    color: rgb(80, 85, 100);
+    border: 1px solid rgb(44, 49, 58);
+}
+
+/* ============================================================
+   COMBOBOX
+   ============================================================ */
+
+QComboBox {
+    background-color: rgb(28, 31, 38);
+    color: rgb(215, 215, 225);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 10pt;
+    min-height: 34px;
+}
+QComboBox:hover {
+    border: 1px solid rgb(90, 95, 115);
+}
+QComboBox:focus {
+    border: 1px solid rgb(189, 147, 249);
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 28px;
+    border-left: 1px solid rgb(55, 60, 72);
+    background-color: rgb(40, 44, 52);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+QComboBox::down-arrow {
+    width: 10px;
+    height: 10px;
+}
+QComboBox QAbstractItemView {
+    background-color: rgb(33, 37, 43);
+    color: rgb(210, 210, 220);
+    border: 1px solid rgb(55, 60, 72);
+    border-radius: 4px;
+    padding: 4px;
+    selection-background-color: rgb(80, 55, 140);
+    selection-color: #ffffff;
+    outline: none;
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+
+QTabWidget::pane {
+    background-color: rgb(40, 44, 52);
+    border: 1px solid rgb(50, 55, 65);
+    border-top: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+QTabBar {
+    background-color: transparent;
+}
+
+QTabBar::tab {
+    background-color: rgb(33, 37, 43);
+    color: rgb(130, 138, 158);
+    padding: 9px 22px;
+    border: 1px solid rgb(50, 55, 65);
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+    font-size: 10pt;
+}
+QTabBar::tab:selected {
+    background-color: rgb(40, 44, 52);
+    color: rgb(189, 147, 249);
+    border-bottom: 2px solid rgb(189, 147, 249);
+    font-weight: 600;
+}
+QTabBar::tab:hover:!selected {
+    background-color: rgb(40, 44, 52);
+    color: rgb(200, 200, 210);
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
+QProgressBar {
+    background-color: rgb(44, 49, 58);
+    border: none;
+    border-radius: 5px;
+    color: rgb(210, 210, 220);
+    font-size: 9pt;
+    font-weight: 600;
+    text-align: center;
+    min-height: 18px;
+    max-height: 18px;
+}
+QProgressBar::chunk {
+    background-color: rgb(189, 147, 249);
+    border-radius: 5px;
+}
+
+/* ============================================================
+   CHECKBOX & RADIO
+   ============================================================ */
+
+QCheckBox {
+    color: rgb(200, 200, 215);
+    font-size: 10pt;
+    spacing: 8px;
+    background-color: transparent;
+}
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 2px solid rgb(80, 88, 108);
+    background-color: rgb(28, 31, 38);
+}
+QCheckBox::indicator:hover {
+    border: 2px solid rgb(189, 147, 249);
+}
+QCheckBox::indicator:checked {
+    background-color: rgb(189, 147, 249);
+    border: 2px solid rgb(189, 147, 249);
+}
+
+QRadioButton {
+    color: rgb(200, 200, 215);
+    font-size: 10pt;
+    spacing: 8px;
+    background-color: transparent;
+}
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 2px solid rgb(80, 88, 108);
+    background-color: rgb(28, 31, 38);
+}
+QRadioButton::indicator:checked {
+    background-color: rgb(189, 147, 249);
+    border: 2px solid rgb(189, 147, 249);
+}
+
+/* ============================================================
+   LABELS
+   ============================================================ */
+
+QLabel {
+    color: rgb(210, 210, 220);
+    background-color: transparent;
+    font-size: 10pt;
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+
+QScrollBar:vertical {
+    background-color: rgb(33, 37, 43);
+    width: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+}
+QScrollBar::handle:vertical {
+    background-color: rgb(70, 78, 95);
+    border-radius: 5px;
+    min-height: 30px;
+}
+QScrollBar::handle:vertical:hover {
+    background-color: rgb(189, 147, 249);
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }
+
+QScrollBar:horizontal {
+    background-color: rgb(33, 37, 43);
+    height: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+}
+QScrollBar::handle:horizontal {
+    background-color: rgb(70, 78, 95);
+    border-radius: 5px;
+    min-width: 30px;
+}
+QScrollBar::handle:horizontal:hover {
+    background-color: rgb(189, 147, 249);
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { background: none; }
+
+/* ============================================================
+   DIALOGS & MESSAGE BOXES
+   ============================================================ */
+
+QDialog {
+    background-color: rgb(40, 44, 52);
+    border: 1px solid rgb(55, 60, 70);
+    border-radius: 8px;
+}
+
+QMessageBox {
+    background-color: rgb(40, 44, 52);
+}
+QMessageBox QLabel {
+    color: rgb(210, 210, 220);
+    font-size: 10pt;
+}
+QMessageBox QPushButton {
+    min-width: 80px;
+}
+
+QDialogButtonBox QPushButton {
+    min-width: 80px;
+}
+
+/* ============================================================
+   FORM LAYOUT LABELS
+   ============================================================ */
+
+QFormLayout QLabel {
+    color: rgb(170, 175, 195);
+    font-size: 10pt;
+}
+
+/* ============================================================
+   MISC
+   ============================================================ */
+
+QFrame[frameShape="4"],
+QFrame[frameShape="5"] {
+    color: rgb(55, 60, 70);
+}
+
+QSizeGrip {
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+}
+
+/* ============================================================
+   MISC NAMED LABELS
+   ============================================================ */
+
+#welcomeLabel {
+    color: rgb(189, 147, 249);
+    font-size: 14pt;
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+
+#sectionLabel {
+    color: rgb(170, 175, 195);
+    font-size: 10pt;
+    font-weight: 600;
+}
+
+/* Alternating table rows */
+QTableWidget {
+    alternate-background-color: rgb(36, 40, 49);
+}
+
+/* ============================================================
+   ANALYTICS PAGE
+   ============================================================ */
+
+#analyticsPage {
+    background-color: #1e2127;
+}
+
+#analyticsTitle {
+    color: #c3ccdf;
+    font-size: 13pt;
+    font-weight: 700;
+}
+
+#refreshBtn {
+    background-color: #2c313a;
+    color: #568af2;
+    border: 1px solid #568af2;
+    border-radius: 6px;
+    font-size: 10pt;
+    font-weight: 600;
+    min-height: 34px;
+    max-height: 34px;
+    padding: 0 14px;
+}
+#refreshBtn:hover {
+    background-color: #568af2;
+    color: #ffffff;
+}
+#refreshBtn:pressed {
+    background-color: #3a6ad4;
+}
+
+#sendAnnouncementBtn {
+    background-color: #568af2;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 10pt;
+    font-weight: 600;
+    min-height: 38px;
+    padding: 0 24px;
+}
+#sendAnnouncementBtn:hover {
+    background-color: #6b9bf5;
+}
+#sendAnnouncementBtn:pressed {
+    background-color: #3a6ad4;
+}

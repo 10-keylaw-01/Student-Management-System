@@ -1,139 +1,241 @@
-1,-1,Welcome to Term 2! Classes begin Monday April 7.,2025-04-07,System,1
-2,-1,Mid-term exams start April 28. Check the timetable.,2025-04-10,Exam,1
-3,-1,Fee payment deadline is April 30. Please clear outstanding fees.,2025-04-12,Fee,1
-4,-1,Sports Day is scheduled for May 10. All students must participate.,2025-04-14,Sports,1
-5,-1,Library hours extended to 5pm on weekdays.,2025-04-15,Library,1
-6,7,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-7,8,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-8,8,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-9,9,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-10,10,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-11,11,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-12,11,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-13,12,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-14,13,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-15,14,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-16,14,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-17,15,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-18,16,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-19,17,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-20,17,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-21,18,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-22,19,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-23,20,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-24,20,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-25,21,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-26,22,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-27,23,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-28,23,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-29,24,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-30,25,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-31,26,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-32,26,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-33,27,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-34,28,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-35,29,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-36,29,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-37,30,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-38,31,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-39,32,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-40,32,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-41,33,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-42,34,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-43,35,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-44,35,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-45,36,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-46,37,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-47,38,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-48,38,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-49,39,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-50,40,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-51,41,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-52,41,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-53,42,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-54,43,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-55,44,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-56,44,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-57,45,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-58,46,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-59,47,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-60,47,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-61,48,Fee invoice generated. Amount: 1500.000000 due 2025-04-30,2025-04-07,Fee,1
-62,49,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-63,50,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-64,50,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-65,51,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-66,52,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-67,53,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-68,53,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-69,54,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-70,55,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-71,56,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-72,56,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-73,57,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-74,58,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-75,59,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-76,59,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-77,60,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-78,61,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-79,62,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-80,62,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-81,63,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-82,64,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-83,65,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-84,65,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-85,66,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-86,67,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-87,68,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-88,68,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-89,69,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-90,70,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-91,71,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-92,71,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-93,72,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-94,73,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-95,74,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-96,74,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-97,75,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-98,76,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-99,77,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-100,77,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-101,78,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-102,79,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-103,80,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-104,80,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-105,81,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-106,82,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-107,83,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-108,83,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-109,84,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-110,85,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-111,86,Fee invoice generated. Amount: 1800.000000 due 2025-04-30,2025-04-07,Fee,1
-112,86,Absence recorded on 2025-04-09,2025-04-09,Attendance,1
-113,88,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-114,91,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-115,94,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-116,97,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-117,100,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-118,103,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-119,106,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-120,109,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-121,112,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-122,115,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-123,118,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-124,121,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-125,124,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-126,127,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-127,130,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-128,133,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-129,136,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-130,139,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-131,142,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-132,145,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-133,148,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-134,151,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-135,154,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-136,157,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-137,160,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-138,163,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
-139,166,Your child was absent on 2025-04-09,2025-04-09,Attendance,1
+1,1,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R001. Login with username 's.akua1' to view your timetable and assignments.",2026-03-28,Welcome,0
+2,2,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R002. Login with username 's.mary2' to view your timetable and assignments.",2026-03-28,Welcome,0
+3,3,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R003. Login with username 's.adjoa3' to view your timetable and assignments.",2026-03-28,Welcome,0
+4,4,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R004. Login with username 's.diana4' to view your timetable and assignments.",2026-03-28,Welcome,0
+5,5,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R005. Login with username 's.maame5' to view your timetable and assignments.",2026-03-28,Welcome,0
+6,6,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R006. Login with username 's.yaw6' to view your timetable and assignments.",2026-03-28,Welcome,0
+7,7,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R007. Login with username 's.akosua7' to view your timetable and assignments.",2026-03-28,Welcome,0
+8,8,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R008. Login with username 's.tabitha8' to view your timetable and assignments.",2026-03-28,Welcome,0
+9,9,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R009. Login with username 's.abena9' to view your timetable and assignments.",2026-03-28,Welcome,0
+10,10,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R010. Login with username 's.samuel10' to view your timetable and assignments.",2026-03-28,Welcome,0
+11,11,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R011. Login with username 's.gideon11' to view your timetable and assignments.",2026-03-28,Welcome,0
+12,12,"Welcome to 1A! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R012. Login with username 's.maame12' to view your timetable and assignments.",2026-03-28,Welcome,0
+13,13,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R013. Login with username 's.isaac13' to view your timetable and assignments.",2026-03-28,Welcome,0
+14,14,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R014. Login with username 's.naomi14' to view your timetable and assignments.",2026-03-28,Welcome,0
+15,15,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R015. Login with username 's.serwaa15' to view your timetable and assignments.",2026-03-28,Welcome,0
+16,16,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R016. Login with username 's.naomi16' to view your timetable and assignments.",2026-03-28,Welcome,0
+17,17,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R017. Login with username 's.akosua17' to view your timetable and assignments.",2026-03-28,Welcome,0
+18,18,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R018. Login with username 's.ato18' to view your timetable and assignments.",2026-03-28,Welcome,0
+19,19,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R019. Login with username 's.daniel19' to view your timetable and assignments.",2026-03-28,Welcome,0
+20,20,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R020. Login with username 's.abena20' to view your timetable and assignments.",2026-03-28,Welcome,0
+21,21,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R021. Login with username 's.nii21' to view your timetable and assignments.",2026-03-28,Welcome,0
+22,22,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R022. Login with username 's.philip22' to view your timetable and assignments.",2026-03-28,Welcome,0
+23,23,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R023. Login with username 's.kwesi23' to view your timetable and assignments.",2026-03-28,Welcome,0
+24,24,"Welcome to 1B! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R024. Login with username 's.kwame24' to view your timetable and assignments.",2026-03-28,Welcome,0
+25,25,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R025. Login with username 's.kwesi25' to view your timetable and assignments.",2026-03-28,Welcome,0
+26,26,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R026. Login with username 's.abena26' to view your timetable and assignments.",2026-03-28,Welcome,0
+27,27,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R027. Login with username 's.esther27' to view your timetable and assignments.",2026-03-28,Welcome,0
+28,28,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R028. Login with username 's.tabitha28' to view your timetable and assignments.",2026-03-28,Welcome,0
+29,29,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R029. Login with username 's.philip29' to view your timetable and assignments.",2026-03-28,Welcome,0
+30,30,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R030. Login with username 's.samuel30' to view your timetable and assignments.",2026-03-28,Welcome,0
+31,31,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R031. Login with username 's.isaac31' to view your timetable and assignments.",2026-03-28,Welcome,0
+32,32,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R032. Login with username 's.rebecca32' to view your timetable and assignments.",2026-03-28,Welcome,0
+33,33,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R033. Login with username 's.kofi33' to view your timetable and assignments.",2026-03-28,Welcome,0
+34,34,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R034. Login with username 's.grace34' to view your timetable and assignments.",2026-03-28,Welcome,0
+35,35,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R035. Login with username 's.afia35' to view your timetable and assignments.",2026-03-28,Welcome,0
+36,36,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R036. Login with username 's.nii36' to view your timetable and assignments.",2026-03-28,Welcome,0
+37,37,"Welcome to 1C! Your termly fee is GHS 800.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, ICT. Roll No: R037. Login with username 's.isaac37' to view your timetable and assignments.",2026-03-28,Welcome,0
+38,38,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R038. Login with username 's.david38' to view your timetable and assignments.",2026-03-28,Welcome,0
+39,39,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R039. Login with username 's.hannah39' to view your timetable and assignments.",2026-03-28,Welcome,0
+40,40,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R040. Login with username 's.tabitha40' to view your timetable and assignments.",2026-03-28,Welcome,0
+41,41,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R041. Login with username 's.stephen41' to view your timetable and assignments.",2026-03-28,Welcome,0
+42,42,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R042. Login with username 's.david42' to view your timetable and assignments.",2026-03-28,Welcome,0
+43,43,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R043. Login with username 's.phoebe43' to view your timetable and assignments.",2026-03-28,Welcome,0
+44,44,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R044. Login with username 's.phoebe44' to view your timetable and assignments.",2026-03-28,Welcome,0
+45,45,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R045. Login with username 's.thomas45' to view your timetable and assignments.",2026-03-28,Welcome,0
+46,46,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R046. Login with username 's.nana46' to view your timetable and assignments.",2026-03-28,Welcome,0
+47,47,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R047. Login with username 's.adjoa47' to view your timetable and assignments.",2026-03-28,Welcome,0
+48,48,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R048. Login with username 's.abena48' to view your timetable and assignments.",2026-03-28,Welcome,0
+49,49,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R049. Login with username 's.ato49' to view your timetable and assignments.",2026-03-28,Welcome,0
+50,50,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R050. Login with username 's.ato50' to view your timetable and assignments.",2026-03-28,Welcome,0
+51,51,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R051. Login with username 's.andrew51' to view your timetable and assignments.",2026-03-28,Welcome,0
+52,52,"Welcome to 2A! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R052. Login with username 's.adjoa52' to view your timetable and assignments.",2026-03-28,Welcome,0
+53,53,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R053. Login with username 's.kojo53' to view your timetable and assignments.",2026-03-28,Welcome,0
+54,54,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R054. Login with username 's.serwaa54' to view your timetable and assignments.",2026-03-28,Welcome,0
+55,55,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R055. Login with username 's.joshua55' to view your timetable and assignments.",2026-03-28,Welcome,0
+56,56,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R056. Login with username 's.judith56' to view your timetable and assignments.",2026-03-28,Welcome,0
+57,57,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R057. Login with username 's.kobbina57' to view your timetable and assignments.",2026-03-28,Welcome,0
+58,58,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R058. Login with username 's.adwoa58' to view your timetable and assignments.",2026-03-28,Welcome,0
+59,59,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R059. Login with username 's.kwesi59' to view your timetable and assignments.",2026-03-28,Welcome,0
+60,60,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R060. Login with username 's.kobbina60' to view your timetable and assignments.",2026-03-28,Welcome,0
+61,61,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R061. Login with username 's.grace61' to view your timetable and assignments.",2026-03-28,Welcome,0
+62,62,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R062. Login with username 's.kobbina62' to view your timetable and assignments.",2026-03-28,Welcome,0
+63,63,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R063. Login with username 's.miriam63' to view your timetable and assignments.",2026-03-28,Welcome,0
+64,64,"Welcome to 2B! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R064. Login with username 's.samuel64' to view your timetable and assignments.",2026-03-28,Welcome,0
+65,65,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R065. Login with username 's.benjamin65' to view your timetable and assignments.",2026-03-28,Welcome,0
+66,66,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R066. Login with username 's.benjamin66' to view your timetable and assignments.",2026-03-28,Welcome,0
+67,67,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R067. Login with username 's.kwame67' to view your timetable and assignments.",2026-03-28,Welcome,0
+68,68,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R068. Login with username 's.linda68' to view your timetable and assignments.",2026-03-28,Welcome,0
+69,69,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R069. Login with username 's.serwaa69' to view your timetable and assignments.",2026-03-28,Welcome,0
+70,70,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R070. Login with username 's.isaac70' to view your timetable and assignments.",2026-03-28,Welcome,0
+71,71,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R071. Login with username 's.kobbina71' to view your timetable and assignments.",2026-03-28,Welcome,0
+72,72,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R072. Login with username 's.felix72' to view your timetable and assignments.",2026-03-28,Welcome,0
+73,73,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R073. Login with username 's.kobbina73' to view your timetable and assignments.",2026-03-28,Welcome,0
+74,74,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R074. Login with username 's.lydia74' to view your timetable and assignments.",2026-03-28,Welcome,0
+75,75,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R075. Login with username 's.adwoa75' to view your timetable and assignments.",2026-03-28,Welcome,0
+76,76,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R076. Login with username 's.fiifi76' to view your timetable and assignments.",2026-03-28,Welcome,0
+77,77,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R077. Login with username 's.fiifi77' to view your timetable and assignments.",2026-03-28,Welcome,0
+78,78,"Welcome to 2C! Your termly fee is GHS 900.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, Social Studies, French. Roll No: R078. Login with username 's.kwesi78' to view your timetable and assignments.",2026-03-28,Welcome,0
+79,79,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R079. Login with username 's.abena79' to view your timetable and assignments.",2026-03-28,Welcome,0
+80,80,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R080. Login with username 's.kwesi80' to view your timetable and assignments.",2026-03-28,Welcome,0
+81,81,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R081. Login with username 's.sarah81' to view your timetable and assignments.",2026-03-28,Welcome,0
+82,82,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R082. Login with username 's.phoebe82' to view your timetable and assignments.",2026-03-28,Welcome,0
+83,83,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R083. Login with username 's.lydia83' to view your timetable and assignments.",2026-03-28,Welcome,0
+84,84,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R084. Login with username 's.kofi84' to view your timetable and assignments.",2026-03-28,Welcome,0
+85,85,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R085. Login with username 's.caleb85' to view your timetable and assignments.",2026-03-28,Welcome,0
+86,86,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R086. Login with username 's.afia86' to view your timetable and assignments.",2026-03-28,Welcome,0
+87,87,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R087. Login with username 's.gideon87' to view your timetable and assignments.",2026-03-28,Welcome,0
+88,88,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R088. Login with username 's.naomi88' to view your timetable and assignments.",2026-03-28,Welcome,0
+89,89,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R089. Login with username 's.maame89' to view your timetable and assignments.",2026-03-28,Welcome,0
+90,90,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R090. Login with username 's.kwame90' to view your timetable and assignments.",2026-03-28,Welcome,0
+91,91,"Welcome to 3A! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R091. Login with username 's.kwame91' to view your timetable and assignments.",2026-03-28,Welcome,0
+92,92,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R092. Login with username 's.joseph92' to view your timetable and assignments.",2026-03-28,Welcome,0
+93,93,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R093. Login with username 's.esi93' to view your timetable and assignments.",2026-03-28,Welcome,0
+94,94,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R094. Login with username 's.ruth94' to view your timetable and assignments.",2026-03-28,Welcome,0
+95,95,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R095. Login with username 's.phoebe95' to view your timetable and assignments.",2026-03-28,Welcome,0
+96,96,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R096. Login with username 's.akosua96' to view your timetable and assignments.",2026-03-28,Welcome,0
+97,97,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R097. Login with username 's.mary97' to view your timetable and assignments.",2026-03-28,Welcome,0
+98,98,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R098. Login with username 's.simon98' to view your timetable and assignments.",2026-03-28,Welcome,0
+99,99,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R099. Login with username 's.ato99' to view your timetable and assignments.",2026-03-28,Welcome,0
+100,100,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R100. Login with username 's.abena100' to view your timetable and assignments.",2026-03-28,Welcome,0
+101,101,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R101. Login with username 's.rebecca101' to view your timetable and assignments.",2026-03-28,Welcome,0
+102,102,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R102. Login with username 's.simon102' to view your timetable and assignments.",2026-03-28,Welcome,0
+103,103,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R103. Login with username 's.kojo103' to view your timetable and assignments.",2026-03-28,Welcome,0
+104,104,"Welcome to 3B! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R104. Login with username 's.adwoa104' to view your timetable and assignments.",2026-03-28,Welcome,0
+105,105,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R105. Login with username 's.maame105' to view your timetable and assignments.",2026-03-28,Welcome,0
+106,106,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R106. Login with username 's.aaron106' to view your timetable and assignments.",2026-03-28,Welcome,0
+107,107,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R107. Login with username 's.nii107' to view your timetable and assignments.",2026-03-28,Welcome,0
+108,108,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R108. Login with username 's.adjoa108' to view your timetable and assignments.",2026-03-28,Welcome,0
+109,109,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R109. Login with username 's.dorcas109' to view your timetable and assignments.",2026-03-28,Welcome,0
+110,110,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R110. Login with username 's.grace110' to view your timetable and assignments.",2026-03-28,Welcome,0
+111,111,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R111. Login with username 's.efua111' to view your timetable and assignments.",2026-03-28,Welcome,0
+112,112,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R112. Login with username 's.kwesi112' to view your timetable and assignments.",2026-03-28,Welcome,0
+113,113,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R113. Login with username 's.kojo113' to view your timetable and assignments.",2026-03-28,Welcome,0
+114,114,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R114. Login with username 's.akosua114' to view your timetable and assignments.",2026-03-28,Welcome,0
+115,115,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R115. Login with username 's.priscilla115' to view your timetable and assignments.",2026-03-28,Welcome,0
+116,116,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R116. Login with username 's.felix116' to view your timetable and assignments.",2026-03-28,Welcome,0
+117,117,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R117. Login with username 's.phoebe117' to view your timetable and assignments.",2026-03-28,Welcome,0
+118,118,"Welcome to 3C! Your termly fee is GHS 1000.00 (due 2025-04-30). Your subjects: Mathematics, English, Science, History, ICT. Roll No: R118. Login with username 's.adwoa118' to view your timetable and assignments.",2026-03-28,Welcome,0
+119,119,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R119. Login with username 's.kwame119' to view your timetable and assignments.",2026-03-28,Welcome,0
+120,120,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R120. Login with username 's.sarah120' to view your timetable and assignments.",2026-03-28,Welcome,0
+121,121,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R121. Login with username 's.paul121' to view your timetable and assignments.",2026-03-28,Welcome,0
+122,122,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R122. Login with username 's.abena122' to view your timetable and assignments.",2026-03-28,Welcome,0
+123,123,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R123. Login with username 's.serwaa123' to view your timetable and assignments.",2026-03-28,Welcome,0
+124,124,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R124. Login with username 's.esther124' to view your timetable and assignments.",2026-03-28,Welcome,0
+125,125,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R125. Login with username 's.adwoa125' to view your timetable and assignments.",2026-03-28,Welcome,0
+126,126,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R126. Login with username 's.stephen126' to view your timetable and assignments.",2026-03-28,Welcome,0
+127,127,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R127. Login with username 's.kojo127' to view your timetable and assignments.",2026-03-28,Welcome,0
+128,128,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R128. Login with username 's.benjamin128' to view your timetable and assignments.",2026-03-28,Welcome,0
+129,129,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R129. Login with username 's.adwoa129' to view your timetable and assignments.",2026-03-28,Welcome,0
+130,130,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R130. Login with username 's.dorcas130' to view your timetable and assignments.",2026-03-28,Welcome,0
+131,131,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R131. Login with username 's.kobbina131' to view your timetable and assignments.",2026-03-28,Welcome,0
+132,132,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R132. Login with username 's.diana132' to view your timetable and assignments.",2026-03-28,Welcome,0
+133,133,"Welcome to 4A! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R133. Login with username 's.rachel133' to view your timetable and assignments.",2026-03-28,Welcome,0
+134,134,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R134. Login with username 's.ato134' to view your timetable and assignments.",2026-03-28,Welcome,0
+135,135,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R135. Login with username 's.amina135' to view your timetable and assignments.",2026-03-28,Welcome,0
+136,136,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R136. Login with username 's.leah136' to view your timetable and assignments.",2026-03-28,Welcome,0
+137,137,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R137. Login with username 's.sarah137' to view your timetable and assignments.",2026-03-28,Welcome,0
+138,138,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R138. Login with username 's.kofi138' to view your timetable and assignments.",2026-03-28,Welcome,0
+139,139,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R139. Login with username 's.james139' to view your timetable and assignments.",2026-03-28,Welcome,0
+140,140,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R140. Login with username 's.thomas140' to view your timetable and assignments.",2026-03-28,Welcome,0
+141,141,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R141. Login with username 's.kofi141' to view your timetable and assignments.",2026-03-28,Welcome,0
+142,142,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R142. Login with username 's.samuel142' to view your timetable and assignments.",2026-03-28,Welcome,0
+143,143,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R143. Login with username 's.efua143' to view your timetable and assignments.",2026-03-28,Welcome,0
+144,144,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R144. Login with username 's.samuel144' to view your timetable and assignments.",2026-03-28,Welcome,0
+145,145,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R145. Login with username 's.efua145' to view your timetable and assignments.",2026-03-28,Welcome,0
+146,146,"Welcome to 4B! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R146. Login with username 's.benjamin146' to view your timetable and assignments.",2026-03-28,Welcome,0
+147,147,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R147. Login with username 's.daniel147' to view your timetable and assignments.",2026-03-28,Welcome,0
+148,148,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R148. Login with username 's.mary148' to view your timetable and assignments.",2026-03-28,Welcome,0
+149,149,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R149. Login with username 's.paul149' to view your timetable and assignments.",2026-03-28,Welcome,0
+150,150,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R150. Login with username 's.caleb150' to view your timetable and assignments.",2026-03-28,Welcome,0
+151,151,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R151. Login with username 's.john151' to view your timetable and assignments.",2026-03-28,Welcome,0
+152,152,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R152. Login with username 's.abena152' to view your timetable and assignments.",2026-03-28,Welcome,0
+153,153,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R153. Login with username 's.adjoa153' to view your timetable and assignments.",2026-03-28,Welcome,0
+154,154,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R154. Login with username 's.kobbina154' to view your timetable and assignments.",2026-03-28,Welcome,0
+155,155,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R155. Login with username 's.kwesi155' to view your timetable and assignments.",2026-03-28,Welcome,0
+156,156,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R156. Login with username 's.david156' to view your timetable and assignments.",2026-03-28,Welcome,0
+157,157,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R157. Login with username 's.afia157' to view your timetable and assignments.",2026-03-28,Welcome,0
+158,158,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R158. Login with username 's.naomi158' to view your timetable and assignments.",2026-03-28,Welcome,0
+159,159,"Welcome to 4C! Your termly fee is GHS 1200.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, History. Roll No: R159. Login with username 's.linda159' to view your timetable and assignments.",2026-03-28,Welcome,0
+160,160,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R160. Login with username 's.peter160' to view your timetable and assignments.",2026-03-28,Welcome,0
+161,161,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R161. Login with username 's.akosua161' to view your timetable and assignments.",2026-03-28,Welcome,0
+162,162,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R162. Login with username 's.ruth162' to view your timetable and assignments.",2026-03-28,Welcome,0
+163,163,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R163. Login with username 's.kwame163' to view your timetable and assignments.",2026-03-28,Welcome,0
+164,164,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R164. Login with username 's.kwabena164' to view your timetable and assignments.",2026-03-28,Welcome,0
+165,165,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R165. Login with username 's.isaac165' to view your timetable and assignments.",2026-03-28,Welcome,0
+166,166,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R166. Login with username 's.kwesi166' to view your timetable and assignments.",2026-03-28,Welcome,0
+167,167,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R167. Login with username 's.abena167' to view your timetable and assignments.",2026-03-28,Welcome,0
+168,168,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R168. Login with username 's.serwaa168' to view your timetable and assignments.",2026-03-28,Welcome,0
+169,169,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R169. Login with username 's.deborah169' to view your timetable and assignments.",2026-03-28,Welcome,0
+170,170,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R170. Login with username 's.miriam170' to view your timetable and assignments.",2026-03-28,Welcome,0
+171,171,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R171. Login with username 's.abena171' to view your timetable and assignments.",2026-03-28,Welcome,0
+172,172,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R172. Login with username 's.andrew172' to view your timetable and assignments.",2026-03-28,Welcome,0
+173,173,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R173. Login with username 's.mary173' to view your timetable and assignments.",2026-03-28,Welcome,0
+174,174,"Welcome to 5A! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R174. Login with username 's.rebecca174' to view your timetable and assignments.",2026-03-28,Welcome,0
+175,175,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R175. Login with username 's.james175' to view your timetable and assignments.",2026-03-28,Welcome,0
+176,176,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R176. Login with username 's.elijah176' to view your timetable and assignments.",2026-03-28,Welcome,0
+177,177,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R177. Login with username 's.akua177' to view your timetable and assignments.",2026-03-28,Welcome,0
+178,178,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R178. Login with username 's.joseph178' to view your timetable and assignments.",2026-03-28,Welcome,0
+179,179,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R179. Login with username 's.kofi179' to view your timetable and assignments.",2026-03-28,Welcome,0
+180,180,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R180. Login with username 's.david180' to view your timetable and assignments.",2026-03-28,Welcome,0
+181,181,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R181. Login with username 's.maame181' to view your timetable and assignments.",2026-03-28,Welcome,0
+182,182,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R182. Login with username 's.yaw182' to view your timetable and assignments.",2026-03-28,Welcome,0
+183,183,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R183. Login with username 's.gideon183' to view your timetable and assignments.",2026-03-28,Welcome,0
+184,184,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R184. Login with username 's.samuel184' to view your timetable and assignments.",2026-03-28,Welcome,0
+185,185,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R185. Login with username 's.lydia185' to view your timetable and assignments.",2026-03-28,Welcome,0
+186,186,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R186. Login with username 's.gideon186' to view your timetable and assignments.",2026-03-28,Welcome,0
+187,187,"Welcome to 5B! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R187. Login with username 's.rachel187' to view your timetable and assignments.",2026-03-28,Welcome,0
+188,188,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R188. Login with username 's.kwesi188' to view your timetable and assignments.",2026-03-28,Welcome,0
+189,189,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R189. Login with username 's.daniel189' to view your timetable and assignments.",2026-03-28,Welcome,0
+190,190,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R190. Login with username 's.diana190' to view your timetable and assignments.",2026-03-28,Welcome,0
+191,191,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R191. Login with username 's.akua191' to view your timetable and assignments.",2026-03-28,Welcome,0
+192,192,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R192. Login with username 's.sarah192' to view your timetable and assignments.",2026-03-28,Welcome,0
+193,193,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R193. Login with username 's.ato193' to view your timetable and assignments.",2026-03-28,Welcome,0
+194,194,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R194. Login with username 's.yaw194' to view your timetable and assignments.",2026-03-28,Welcome,0
+195,195,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R195. Login with username 's.kobbina195' to view your timetable and assignments.",2026-03-28,Welcome,0
+196,196,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R196. Login with username 's.daniel196' to view your timetable and assignments.",2026-03-28,Welcome,0
+197,197,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R197. Login with username 's.miriam197' to view your timetable and assignments.",2026-03-28,Welcome,0
+198,198,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R198. Login with username 's.judith198' to view your timetable and assignments.",2026-03-28,Welcome,0
+199,199,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R199. Login with username 's.peter199' to view your timetable and assignments.",2026-03-28,Welcome,0
+200,200,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R200. Login with username 's.miriam200' to view your timetable and assignments.",2026-03-28,Welcome,0
+201,201,"Welcome to 5C! Your termly fee is GHS 1500.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R201. Login with username 's.kojo201' to view your timetable and assignments.",2026-03-28,Welcome,0
+202,202,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R202. Login with username 's.miriam202' to view your timetable and assignments.",2026-03-28,Welcome,0
+203,203,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R203. Login with username 's.kofi203' to view your timetable and assignments.",2026-03-28,Welcome,0
+204,204,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R204. Login with username 's.amina204' to view your timetable and assignments.",2026-03-28,Welcome,0
+205,205,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R205. Login with username 's.abena205' to view your timetable and assignments.",2026-03-28,Welcome,0
+206,206,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R206. Login with username 's.mark206' to view your timetable and assignments.",2026-03-28,Welcome,0
+207,207,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R207. Login with username 's.kofi207' to view your timetable and assignments.",2026-03-28,Welcome,0
+208,208,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R208. Login with username 's.hannah208' to view your timetable and assignments.",2026-03-28,Welcome,0
+209,209,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R209. Login with username 's.esther209' to view your timetable and assignments.",2026-03-28,Welcome,0
+210,210,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R210. Login with username 's.aaron210' to view your timetable and assignments.",2026-03-28,Welcome,0
+211,211,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R211. Login with username 's.kofi211' to view your timetable and assignments.",2026-03-28,Welcome,0
+212,212,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R212. Login with username 's.diana212' to view your timetable and assignments.",2026-03-28,Welcome,0
+213,213,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R213. Login with username 's.john213' to view your timetable and assignments.",2026-03-28,Welcome,0
+214,214,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R214. Login with username 's.rachel214' to view your timetable and assignments.",2026-03-28,Welcome,0
+215,215,"Welcome to 6A! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R215. Login with username 's.mark215' to view your timetable and assignments.",2026-03-28,Welcome,0
+216,216,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R216. Login with username 's.miriam216' to view your timetable and assignments.",2026-03-28,Welcome,0
+217,217,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R217. Login with username 's.grace217' to view your timetable and assignments.",2026-03-28,Welcome,0
+218,218,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R218. Login with username 's.caleb218' to view your timetable and assignments.",2026-03-28,Welcome,0
+219,219,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R219. Login with username 's.esi219' to view your timetable and assignments.",2026-03-28,Welcome,0
+220,220,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R220. Login with username 's.priscilla220' to view your timetable and assignments.",2026-03-28,Welcome,0
+221,221,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R221. Login with username 's.paul221' to view your timetable and assignments.",2026-03-28,Welcome,0
+222,222,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R222. Login with username 's.diana222' to view your timetable and assignments.",2026-03-28,Welcome,0
+223,223,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R223. Login with username 's.nana223' to view your timetable and assignments.",2026-03-28,Welcome,0
+224,224,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R224. Login with username 's.abena224' to view your timetable and assignments.",2026-03-28,Welcome,0
+225,225,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R225. Login with username 's.eric225' to view your timetable and assignments.",2026-03-28,Welcome,0
+226,226,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R226. Login with username 's.kwame226' to view your timetable and assignments.",2026-03-28,Welcome,0
+227,227,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R227. Login with username 's.judith227' to view your timetable and assignments.",2026-03-28,Welcome,0
+228,228,"Welcome to 6B! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R228. Login with username 's.rachel228' to view your timetable and assignments.",2026-03-28,Welcome,0
+229,229,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R229. Login with username 's.gideon229' to view your timetable and assignments.",2026-03-28,Welcome,0
+230,230,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R230. Login with username 's.kojo230' to view your timetable and assignments.",2026-03-28,Welcome,0
+231,231,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R231. Login with username 's.kojo231' to view your timetable and assignments.",2026-03-28,Welcome,0
+232,232,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R232. Login with username 's.afia232' to view your timetable and assignments.",2026-03-28,Welcome,0
+233,233,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R233. Login with username 's.adjoa233' to view your timetable and assignments.",2026-03-28,Welcome,0
+234,234,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R234. Login with username 's.caleb234' to view your timetable and assignments.",2026-03-28,Welcome,0
+235,235,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R235. Login with username 's.kwesi235' to view your timetable and assignments.",2026-03-28,Welcome,0
+236,236,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R236. Login with username 's.isaac236' to view your timetable and assignments.",2026-03-28,Welcome,0
+237,237,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R237. Login with username 's.abigail237' to view your timetable and assignments.",2026-03-28,Welcome,0
+238,238,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R238. Login with username 's.mary238' to view your timetable and assignments.",2026-03-28,Welcome,0
+239,239,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R239. Login with username 's.kojo239' to view your timetable and assignments.",2026-03-28,Welcome,0
+240,240,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R240. Login with username 's.kwame240' to view your timetable and assignments.",2026-03-28,Welcome,0
+241,241,"Welcome to 6C! Your termly fee is GHS 1800.00 (due 2025-04-30). Your subjects: Mathematics, English, Physics, Biology, Chemistry. Roll No: R241. Login with username 's.ruth241' to view your timetable and assignments.",2026-03-28,Welcome,0

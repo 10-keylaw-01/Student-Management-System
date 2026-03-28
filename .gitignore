@@ -1,0 +1,58 @@
+# ── Compiled C++ binaries ─────────────────────────────────────────────────────
+*.exe
+*.out
+*.o
+sms
+sms_*
+
+# ── Debug / test / scratch files ──────────────────────────────────────────────
+debug_login.cpp
+hash_tool.cpp
+input.txt
+test_*.txt
+
+# ── Runtime state files ───────────────────────────────────────────────────────
+.lockout
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Python virtual environments ───────────────────────────────────────────────
+venv/
+.venv/
+env/
+
+# ── IDE / editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS files ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Data files (contain user data / passwords) ────────────────────────────────
+data/admins.csv
+data/students.csv
+data/teachers.csv
+data/parents.csv
+data/fees.csv
+data/attendance.csv
+data/grades.csv
+data/notifications.csv
+data/exam_results.csv
+
+# Keep seed/structure data that is not user-specific
+!data/fee_structure.csv
+!data/timetable.csv
+!data/courses.csv
+!data/announcements.csv
+!data/assignments.csv
+!data/materials.csv
+!data/books.csv
+!data/exams.csv
+!data/calendar.csv
