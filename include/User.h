@@ -8,9 +8,9 @@ enum class Role { Admin, Teacher, Parent, Student };
 /// Base class for all users in the system
 class User {
 public:
-    int id;
+    int id = 0;
     std::string username, password, name;
-    Role role;
+    Role role = Role::Student;
 
     User() = default;
     User(int id, const std::string& username, const std::string& password, 

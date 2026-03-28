@@ -4,13 +4,14 @@ import csv
 from pathlib import Path
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel,
-    QFormLayout, QComboBox, QDateEdit, QMessageBox, QSizePolicy
+    QFormLayout, QComboBox, QDateEdit
 )
-from PyQt5.QtCore import pyqtSignal, QDate
+from PyQt5.QtCore import QDate
 
 from backend_communicator import BackendCommunicator
 from utils.widgets import DataTable, StatCard
 from ui.dashboard_shell import DashboardShell
+from data_paths import data_path
 
 
 def _read_csv(path: Path) -> list:
@@ -27,14 +28,23 @@ class TeacherDashboard(DashboardShell):
     def __init__(self, backend: BackendCommunicator, username: str):
         super().__init__(username, 'teacher')
         self.backend  = backend
-        self.data_dir = Path(__file__).parent.parent.parent / 'data'
         self._csv: dict = {}
+        self.teacher_id      = None
+        self.assigned_classes = []
+        self._resolve_teacher()
         self._build_pages()
 
     def _csv_rows(self, filename: str) -> list:
         if filename not in self._csv:
-            self._csv[filename] = _read_csv(self.data_dir / filename)
+            self._csv[filename] = _read_csv(data_path(filename))
         return self._csv[filename]
+
+    def _resolve_teacher(self):
+        for r in self._csv_rows('teachers.csv'):
+            if len(r) >= 7 and r[1] == self.username:
+                self.teacher_id = int(r[0])
+                self.assigned_classes = [c for c in r[6].split('|') if c]
+                return
 
     def _build_pages(self):
         self.add_nav_button("📊", "Analytics",       self._create_analytics_tab())
@@ -50,12 +60,35 @@ class TeacherDashboard(DashboardShell):
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(16)
 
+        # Real stats from CSV
+        classes_taught = len(self.assigned_classes)
+
+        student_ids = {
+            r[0] for r in self._csv_rows('students.csv')
+            if len(r) >= 6 and r[5] in self.assigned_classes
+        }
+        total_students = len(student_ids)
+
+        att_rows = [r for r in self._csv_rows('attendance.csv')
+                    if len(r) >= 5 and r[0] in student_ids]
+        att_pct = (
+            f"{int(100 * sum(1 for r in att_rows if r[4] == '1') / len(att_rows))}%"
+            if att_rows else 'N/A'
+        )
+
+        grade_rows = [r for r in self._csv_rows('grades.csv')
+                      if len(r) >= 5 and r[0] in student_ids]
+        avg_grade = (
+            f"{sum(float(r[4]) for r in grade_rows) / len(grade_rows):.1f}%"
+            if grade_rows else 'N/A'
+        )
+
         stats_row = QHBoxLayout()
         stats_row.setSpacing(12)
-        stats_row.addWidget(StatCard("Classes Taught", "2"))
-        stats_row.addWidget(StatCard("Total Students", "50"))
-        stats_row.addWidget(StatCard("Avg Attendance", "88%"))
-        stats_row.addWidget(StatCard("Avg Grade",      "85%"))
+        stats_row.addWidget(StatCard("Classes Taught", str(classes_taught)))
+        stats_row.addWidget(StatCard("Total Students", str(total_students)))
+        stats_row.addWidget(StatCard("Avg Attendance", att_pct))
+        stats_row.addWidget(StatCard("Avg Grade",      avg_grade))
         layout.addLayout(stats_row)
         layout.addStretch()
         return widget

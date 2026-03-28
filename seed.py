@@ -21,7 +21,8 @@ def fnv1a(password):
     return format(h, 'x')
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-DATA_DIR = "data"
+DATA_DIR        = "data"
+PRIVATE_DATA_DIR = "data/private"
 
 GRADES   = [1, 2, 3, 4, 5, 6]
 SECTIONS = ['A', 'B', 'C']
@@ -141,7 +142,7 @@ def seed_teachers():
         classes_str = '|'.join(assigned[tid])
         rows.append([tid, uname, fnv1a(pwd), name, subj, dept, classes_str])
 
-    with open(f"{DATA_DIR}/teachers.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/teachers.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  teachers.csv — {len(rows)} teachers")
 
@@ -184,9 +185,9 @@ def seed_students_parents():
                 sid       += 1
                 pid_start += 1
 
-    with open(f"{DATA_DIR}/students.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/students.csv", 'w', newline='') as f:
         csv.writer(f).writerows(student_rows)
-    with open(f"{DATA_DIR}/parents.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/parents.csv", 'w', newline='') as f:
         csv.writer(f).writerows(parent_rows)
     print(f"  students.csv  — {len(student_rows)} students")
     print(f"  parents.csv   — {len(parent_rows)} parents")
@@ -247,7 +248,7 @@ def seed_attendance(student_rows):
             present = 1 if random.random() > 0.1 else 0
             rows.append([sid, name, cls, d.strftime('%Y-%m-%d'), present])
 
-    with open(f"{DATA_DIR}/attendance.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/attendance.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  attendance.csv — {len(rows)} records")
 
@@ -262,7 +263,7 @@ def seed_grades(student_rows):
                 marks = round(random.uniform(40, 98), 2)
                 rows.append([sid, name, subj, term, f"{marks:.6f}", '100.000000'])
 
-    with open(f"{DATA_DIR}/grades.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/grades.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  grades.csv    — {len(rows)} records")
 
@@ -281,7 +282,7 @@ def seed_fees(student_rows):
                      f"{amount:.6f}", f"{paid:.6f}", settled])
         inv_id += 1
 
-    with open(f"{DATA_DIR}/fees.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/fees.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  fees.csv      — {len(rows)} invoices")
 
@@ -350,7 +351,7 @@ def seed_notifications(student_rows):
         rows.append([nid, sid, msg, today, 'Welcome', 0])
         nid += 1
 
-    with open(f"{DATA_DIR}/notifications.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/notifications.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  notifications.csv — {len(rows)} notifications")
 
@@ -480,13 +481,14 @@ def seed_exam_results(student_rows):
                          e['subject'], cls, f"{marks:.6f}", f"{e['total']:.6f}"])
             rid += 1
 
-    with open(f"{DATA_DIR}/exam_results.csv", 'w', newline='') as f:
+    with open(f"{PRIVATE_DATA_DIR}/exam_results.csv", 'w', newline='') as f:
         csv.writer(f).writerows(rows)
     print(f"  exam_results.csv — {len(rows)} results")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
     os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(PRIVATE_DATA_DIR, exist_ok=True)
     print("Seeding data...")
 
     seed_fee_structure()

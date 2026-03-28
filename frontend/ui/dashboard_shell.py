@@ -2,7 +2,7 @@
 
 from PyQt5.QtWidgets import (
     QWidget, QHBoxLayout, QVBoxLayout, QPushButton,
-    QLabel, QFrame, QStackedWidget, QSizePolicy, QScrollArea
+    QLabel, QFrame, QStackedWidget, QScrollArea
 )
 from PyQt5.QtCore import Qt, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, pyqtSignal
 

@@ -4,13 +4,13 @@ import csv
 from pathlib import Path
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QPushButton, QProgressBar, QTableWidget, QTableWidgetItem, QComboBox, QSizePolicy
+    QPushButton, QProgressBar, QTableWidget, QTableWidgetItem, QComboBox
 )
-from PyQt5.QtCore import pyqtSignal
 
 from backend_communicator import BackendCommunicator
 from utils.widgets import DataTable, StatCard
 from ui.dashboard_shell import DashboardShell
+from data_paths import data_path
 
 
 def _read_csv(path: Path) -> list:
@@ -27,14 +27,60 @@ class ParentDashboard(DashboardShell):
     def __init__(self, backend: BackendCommunicator, username: str):
         super().__init__(username, 'parent')
         self.backend  = backend
-        self.data_dir = Path(__file__).parent.parent.parent / 'data'
         self._csv: dict = {}
+        # Resolve parent → child from CSV
+        self.child_id    = None
+        self.child_name  = 'Unknown'
+        self.child_class = ''
+        self._resolve_child()
         self._build_pages()
 
     def _csv_rows(self, filename: str) -> list:
         if filename not in self._csv:
-            self._csv[filename] = _read_csv(self.data_dir / filename)
+            self._csv[filename] = _read_csv(data_path(filename))
         return self._csv[filename]
+
+    def _resolve_child(self):
+        """Find the child linked to this parent username."""
+        for r in self._csv_rows('parents.csv'):
+            if len(r) >= 5 and r[1] == self.username:
+                child_id = int(r[4])
+                for s in self._csv_rows('students.csv'):
+                    if len(s) >= 6 and int(s[0]) == child_id:
+                        self.child_id    = child_id
+                        self.child_name  = s[3]
+                        self.child_class = s[5]
+                return
+
+    # ── Stat calculations ─────────────────────────────────────────
+
+    def _calc_attendance(self) -> str:
+        if not self.child_id:
+            return 'N/A'
+        sid = str(self.child_id)
+        rows = [r for r in self._csv_rows('attendance.csv') if len(r) >= 5 and r[0] == sid]
+        if not rows:
+            return 'N/A'
+        present = sum(1 for r in rows if r[4] == '1')
+        return f"{int(100 * present / len(rows))}%"
+
+    def _calc_avg_grade(self) -> str:
+        if not self.child_id:
+            return 'N/A'
+        sid = str(self.child_id)
+        scores = [float(r[4]) for r in self._csv_rows('grades.csv')
+                  if len(r) >= 5 and r[0] == sid]
+        return f"{sum(scores)/len(scores):.1f}%" if scores else 'N/A'
+
+    def _calc_fees_due(self) -> str:
+        if not self.child_id:
+            return 'N/A'
+        sid = str(self.child_id)
+        for r in self._csv_rows('fees.csv'):
+            if len(r) >= 8 and r[1] == sid:
+                outstanding = float(r[6]) - float(r[7])
+                return f"GHS {outstanding:.2f}"
+        return 'N/A'
 
     def _build_pages(self):
         self.add_nav_button("🏠", "Overview",       self._create_overview_tab())
@@ -55,17 +101,22 @@ class ParentDashboard(DashboardShell):
         child_row.setSpacing(8)
         child_row.addWidget(QLabel("Child:"))
         child_combo = QComboBox()
-        child_combo.addItem("John Mensah  (Class 10A)")
+        label = f"{self.child_name}  (Class {self.child_class})" if self.child_id else "No child linked"
+        child_combo.addItem(label)
         child_row.addWidget(child_combo)
         child_row.addStretch()
         layout.addLayout(child_row)
 
+        att = self._calc_attendance()
+        pct_int = int(att.replace('%', '')) if att != 'N/A' else 0
+        status = 'Good' if pct_int >= 75 else 'Low'
+
         stats_row = QHBoxLayout()
         stats_row.setSpacing(12)
-        stats_row.addWidget(StatCard("Attendance", "88%"))
-        stats_row.addWidget(StatCard("Avg Grade",  "85%"))
-        stats_row.addWidget(StatCard("Fees Due",   "GHS 750"))
-        stats_row.addWidget(StatCard("Status",     "Good"))
+        stats_row.addWidget(StatCard("Attendance", att))
+        stats_row.addWidget(StatCard("Avg Grade",  self._calc_avg_grade()))
+        stats_row.addWidget(StatCard("Fees Due",   self._calc_fees_due()))
+        stats_row.addWidget(StatCard("Status",     status))
         layout.addLayout(stats_row)
         layout.addStretch()
         return widget
@@ -76,9 +127,11 @@ class ParentDashboard(DashboardShell):
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(12)
 
+        att = self._calc_attendance()
+        pct = int(att.replace('%', '')) if att != 'N/A' else 0
         bar = QProgressBar()
-        bar.setValue(88)
-        bar.setFormat("Monthly Attendance: 88%")
+        bar.setValue(pct)
+        bar.setFormat(f"Attendance: {att}")
         layout.addWidget(bar)
 
         table = DataTable(['Date', 'Status', 'Subject'])
@@ -93,7 +146,7 @@ class ParentDashboard(DashboardShell):
         layout.setSpacing(12)
 
         layout.addWidget(QLabel("Recent Grades"))
-        table = DataTable(['Subject', 'Score', 'Grade', 'Date'])
+        table = DataTable(['Subject', 'Score', 'Term', 'Date'])
         self._populate_grades_data(table)
         layout.addWidget(table)
         return widget
@@ -105,17 +158,14 @@ class ParentDashboard(DashboardShell):
         layout.setSpacing(12)
 
         summary = QTableWidget()
-        summary.setRowCount(3)
         summary.setColumnCount(2)
         summary.setHorizontalHeaderLabels(['Description', 'Amount'])
         summary.verticalHeader().setVisible(False)
         summary.horizontalHeader().setStretchLastSection(True)
         summary.setMaximumHeight(130)
-        for i, (desc, amt) in enumerate([
-            ('Annual Fee',   'GHS 1,500.00'),
-            ('Paid',         'GHS 750.00'),
-            ('Outstanding',  'GHS 750.00'),
-        ]):
+        rows = self._get_fee_summary()
+        summary.setRowCount(len(rows))
+        for i, (desc, amt) in enumerate(rows):
             summary.setItem(i, 0, QTableWidgetItem(desc))
             summary.setItem(i, 1, QTableWidgetItem(amt))
         layout.addWidget(summary)
@@ -141,18 +191,40 @@ class ParentDashboard(DashboardShell):
     # ── CSV helpers ───────────────────────────────────────────────
 
     def _populate_attendance_data(self, table: DataTable):
+        if not self.child_id:
+            return
+        sid = str(self.child_id)
         data = [
             {'Date': r[3], 'Status': 'Present' if r[4] == '1' else 'Absent', 'Subject': ''}
-            for r in self._csv_rows('attendance.csv') if len(r) >= 5
+            for r in self._csv_rows('attendance.csv') if len(r) >= 5 and r[0] == sid
         ][:15]
         table.populate_from_list(data, ['Date', 'Status', 'Subject'])
 
     def _populate_grades_data(self, table: DataTable):
+        if not self.child_id:
+            return
+        sid = str(self.child_id)
         data = [
-            {'Subject': r[2], 'Score': f"{float(r[4]):.1f}", 'Grade': r[3], 'Date': ''}
-            for r in self._csv_rows('grades.csv') if len(r) >= 5
+            {'Subject': r[2], 'Score': f"{float(r[4]):.1f}", 'Term': r[3], 'Date': ''}
+            for r in self._csv_rows('grades.csv') if len(r) >= 5 and r[0] == sid
         ][:15]
-        table.populate_from_list(data, ['Subject', 'Score', 'Grade', 'Date'])
+        table.populate_from_list(data, ['Subject', 'Score', 'Term', 'Date'])
+
+    def _get_fee_summary(self):
+        if not self.child_id:
+            return [('No fee data', '')]
+        sid = str(self.child_id)
+        for r in self._csv_rows('fees.csv'):
+            if len(r) >= 9 and r[1] == sid:
+                amount, paid = float(r[6]), float(r[7])
+                return [
+                    ('Termly Fee',  f"GHS {amount:.2f}"),
+                    ('Paid',        f"GHS {paid:.2f}"),
+                    ('Outstanding', f"GHS {amount - paid:.2f}"),
+                    ('Status',      'Settled' if int(r[8]) else 'Outstanding'),
+                    ('Due Date',    r[4]),
+                ]
+        return [('No fee data', '')]
 
     def _populate_announcements(self, table: DataTable):
         data = [

@@ -6,13 +6,13 @@ from collections import defaultdict
 
 import matplotlib
 matplotlib.use('Qt5Agg')
-import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 
 from PyQt5.QtWidgets import QSizePolicy
+from data_paths import data_path
 
 # ── PyOneDark palette ─────────────────────────────────────────────────────────
 BG        = '#1e2127'
@@ -55,11 +55,11 @@ def _canvas(fig) -> FigureCanvas:
 
 # ── 1. Attendance Distribution — Pie chart ────────────────────────────────────
 
-def make_attendance_pie(data_dir: Path) -> FigureCanvas:
+def make_attendance_pie(data_dir: Path = None) -> FigureCanvas:
     """Pie chart: Present vs Absent across all students."""
     present = absent = 0
     try:
-        with open(data_dir / 'attendance.csv', 'r') as f:
+        with open(data_path('attendance.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 5:
                     if r[4] == '1':
@@ -90,18 +90,18 @@ def make_attendance_pie(data_dir: Path) -> FigureCanvas:
 
 # ── 2. Fee Collection Status — Grouped bar chart ─────────────────────────────
 
-def make_fee_bar(data_dir: Path) -> FigureCanvas:
+def make_fee_bar(data_dir: Path = None) -> FigureCanvas:
     """Bar chart: paid vs outstanding per grade level."""
     paid_by_grade    = defaultdict(float)
     pending_by_grade = defaultdict(float)
     try:
         # Map student_id → grade
         sid_grade = {}
-        with open(data_dir / 'students.csv', 'r') as f:
+        with open(data_path('students.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 6:
                     sid_grade[r[0]] = r[5][:-1]   # e.g. '1A' → '1'
-        with open(data_dir / 'fees.csv', 'r') as f:
+        with open(data_path('fees.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 8:
                     grade = sid_grade.get(r[1], '?')
@@ -147,17 +147,17 @@ def make_fee_bar(data_dir: Path) -> FigureCanvas:
 
 # ── 3. Class Performance — Horizontal bar chart ───────────────────────────────
 
-def make_class_performance_bar(data_dir: Path) -> FigureCanvas:
+def make_class_performance_bar(data_dir: Path = None) -> FigureCanvas:
     """Horizontal bar: average grade score per class."""
     class_scores = defaultdict(list)
     try:
         # Map student_id → class
         sid_class = {}
-        with open(data_dir / 'students.csv', 'r') as f:
+        with open(data_path('students.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 6:
                     sid_class[r[0]] = r[5]
-        with open(data_dir / 'grades.csv', 'r') as f:
+        with open(data_path('grades.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 5:
                     cls = sid_class.get(r[0], '')
@@ -206,11 +206,11 @@ def make_class_performance_bar(data_dir: Path) -> FigureCanvas:
 
 # ── 4. Enrollment Trend — Line chart ─────────────────────────────────────────
 
-def make_enrollment_trend(data_dir: Path) -> FigureCanvas:
+def make_enrollment_trend(data_dir: Path = None) -> FigureCanvas:
     """Line chart: cumulative student count per class level (1–6)."""
     grade_counts = defaultdict(int)
     try:
-        with open(data_dir / 'students.csv', 'r') as f:
+        with open(data_path('students.csv'), 'r') as f:
             for r in csv.reader(f):
                 if len(r) >= 6:
                     grade = r[5][:-1]

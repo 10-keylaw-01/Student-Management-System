@@ -2,8 +2,7 @@
 
 from PyQt5.QtWidgets import (
     QWidget, QLabel, QPushButton, QLineEdit, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QHBoxLayout,
-    QDialogButtonBox, QDialog, QFormLayout, QTextEdit,
+    QTableWidgetItem, QVBoxLayout, QDialogButtonBox, QDialog, QFormLayout, QTextEdit,
     QSpinBox, QDoubleSpinBox, QCheckBox, QHeaderView, QSizePolicy, QFrame
 )
 from PyQt5.QtCore import Qt

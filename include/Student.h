@@ -18,7 +18,7 @@ struct GradeRecord {
 class Student : public User {
 public:
     std::string rollNumber, className;
-    int parentId;
+    int parentId = 0;
 
     Student() = default;
     Student(int id, const std::string& username, const std::string& password, 
