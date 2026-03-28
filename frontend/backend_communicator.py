@@ -89,4 +89,7 @@ class BackendCommunicator:
                 self.process = None
     
     def __del__(self):
-        self.stop()
+        try:
+            self.stop()
+        except Exception:
+            pass

@@ -1,19 +1,20 @@
-"""Login window for authentication."""
+"""Login window — PyDracula dark style."""
 
 import json
 import csv
 from datetime import datetime, timedelta
 from pathlib import Path
 from PyQt5.QtWidgets import (
-    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QPushButton, QLineEdit, QCheckBox, QMessageBox, QProgressBar
+    QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+    QPushButton, QLineEdit, QCheckBox, QMessageBox,
+    QProgressBar, QFrame, QSizePolicy
 )
 from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import QFont
 from backend_communicator import BackendCommunicator
 
 
 def _fnv1a(password: str) -> str:
-    """FNV-1a hash — matches C++ Crypto::hashPassword exactly."""
     FNV_PRIME  = 1099511628211
     FNV_OFFSET = 14695981039346656037
     h = FNV_OFFSET
@@ -25,15 +26,6 @@ def _fnv1a(password: str) -> str:
 
 
 def _authenticate(data_dir: Path, username: str, password: str):
-    """
-    Verify credentials directly from CSV files.
-    Returns (role, display_name) on success, or (None, None) on failure.
-    CSV columns:
-      students: id, username, password_hash, name, roll, class, parentId
-      teachers: id, username, password_hash, name, subject, dept, classes
-      admins:   id, username, password_hash, name
-      parents:  id, username, password_hash, name, studentId
-    """
     pwd_hash = _fnv1a(password)
     checks = [
         ('admins.csv',   'admin',   3),
@@ -55,10 +47,10 @@ def _authenticate(data_dir: Path, username: str, password: str):
     return None, None
 
 
-class LoginWindow(QMainWindow):
-    """Login window — authenticates directly from CSV, no subprocess timing."""
+class LoginWindow(QWidget):
+    """Login window — PyDracula dark two-panel card."""
 
-    auth_success = pyqtSignal(str, str)  # (username, role)
+    auth_success = pyqtSignal(str, str)
 
     def __init__(self, backend: BackendCommunicator):
         super().__init__()
@@ -68,70 +60,121 @@ class LoginWindow(QMainWindow):
         self._setup_ui()
 
     def _setup_ui(self):
-        self.setWindowTitle("Student Management System - Login")
-        self.setGeometry(100, 100, 450, 320)
+        self.setObjectName("loginPage")
+        outer = QVBoxLayout(self)
+        outer.setAlignment(Qt.AlignCenter)
+        outer.setContentsMargins(0, 0, 0, 0)
 
-        central = QWidget()
-        self.setCentralWidget(central)
-        layout = QVBoxLayout()
-        layout.setContentsMargins(30, 30, 30, 30)
-        layout.setSpacing(10)
+        # ── Card ──────────────────────────────────────────────────
+        card = QFrame()
+        card.setObjectName("loginCard")
+        card.setFixedSize(780, 460)
+        card_layout = QHBoxLayout(card)
+        card_layout.setContentsMargins(0, 0, 0, 0)
+        card_layout.setSpacing(0)
 
-        title = QLabel("School Management System")
-        font  = title.font()
-        font.setPointSize(16)
-        font.setBold(True)
-        title.setFont(font)
-        title.setAlignment(Qt.AlignCenter)
-        layout.addWidget(title)
+        # Left branding panel
+        left = QFrame()
+        left.setObjectName("loginLeftPanel")
+        left.setFixedWidth(300)
+        left_layout = QVBoxLayout(left)
+        left_layout.setAlignment(Qt.AlignCenter)
+        left_layout.setContentsMargins(30, 40, 30, 40)
+        left_layout.setSpacing(10)
 
-        subtitle = QLabel("Please sign in to continue")
-        subtitle.setAlignment(Qt.AlignCenter)
-        subtitle.setStyleSheet("color: #666; margin-bottom: 10px;")
-        layout.addWidget(subtitle)
+        app_title = QLabel("SMS")
+        app_title.setObjectName("loginAppTitle")
+        app_title.setAlignment(Qt.AlignCenter)
 
-        layout.addWidget(QLabel("Username:"))
+        app_sub = QLabel("Student Management\nSystem")
+        app_sub.setObjectName("loginAppSub")
+        app_sub.setAlignment(Qt.AlignCenter)
+
+        divider = QFrame()
+        divider.setFrameShape(QFrame.HLine)
+        divider.setStyleSheet("background-color: rgba(255,255,255,60); max-height: 1px;")
+
+        tagline = QLabel("Manage students, teachers,\nfees and more — all in one place.")
+        tagline.setObjectName("loginTagline")
+        tagline.setAlignment(Qt.AlignCenter)
+        tagline.setWordWrap(True)
+
+        left_layout.addStretch()
+        left_layout.addWidget(app_title)
+        left_layout.addWidget(app_sub)
+        left_layout.addSpacing(20)
+        left_layout.addWidget(divider)
+        left_layout.addSpacing(10)
+        left_layout.addWidget(tagline)
+        left_layout.addStretch()
+
+        # Right form panel
+        right = QFrame()
+        right.setObjectName("loginRightPanel")
+        right_layout = QVBoxLayout(right)
+        right_layout.setContentsMargins(40, 40, 40, 40)
+        right_layout.setSpacing(12)
+
+        welcome = QLabel("Welcome Back")
+        welcome.setObjectName("loginWelcome")
+
+        sign_in = QLabel("Sign in to your account")
+        sign_in.setObjectName("loginSubtitle")
+
+        lbl_user = QLabel("Username")
+        lbl_user.setObjectName("loginFieldLabel")
         self.username_input = QLineEdit()
         self.username_input.setPlaceholderText("Enter username")
-        self.username_input.setMinimumHeight(35)
-        layout.addWidget(self.username_input)
 
-        layout.addWidget(QLabel("Password:"))
+        lbl_pwd = QLabel("Password")
+        lbl_pwd.setObjectName("loginFieldLabel")
         pwd_row = QHBoxLayout()
         self.password_input = QLineEdit()
         self.password_input.setPlaceholderText("Enter password")
         self.password_input.setEchoMode(QLineEdit.Password)
-        self.password_input.setMinimumHeight(35)
         self.password_input.returnPressed.connect(self._attempt_login)
-
         self.show_pwd_check = QCheckBox("Show")
         self.show_pwd_check.stateChanged.connect(self._toggle_password)
         pwd_row.addWidget(self.password_input)
         pwd_row.addWidget(self.show_pwd_check)
-        layout.addLayout(pwd_row)
 
         self.status_label = QLabel()
-        self.status_label.setStyleSheet("color: #d32f2f;")
+        self.status_label.setObjectName("loginStatus")
         self.status_label.setWordWrap(True)
-        layout.addWidget(self.status_label)
+        self.status_label.setMinimumHeight(18)
 
         self.login_btn = QPushButton("Login")
-        self.login_btn.setMinimumHeight(40)
+        self.login_btn.setObjectName("loginBtn")
         self.login_btn.clicked.connect(self._attempt_login)
-        layout.addWidget(self.login_btn)
 
         self.progress = QProgressBar()
         self.progress.setVisible(False)
-        layout.addWidget(self.progress)
+        self.progress.setMaximum(0)
+        self.progress.setFixedHeight(4)
 
-        layout.addStretch()
-        central.setLayout(layout)
+        right_layout.addWidget(welcome)
+        right_layout.addWidget(sign_in)
+        right_layout.addSpacing(10)
+        right_layout.addWidget(lbl_user)
+        right_layout.addWidget(self.username_input)
+        right_layout.addWidget(lbl_pwd)
+        right_layout.addLayout(pwd_row)
+        right_layout.addWidget(self.status_label)
+        right_layout.addWidget(self.login_btn)
+        right_layout.addWidget(self.progress)
+        right_layout.addStretch()
+
+        card_layout.addWidget(left)
+        card_layout.addWidget(right)
+        outer.addWidget(card)
+
+    # ── Password toggle ───────────────────────────────────────────
 
     def _toggle_password(self):
         mode = QLineEdit.Normal if self.show_pwd_check.isChecked() else QLineEdit.Password
         self.password_input.setEchoMode(mode)
 
-    # ── Lockout helpers ───────────────────────────────────────────────────────
+    # ── Lockout helpers ───────────────────────────────────────────
 
     def _load_lockout(self) -> dict:
         try:
@@ -150,14 +193,12 @@ class LoginWindow(QMainWindow):
             pass
 
     def _is_locked(self, username: str) -> int:
-        """Return remaining seconds if locked, else 0."""
         data = self._load_lockout()
         if username in data and 'locked_until' in data[username]:
             until = datetime.fromisoformat(data[username]['locked_until'])
             remaining = (until - datetime.now()).total_seconds()
             if remaining > 0:
                 return int(remaining)
-            # Expired — clean up
             del data[username]
             self._save_lockout(data)
         return 0
@@ -178,7 +219,7 @@ class LoginWindow(QMainWindow):
             del data[username]
             self._save_lockout(data)
 
-    # ── Login flow ────────────────────────────────────────────────────────────
+    # ── Login flow ────────────────────────────────────────────────
 
     def _attempt_login(self):
         username = self.username_input.text().strip()
@@ -188,50 +229,39 @@ class LoginWindow(QMainWindow):
             self.status_label.setText("Please enter both username and password.")
             return
 
-        # Check lockout
         remaining = self._is_locked(username)
         if remaining > 0:
             mins, secs = divmod(remaining, 60)
-            self.status_label.setText(
-                f"🔒 Account locked. Try again in {mins}m {secs}s."
-            )
+            self.status_label.setText(f"🔒 Account locked. Try again in {mins}m {secs}s.")
             self.login_btn.setEnabled(False)
             return
 
         self.login_btn.setEnabled(False)
         self.progress.setVisible(True)
-        self.progress.setMaximum(0)
         self.status_label.setText("")
 
         role, name = _authenticate(self.data_dir, username, password)
 
         self.progress.setVisible(False)
-        self.progress.setMaximum(100)
         self.login_btn.setEnabled(True)
 
         if role:
             self._clear_lockout(username)
-            self.status_label.setText("")
             self.auth_success.emit(username, role)
         else:
             attempts = self._record_failure(username)
             if attempts >= 3:
                 self.login_btn.setEnabled(False)
-                self.status_label.setText(
-                    "🔒 Account locked for 15 minutes due to too many failed attempts."
-                )
+                self.status_label.setText("🔒 Account locked for 15 minutes.")
             else:
-                remaining_attempts = 3 - attempts
                 self.status_label.setText(
-                    f"Invalid credentials. {remaining_attempts} attempt(s) remaining."
+                    f"Invalid credentials. {3 - attempts} attempt(s) remaining."
                 )
             self.password_input.clear()
 
     def reset(self):
-        """Reset login form — called on logout."""
         self.username_input.clear()
         self.password_input.clear()
         self.status_label.setText("")
         self.login_btn.setEnabled(True)
         self.show_pwd_check.setChecked(False)
-

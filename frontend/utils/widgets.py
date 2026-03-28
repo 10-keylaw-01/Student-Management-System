@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
     QWidget, QLabel, QPushButton, QLineEdit, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QHBoxLayout,
     QDialogButtonBox, QDialog, QFormLayout, QTextEdit,
-    QSpinBox, QDoubleSpinBox, QCheckBox, QHeaderView
+    QSpinBox, QDoubleSpinBox, QCheckBox, QHeaderView, QSizePolicy, QFrame
 )
 from PyQt5.QtCore import Qt
 from typing import List, Dict, Tuple, Optional, Any
@@ -17,19 +17,27 @@ class DataTable(QTableWidget):
         super().__init__(parent)
         self.setColumnCount(len(headers))
         self.setHorizontalHeaderLabels(headers)
-        self.horizontalHeader().setStyleSheet(
-            "QHeaderView::section { background-color: #f0f0f0; padding: 5px; }"
-        )
         self.setAlternatingRowColors(True)
+        self.setShowGrid(True)
+        self.setSelectionBehavior(QTableWidget.SelectRows)
+        self.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.verticalHeader().setVisible(False)
+        self.verticalHeader().setDefaultSectionSize(34)
         self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.horizontalHeader().setHighlightSections(False)
+        self.setFocusPolicy(Qt.StrongFocus)
 
     def populate_from_list(self, data: List[Dict], keys: List[str]):
-        """Populate table from list of dicts."""
+        """Populate table from list of dicts — batched to avoid per-row repaints."""
+        self.setSortingEnabled(False)
+        self.setUpdatesEnabled(False)
         self.setRowCount(len(data))
         for row, item in enumerate(data):
             for col, key in enumerate(keys):
-                value = str(item.get(key, ''))
-                self.setItem(row, col, QTableWidgetItem(value))
+                cell = QTableWidgetItem(str(item.get(key, '')))
+                cell.setFlags(cell.flags() & ~Qt.ItemIsEditable)
+                self.setItem(row, col, cell)
+        self.setUpdatesEnabled(True)
 
     def get_selected_row(self) -> Optional[Dict]:
         """Get selected row as dict."""
@@ -127,35 +135,64 @@ class PasswordLineEdit(QLineEdit):
 
 
 class StatCard(QWidget):
-    """Card displaying a statistic."""
+    """Gradient stat card with hover animation — PyOneDark style."""
 
-    def __init__(self, title: str, value: str, parent=None):
+    def __init__(self, title: str, value: str, accent: str = '#568af2', parent=None):
         super().__init__(parent)
+        self.setObjectName("statCard")
+        self.setCursor(Qt.PointingHandCursor)
+
+        # Create style strings without format placeholders to avoid KeyError
+        self._style_normal = (
+            "#statCard {"
+            "background: qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+            "stop:0 #2c313a, stop:1 #1e2127);"
+            "border-radius: 10px;"
+            "border: 1px solid #3a3f4b;"
+            "}"
+        )
+        self._style_hovered = (
+            "#statCard {"
+            "background: qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+            "stop:0 #333845, stop:1 #1e2127);"
+            "border-radius: 10px;"
+            "border: 1px solid #4a5060;"
+            "}"
+        )
+        self.setStyleSheet(self._style_normal)
+
         layout = QVBoxLayout()
-        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setContentsMargins(18, 14, 18, 14)
+        layout.setSpacing(6)
 
         title_label = QLabel(title)
-        title_font = title_label.font()
-        title_font.setPointSize(9)
-        title_label.setFont(title_font)
-        title_label.setStyleSheet("color: #666;")
+        title_label.setObjectName("statCardTitle")
 
         value_label = QLabel(value)
-        value_font = value_label.font()
-        value_font.setPointSize(16)
-        value_font.setBold(True)
-        value_label.setFont(value_font)
+        value_label.setObjectName("statCardValue")
+        value_label.setStyleSheet(
+            f"color: {accent}; font-size: 22pt; font-weight: 700; background: transparent;"
+        )
+
+        bar = QFrame()
+        bar.setFixedHeight(3)
+        bar.setStyleSheet(
+            f"background: qlineargradient(x1:0,y1:0,x2:1,y2:0,"
+            f" stop:0 {accent}, stop:1 transparent); border-radius: 2px;"
+        )
 
         layout.addWidget(title_label)
         layout.addWidget(value_label)
         layout.addStretch()
-
+        layout.addWidget(bar)
         self.setLayout(layout)
-        self.setStyleSheet("""
-            StatCard {
-                background-color: white;
-                border: 1px solid #e0e0e0;
-                border-radius: 5px;
-                padding: 10px;
-            }
-        """)
+        self.setMinimumHeight(100)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+
+    def enterEvent(self, event):
+        self.setStyleSheet(self._style_hovered)
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        self.setStyleSheet(self._style_normal)
+        super().leaveEvent(event)
